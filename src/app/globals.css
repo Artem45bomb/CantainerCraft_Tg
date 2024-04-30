@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: #5c37e200;
+  font-size: 16px;
+  width: 100vw;
+  height: 100vh;
+}
+
+input {
+  background: #ffffff00;
+  border: none;
+  outline: none;
+}

@@ -1,0 +1,6 @@
+dist/
+
+.eslintrc.json
+
+*.mts
+*.mjs
