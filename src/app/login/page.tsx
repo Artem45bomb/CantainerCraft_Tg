@@ -51,10 +51,10 @@ export default function Login() {
   };
 
   return (
-    <main className=" flex items-center justify-center w-full h-full">
+    <main className=" flex items-center justify-center w-full h-full bg-msu-green">
       <form
         onSubmit={submitForm}
-        className="max-w-2xl px-20 py-8 m-auto bg-slate-600 rounded-2xl"
+        className="max-w-2xl px-20 py-8 m-auto bg-police-blue rounded-2xl"
       >
         <div className="flex flex-col gap-5">
           <div className="mb-10 text-center">
@@ -63,7 +63,7 @@ export default function Login() {
               Don’t have an account yet? <span>Sign up</span>
             </p>
           </div>
-          <div className="flex w-full gap-2 p-2 bg-gray-800 rounded-lg">
+          <div className="flex w-full gap-2 p-2  bg-msu-green border border-desaturated-cyan rounded-lg">
             <EmailIcon />
             <input
               name="email"
@@ -73,7 +73,7 @@ export default function Login() {
             />
           </div>
           <div className="w-full">
-            <div className="flex w-full gap-2 p-2 bg-gray-800 rounded-lg">
+            <div className="flex w-full gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
               <PasswordIcon />
               <input
                 name="password"
@@ -86,7 +86,7 @@ export default function Login() {
           </div>
           <button
             type="submit"
-            className="w-full py-3 text-center bg-red-700 rounded-lg"
+            className="w-full py-3 text-center bg-crystal rounded-lg"
           >
             Sign Up
           </button>
@@ -101,21 +101,27 @@ export default function Login() {
                 signIn("google");
               }}
             >
-              <GoogleIcon />
+              <div className="my-1">
+                <GoogleIcon />
+              </div>
             </ButtonAuth>
             <ButtonAuth
               onClick={() => {
                 signIn("google");
               }}
             >
-              <VkIcon />
+              <div className="my-1">
+                <VkIcon />
+              </div>
             </ButtonAuth>
             <ButtonAuth
               onClick={() => {
                 signIn("google");
               }}
             >
-              <TgIcon />
+              <div className="my-1">
+                  <TgIcon />
+              </div>
             </ButtonAuth>
           </div>
         </div>

@@ -58,10 +58,10 @@ export default function Registration() {
   };
 
   return (
-    <main className="flex items-center justify-center w-full h-full">
+    <main className="flex items-center justify-center w-full h-full bg-msu-green">
       <form
         onSubmit={submitForm}
-        className="max-w-2xl px-20 py-8 m-auto bg-slate-600 rounded-2xl"
+        className="max-w-2xl px-20 py-8 m-auto bg-police-blue rounded-2xl"
       >
         <div className="mb-4 text-center">
           <p className="pb-1 text-3xl font-bold">Welcome</p>
@@ -70,7 +70,7 @@ export default function Registration() {
           </p>
         </div>
         <div className="flex flex-col w-full gap-5">
-          <div className="flex w-full relative gap-2 p-2 bg-gray-800 rounded-lg">
+          <div className="flex w-full relative gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
             <NameIcon />
             <input
               name="name"
@@ -80,12 +80,12 @@ export default function Registration() {
               className="w-full rounded-lg bg-none"
             />
           </div>
-          <div className="flex w-full relative gap-2 p-2 bg-gray-800 rounded-lg">
+          <div className="flex w-full relative gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
             <EmailIcon />
             <input name="email" placeholder="Email" type="text" />
           </div>
           <div className="w-full">
-            <div className="flex w-full relative gap-2 p-2 bg-gray-800 rounded-lg">
+            <div className="flex w-full relative gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
               <NameIcon />
               <input
                 name="password"
@@ -96,7 +96,7 @@ export default function Registration() {
             </div>
             <div className="text-red-700 h-4">{error && error}</div>
           </div>
-          <div className="flex w-full gap-2 p-2 bg-gray-800 rounded-lg">
+          <div className="flex w-full gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
             <PasswordIcon />
             <input
               name="passwordCopy"
@@ -107,7 +107,7 @@ export default function Registration() {
           </div>
           <button
             type="submit"
-            className="w-full py-3 text-center bg-red-700 rounded-lg"
+            className="w-full py-3 text-center bg-crystal rounded-lg"
           >
             Sign Up
           </button>
@@ -116,27 +116,33 @@ export default function Registration() {
             <span className="mx-2 ">OR</span>
             <hr className="w-full bg-white" style={{ height: 1 }} />
           </div>
-          <div className="flex gap-5">
+          <div className="flex gap-5 justify-between">
             <ButtonAuth
               onClick={() => {
                 signIn("google");
               }}
             >
-              <GoogleIcon />
+              <div className="my-1">
+                <GoogleIcon />
+              </div>
             </ButtonAuth>
             <ButtonAuth
               onClick={() => {
                 signIn("google");
               }}
             >
-              <TgIcon />
+              <div className="my-1">
+                <VkIcon />
+              </div>
             </ButtonAuth>
             <ButtonAuth
               onClick={() => {
                 signIn("google");
               }}
             >
-              <VkIcon />
+              <div className="my-1">
+                  <TgIcon />
+              </div>
             </ButtonAuth>
           </div>
         </div>
