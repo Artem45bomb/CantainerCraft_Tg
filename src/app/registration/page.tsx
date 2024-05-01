@@ -1,5 +1,5 @@
 "use client";
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useEffect } from "react";
 import NameIcon from "@assets/Nick-icon.svg";
 import PasswordIcon from "@assets/Password-icon.svg";
 import EmailIcon from "@assets/Email-icon.svg";
@@ -7,14 +7,41 @@ import GoogleIcon from "@assets/icon/Google-icon.svg";
 import TgIcon from "@assets/icon/Tg-icon.svg";
 import VkIcon from "@assets/icon/Vk-icon.svg";
 import { ButtonAuth } from "@/shared/ButtonsAuth/ButtonAuth";
-import { signIn } from "next-auth/react";
-import Image from "next/image";
-import { login, registration } from "@/features/api/service/user.service";
+import { signIn, useSession } from "next-auth/react";
+import {
+  checkExistUser,
+  registration,
+} from "@/features/api/service/user.service";
 import { checkEmail, checkName, checkPassword } from "@/features/api/util/form";
+import { useInput } from "@/features/hooks/customHook";
+import { redirect, useRouter } from "next/navigation";
 
 export default function Registration() {
   const [isShow, setShow] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
+  const [username, setUsername, setInputName] = useInput("");
+  const [email, setEmail, setInputEmail] = useInput("");
+  const session = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    console.log(session.status);
+    const check = async (username: string) => {
+      await checkExistUser(username)
+        .then(() => {
+          router.push("/");
+        })
+        .catch((e) => {
+          console.log(e);
+          setUsername(session.data?.user?.name!);
+          setEmail(session?.data?.user?.email!);
+        });
+    };
+    if (session.status === "authenticated") {
+      console.log(1);
+      check(session.data.user?.email!);
+    }
+  }, [session.status]);
 
   const input = () => {
     if (Boolean(error) === true) setError("");
@@ -73,8 +100,9 @@ export default function Registration() {
           <div className="flex w-full relative gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
             <NameIcon />
             <input
+              value={username && username}
               name="name"
-              onChange={input}
+              onChange={setInputName}
               placeholder="Name"
               type="text"
               className="w-full rounded-lg bg-none"
@@ -82,14 +110,19 @@ export default function Registration() {
           </div>
           <div className="flex w-full relative gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
             <EmailIcon />
-            <input name="email" placeholder="Email" type="text" />
+            <input
+              onChange={setInputEmail}
+              value={email && email}
+              name="email"
+              placeholder="Email"
+              type="text"
+            />
           </div>
           <div className="w-full">
             <div className="flex w-full relative gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
               <NameIcon />
               <input
                 name="password"
-                onChange={input}
                 placeholder="Password"
                 type={!isShow ? "password" : "text"}
               />
@@ -141,7 +174,7 @@ export default function Registration() {
               }}
             >
               <div className="my-1">
-                  <TgIcon />
+                <TgIcon />
               </div>
             </ButtonAuth>
           </div>

@@ -5,21 +5,34 @@ import GoogleIcon from "@assets/icon/Google-icon.svg";
 import TgIcon from "@assets/icon/Tg-icon.svg";
 import VkIcon from "@assets/icon/Vk-icon.svg";
 import { ButtonAuth } from "@/shared/ButtonsAuth/ButtonAuth";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
-import { useState, FormEvent } from "react";
-import { login } from "@/features/api/service/user.service";
+import { useState, FormEvent, useEffect } from "react";
+import { checkExistUser, login } from "@/features/api/service/user.service";
 import { checkEmail, checkPassword } from "@/features/api/util/form";
+import { auth } from "@/features/configs";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useInput } from "@/features/hooks/customHook";
 
 console.log(`${checkPassword("aaa")}`);
 
 export default function Login() {
   const [isShow, setShow] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
+  const session = useSession();
+  const router = useRouter();
 
-  const input = () => {
-    if (Boolean(error) === true) setError("");
-  };
+  useEffect(() => {
+    const check = async (username: string) => {
+      await checkExistUser(username).then(() => {
+        router.push("/");
+      });
+    };
+    if (session.status === "authenticated") {
+      check(session.data.user?.email!);
+    }
+  }, [session.status]);
 
   const submitForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -60,24 +73,21 @@ export default function Login() {
           <div className="mb-10 text-center">
             <p className="pb-1 text-3xl font-bold">Welcome back</p>
             <p>
-              Don’t have an account yet? <span>Sign up</span>
+              Don’t have an account yet?{" "}
+              <Link href={"/registration"} className="text-crystal">
+                Sign up
+              </Link>
             </p>
           </div>
           <div className="flex w-full gap-2 p-2  bg-msu-green border border-desaturated-cyan rounded-lg">
             <EmailIcon />
-            <input
-              name="email"
-              onChange={input}
-              placeholder="Email addres"
-              type="text"
-            />
+            <input name="email" placeholder="Email addres" type="text" />
           </div>
           <div className="w-full">
             <div className="flex w-full gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
               <PasswordIcon />
               <input
                 name="password"
-                onChange={input}
                 placeholder="Password"
                 type={!isShow ? "password" : "text"}
               />
@@ -88,7 +98,7 @@ export default function Login() {
             type="submit"
             className="w-full py-3 text-center bg-crystal rounded-lg"
           >
-            Sign Up
+            Sign In
           </button>
           <div className="flex items-center">
             <hr className="w-full bg-white" style={{ height: 1 }} />
@@ -120,7 +130,7 @@ export default function Login() {
               }}
             >
               <div className="my-1">
-                  <TgIcon />
+                <TgIcon />
               </div>
             </ButtonAuth>
           </div>

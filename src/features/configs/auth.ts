@@ -1,15 +1,22 @@
+import { signIn } from "next-auth/react";
 import { NextAuthConfig } from "next-auth";
 import GoggleProvider from "next-auth/providers/google";
 import NextAuth from "next-auth";
+import axios from "axios";
+import { checkExistUser } from "../api/service/user.service";
 
 const authOptions: NextAuthConfig = {
   secret: process.env.NEXTAUTH_SECRET,
-  pages: {
-    signIn: "/",
-    signOut: "/login",
-  },
   callbacks: {
-    signIn: async (): Promise<string | boolean> => {
+    signIn: async ({
+      user,
+      account,
+      profile,
+      email,
+      credentials,
+    }): Promise<string | boolean> => {
+      const data = await checkExistUser(user.name || "");
+
       return true;
     },
   },

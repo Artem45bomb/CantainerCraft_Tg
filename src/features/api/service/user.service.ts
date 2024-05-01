@@ -1,7 +1,7 @@
 "use server";
 import axios from "axios";
-
 import { User } from "@/features/api/model/index";
+import { JwtAuthDTO } from "../dto";
 
 const usersServiceApi = process.env.USERS_SERVICE_API;
 
@@ -23,4 +23,20 @@ export const login = async (
     throw new Error("user is not registration");
   }
   return data;
+};
+
+export const checkExistUser = async (username: string) => {
+  try {
+    const { status, data } = await axios.get<JwtAuthDTO>(
+      "https://6538cc17a543859d1bb1ef16.mockapi.io/api/posts/users",
+    );
+    console.log(data);
+    if (status >= 200 && status < 300) {
+      return data;
+    }
+
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
 };
