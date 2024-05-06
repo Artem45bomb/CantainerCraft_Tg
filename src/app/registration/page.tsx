@@ -1,11 +1,9 @@
 "use client";
-import { FormEvent, useState, useEffect } from "react";
+import { FormEvent, useState, useEffect, use } from "react";
 import NameIcon from "@assets/Nick-icon.svg";
 import PasswordIcon from "@assets/Password-icon.svg";
 import EmailIcon from "@assets/Email-icon.svg";
 import GoogleIcon from "@assets/icon/Google-icon.svg";
-import TgIcon from "@assets/icon/Tg-icon.svg";
-import VkIcon from "@assets/icon/Vk-icon.svg";
 import { ButtonAuth } from "@/shared/ButtonsAuth/ButtonAuth";
 import { signIn, useSession } from "next-auth/react";
 import {
@@ -14,7 +12,8 @@ import {
 } from "@/features/api/service/user.service";
 import { checkEmail, checkName, checkPassword } from "@/features/api/util/form";
 import { useInput } from "@/features/hooks/customHook";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useFormStatus } from "react-dom";
 
 export default function Registration() {
   const [isShow, setShow] = useState<boolean>(false);
@@ -23,23 +22,21 @@ export default function Registration() {
   const [email, setEmail, setInputEmail] = useInput("");
   const session = useSession();
   const router = useRouter();
+  const { pending } = useFormStatus();
 
   useEffect(() => {
-    console.log(session.status);
-    const check = async (username: string) => {
+    const check = async () => {
       await checkExistUser(username)
         .then(() => {
           router.push("/");
         })
-        .catch((e) => {
-          console.log(e);
+        .catch(() => {
           setUsername(session.data?.user?.name!);
           setEmail(session?.data?.user?.email!);
         });
     };
     if (session.status === "authenticated") {
-      console.log(1);
-      check(session.data.user?.email!);
+      check();
     }
   }, [session.status]);
 
@@ -83,6 +80,7 @@ export default function Registration() {
         console.log(error);
       });
   };
+  use;
 
   return (
     <main className="flex items-center justify-center w-full h-full bg-msu-green">
@@ -97,8 +95,10 @@ export default function Registration() {
           </p>
         </div>
         <div className="flex flex-col w-full gap-5">
-          <div className="flex w-full relative gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
-            <NameIcon />
+          <div className="flex items-center w-full relative gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
+            <div>
+              <NameIcon />
+            </div>
             <input
               value={username && username}
               name="name"
@@ -108,9 +108,12 @@ export default function Registration() {
               className="w-full rounded-lg bg-none"
             />
           </div>
-          <div className="flex w-full relative gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
-            <EmailIcon />
+          <div className="flex items-center w-full relative gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
+            <div>
+              <EmailIcon />
+            </div>
             <input
+              className="w-full"
               onChange={setInputEmail}
               value={email && email}
               name="email"
@@ -119,9 +122,12 @@ export default function Registration() {
             />
           </div>
           <div className="w-full">
-            <div className="flex w-full relative gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
-              <NameIcon />
+            <div className="flex items-center w-full  relative gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
+              <div>
+                <PasswordIcon />
+              </div>
               <input
+                className="w-full"
                 name="password"
                 placeholder="Password"
                 type={!isShow ? "password" : "text"}
@@ -129,9 +135,12 @@ export default function Registration() {
             </div>
             <div className="text-red-700 h-4">{error && error}</div>
           </div>
-          <div className="flex w-full gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
-            <PasswordIcon />
+          <div className="flex items-center w-full gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
+            <div>
+              <PasswordIcon />
+            </div>
             <input
+              className="w-full"
               name="passwordCopy"
               onChange={input}
               placeholder="Repeat your password"
@@ -139,6 +148,7 @@ export default function Registration() {
             />
           </div>
           <button
+            disabled={pending}
             type="submit"
             className="w-full py-3 text-center bg-crystal rounded-lg"
           >
@@ -149,7 +159,7 @@ export default function Registration() {
             <span className="mx-2 ">OR</span>
             <hr className="w-full bg-white" style={{ height: 1 }} />
           </div>
-          <div className="flex gap-5 justify-between">
+          <div className="w-full">
             <ButtonAuth
               onClick={() => {
                 signIn("google");
@@ -157,24 +167,6 @@ export default function Registration() {
             >
               <div className="my-1">
                 <GoogleIcon />
-              </div>
-            </ButtonAuth>
-            <ButtonAuth
-              onClick={() => {
-                signIn("google");
-              }}
-            >
-              <div className="my-1">
-                <VkIcon />
-              </div>
-            </ButtonAuth>
-            <ButtonAuth
-              onClick={() => {
-                signIn("google");
-              }}
-            >
-              <div className="my-1">
-                <TgIcon />
               </div>
             </ButtonAuth>
           </div>

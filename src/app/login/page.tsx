@@ -8,12 +8,11 @@ import { ButtonAuth } from "@/shared/ButtonsAuth/ButtonAuth";
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useState, FormEvent, useEffect } from "react";
+import { useFormState, useFormStatus } from "react-dom";
 import { checkExistUser, login } from "@/features/api/service/user.service";
 import { checkEmail, checkPassword } from "@/features/api/util/form";
-import { auth } from "@/features/configs";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useInput } from "@/features/hooks/customHook";
 
 console.log(`${checkPassword("aaa")}`);
 
@@ -22,6 +21,7 @@ export default function Login() {
   const [error, setError] = useState<string>("");
   const session = useSession();
   const router = useRouter();
+  const { pending } = useFormStatus();
 
   useEffect(() => {
     const check = async (username: string) => {
@@ -79,14 +79,24 @@ export default function Login() {
               </Link>
             </p>
           </div>
-          <div className="flex w-full gap-2 p-2  bg-msu-green border border-desaturated-cyan rounded-lg">
-            <EmailIcon />
-            <input name="email" placeholder="Email addres" type="text" />
+          <div className="flex items-center w-full gap-2 p-2  bg-msu-green border border-desaturated-cyan rounded-lg">
+            <div>
+              <EmailIcon />
+            </div>
+            <input
+              className="w-full"
+              name="email"
+              placeholder="Email addres"
+              type="text"
+            />
           </div>
           <div className="w-full">
-            <div className="flex w-full gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
-              <PasswordIcon />
+            <div className="flex items-center w-full gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
+              <div>
+                <PasswordIcon />
+              </div>
               <input
+                className="w-full"
                 name="password"
                 placeholder="Password"
                 type={!isShow ? "password" : "text"}
@@ -95,6 +105,7 @@ export default function Login() {
             <div className="text-red-700 h-4">{error && error}</div>
           </div>
           <button
+            disabled={pending}
             type="submit"
             className="w-full py-3 text-center bg-crystal rounded-lg"
           >
@@ -106,33 +117,17 @@ export default function Login() {
             <hr className="w-full bg-white" style={{ height: 1 }} />
           </div>
           <div className="flex gap-5 justify-between">
-            <ButtonAuth
-              onClick={() => {
-                signIn("google");
-              }}
-            >
-              <div className="my-1">
-                <GoogleIcon />
-              </div>
-            </ButtonAuth>
-            <ButtonAuth
-              onClick={() => {
-                signIn("google");
-              }}
-            >
-              <div className="my-1">
-                <VkIcon />
-              </div>
-            </ButtonAuth>
-            <ButtonAuth
-              onClick={() => {
-                signIn("google");
-              }}
-            >
-              <div className="my-1">
-                <TgIcon />
-              </div>
-            </ButtonAuth>
+            <div className="w-full">
+              <ButtonAuth
+                onClick={() => {
+                  signIn("google");
+                }}
+              >
+                <div className="my-1">
+                  <GoogleIcon />
+                </div>
+              </ButtonAuth>
+            </div>
           </div>
         </div>
       </form>

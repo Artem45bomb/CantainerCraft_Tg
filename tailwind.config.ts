@@ -20,7 +20,7 @@ const config: Config = {
         "msu-green": "#173c3a",
         "desaturated-cyan": "#61979a",
         "light-periwinkle": "#c8d1da",
-        "police-blue":"#2f595f"
+        "police-blue": "#2f595f",
       },
       width: {
         "2/5": "40%",

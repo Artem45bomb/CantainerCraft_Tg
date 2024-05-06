@@ -10,7 +10,12 @@ body {
 }
 
 input {
-  background: #ffffff00;
-  border: none;
-  outline: none;
+  background: #00000000;
+}
+
+:active,
+:hover,
+:focus {
+  outline: 0;
+  outline-offset: 0;
 }

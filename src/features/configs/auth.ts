@@ -15,8 +15,6 @@ const authOptions: NextAuthConfig = {
       email,
       credentials,
     }): Promise<string | boolean> => {
-      const data = await checkExistUser(user.name || "");
-
       return true;
     },
   },
