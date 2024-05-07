@@ -35,17 +35,14 @@ const config: Config = {
       },
       width: {
         "2/5": "40%",
-        "5,19": "5,19rem",
+        "21": "5.19rem",
       },
       maxWidth: {
         "2/3": "66%",
       },
       height: {
-        "5,19": "5.19rem",
-        "50px": "50px",
-      },
-      maxHeight: {
-        "52.19r": "52.19rem",
+        "21": "5.19rem",
+        "13": "3.25rem",
       },
       borderColor: {
         "desaturated-cyan": "#61979a",
