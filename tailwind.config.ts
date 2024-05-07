@@ -21,12 +21,37 @@ const config: Config = {
         "desaturated-cyan": "#61979a",
         "light-periwinkle": "#c8d1da",
         "police-blue": "#2f595f",
+        fff005: "#FFFFFF0D",
+        fff007: "#FFFFFF12",
+        c88: "#888888",
+        fff018: "#FFFFFF2E",
+        "30595F": "#30595F",
+        "8A8A8A": "#8A8A8A",
+        fff010: "#FFFFFF1A",
+        "7289D9": "#7289D9",
+        A1AAB3: "#A1AAB3",
+        C8D1DA: "#C8D1DA",
+        "45B8B1": "#45B8B1",
       },
       width: {
         "2/5": "40%",
+        "5,19": "5,19rem",
       },
       maxWidth: {
         "2/3": "66%",
+      },
+      height: {
+        "5,19": "5.19rem",
+        "50px": "50px",
+      },
+      maxHeight: {
+        "52.19r": "52.19rem",
+      },
+      borderColor: {
+        "desaturated-cyan": "#61979a",
+      },
+      borderRadius: {
+        "1.5xl": "0.88rem",
       },
     },
   },
