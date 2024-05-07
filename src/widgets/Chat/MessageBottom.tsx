@@ -3,15 +3,16 @@
 import { useState } from "react";
 import TextMessage from "./TextMessage";
 import TimeMessage from "./TimeMessage";
+import { Message } from "postcss";
 
-export default function MessageBottom() {
-  const [isLike, setIsLike] = useState(false);
+export default function MessageBottom({ message }: { message: Message }) {
+  // const [isLike, setIsLike] = useState(false);
 
   const [timeClass, setTimeClass] = useState("mt-1 flex items-end");
 
   function handleDoubleClick() {
-    setIsLike(!isLike);
-    isLike ? setTimeClass("mt-1") : setTimeClass("mt-1 flex items-end");
+    // setIsLike(!isLike);
+    // isLike ? setTimeClass("mt-1") : setTimeClass("mt-1 flex items-end");
   }
 
   return (
