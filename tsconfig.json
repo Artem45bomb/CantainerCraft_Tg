@@ -30,7 +30,7 @@
     ".next/types/**/*.ts",
     "next-i18next.config.mjs",
     "src/features/i18n/i18n.mjs",
-    "src/widgets/Chat/MessageTop.jsx"
+    "src/widgets/Chat/MessageTop/MessageTop.tsx"
   ],
   "exclude": ["node_modules"]
 }

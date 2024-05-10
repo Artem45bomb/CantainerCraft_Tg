@@ -1,4 +1,4 @@
-import Date from "./Date";
+import Date from "../Date/Date";
 
 export default function MainChat() {
   return (
