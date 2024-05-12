@@ -20,7 +20,7 @@ export default function TextMessage(type: string) {
     <div className={typeOfTextMessage(type)} onDoubleClick={handleDoubleClick}>
       <div className={classIfLike}>
         <TextOfMessage text="jjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk" />
-        <TimeMessage />
+        <TimeMessage hours={13} minutes={14} />
       </div>
     </div>
   );

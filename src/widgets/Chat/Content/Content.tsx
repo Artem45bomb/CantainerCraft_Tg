@@ -17,7 +17,7 @@ export default function Content() {
       <Input />
       <TextMessage type={"middle"} />
       <Userlogo />
-      <CountOfUnreadMessage />
+      <CountOfUnreadMessage countOfUnreadMessage={34} />
       <ArrowToLastMessage />
       <MessageVideo />
     </div>

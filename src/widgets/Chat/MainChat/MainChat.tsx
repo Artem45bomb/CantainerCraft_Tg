@@ -4,7 +4,7 @@ export default function MainChat() {
   return (
     <main className="overflow-scroll">
       <div className="px-11">
-        <Date />
+        <Date date="January 8" />
       </div>
     </main>
   );
