@@ -24,7 +24,7 @@ export default function MessageTop() {
         <AdminName />
       </div>
       <div className={timeclass}>
-        <TextMessage />
+        <TextMessage text="lll" />
         <TimeMessage />
       </div>
     </div>
