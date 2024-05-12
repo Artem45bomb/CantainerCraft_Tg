@@ -15,7 +15,7 @@ export default function Content() {
       <Header />
       <MainChat />
       <Input />
-      <TextMessage type={"middle"} />
+      <TextMessage type={"top"} />
       <Userlogo />
       <CountOfUnreadMessage countOfUnreadMessage={34} />
       <ArrowToLastMessage />
