@@ -15,9 +15,9 @@ export default function Content() {
       <Header />
       <MainChat />
       <Input />
-      <TextMessage type={"middle"} />
+      <TextMessage type={"top"} />
       <Userlogo />
-      <CountOfUnreadMessage />
+      <CountOfUnreadMessage countOfUnreadMessage={34} />
       <ArrowToLastMessage />
       <MessageVideo />
     </div>
