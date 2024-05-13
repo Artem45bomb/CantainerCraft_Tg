@@ -15,7 +15,15 @@ export default function Content() {
       <Header />
       <MainChat />
       <Input />
-      <TextMessage type={"top"} />
+      <TextMessage
+        type="top"
+        text="qwersdfgg sdfg"
+        userName="artem"
+        adminName="neArtem"
+        hours={13}
+        minutes={14}
+        reactions={[]}
+      />
       <Userlogo />
       <CountOfUnreadMessage countOfUnreadMessage={34} />
       <ArrowToLastMessage />
