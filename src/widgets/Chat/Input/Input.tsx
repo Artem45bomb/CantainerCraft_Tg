@@ -2,7 +2,7 @@ export default function Input() {
   return (
     <footer>
       <div className="px-11">
-        <div className="border border-desaturated-cyan w-full rounded-lg h-50px mb-3.5 bg-30595F flex justify-between items-center px-4">
+        <div className="border border-desaturated-cyan w-full rounded-lg h-13 mb-3.5 bg-30595F flex justify-between items-center px-4">
           <div className="flex">
             <div className=" mr-5">
               <img src="/assets/testicons/files.svg" alt="files" />

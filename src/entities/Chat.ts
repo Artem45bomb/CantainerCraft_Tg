@@ -1,10 +1,9 @@
-import { User } from "next-auth";
-import { Message } from "./index";
+import { Message, User } from "./index";
 
 export type Chat = {
   uuid: string;
   name: string;
   srcImage: string;
-  users: User[];
+  users: Omit<User, "password" | "email">[] | { userId: number };
   messages: Message[];
 };

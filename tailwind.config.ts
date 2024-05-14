@@ -14,6 +14,10 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      padding: {
+        "0.5": "0.125rem",
+        "2.5": "0.625rem",
+      },
       colors: {
         verdigris: "#46b8b2",
         crystal: "#9fdad7",

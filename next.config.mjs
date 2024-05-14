@@ -9,9 +9,7 @@ const nextConfig = {
     });
     return config
   },
-  images: {
-    domains: ["lh3.googleusercontent.com"],
-  },
+  images: { domains: ['example.com'], formats: ['image/avif', 'image/webp'], },
 
 };
 
