@@ -1,4 +1,4 @@
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import InputIcon from "@assets/icon/SearchInput-icon.svg";
 
 interface IHeader {
@@ -7,29 +7,40 @@ interface IHeader {
 }
 
 export const Header: FC<IHeader> = ({ value, setInputValue }) => {
+  const [isShow, setShow] = useState(false);
+
+  const baseClassName = "flex items-center justify-center w-6 h-6";
+
   return (
     <div className="w-full bg-msu-green">
       <div className="flex px-4 py-3 items-center gap-4">
-        <div>
-          <svg
-            width="16"
-            height="11"
-            viewBox="0 0 16 11"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+        <div className={!isShow ? baseClassName : baseClassName + " bg-white"}>
+          <button
+            onClick={() => {
+              setShow((prev) => prev!);
+            }}
           >
-            <path
-              d="M0.5 5.5H15.5M0.5 0.5H15.5M0.5 10.5H15.5"
-              stroke="white"
-              stroke-linecap="round"
-            />
-          </svg>
+            <svg
+              width="20"
+              height="15"
+              viewBox="0 0 16 11"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0.5 5.5H15.5M0.5 0.5H15.5M0.5 10.5H15.5"
+                stroke="white"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
         </div>
         <span className="text-white">Chats</span>
       </div>
       <div className="flex items-center w-full px-4 pt-1 pb-3">
         <div className="flex bg-fff010 items-center w-full rounded border-b-2 border-white py-1 px-3 pr-0">
           <input
+            placeholder="Search"
             type="text"
             value={value}
             onChange={setInputValue}

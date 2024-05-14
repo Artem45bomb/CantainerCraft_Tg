@@ -1,48 +1,49 @@
+"use client";
 import { userStore } from "@/features/store/user";
-import { FC } from "react";
-import { Chat } from "@/entities/Chat";
-import { SecuredChat } from "@/entities";
+import { FC, use, useState } from "react";
 import { MenuPoint } from "../MenuPoint";
+import { getChats, getSecuredChats } from "@/features/api/service/chat.service";
+import { chatsTEST, securedChatsTEST } from "@/test/default.data";
+import { chatStore } from "@/features/store/chat";
 
 interface Props {
   filterName: string;
 }
 
-const chatsTEST: Chat[] = [
-  {
-    uuid: "43589jj-ll",
-    name: "74tp",
-    srcImage: "/assets/png/images1.jpg",
-    users: [],
-    messages: [{ uuid: "", text: "Hi", date: "1234", reactions: [] }],
-  },
-  {
-    uuid: "4358op9jj-ll",
-    name: "73tp",
-    srcImage: "/assets/png/images2.png",
-    users: [],
-    messages: [{ uuid: "", text: "Hi", date: "1234", reactions: [] }],
-  },
-];
-
-const securedChatsTest = new Set();
-
-securedChatsTest.add("43589jj-ll");
-
 export const MenuContainer: FC<Props> = ({ filterName }) => {
   const { user } = userStore();
+  const { init } = chatStore();
+  const [chatActiveId, setChatActive] = useState<string>("");
+  // const [chats, securedChats] = use(Promise.all([
+  //   getChats(user.id),
+  //   getSecuredChats(user.id)
+  // ]));
   const chats = chatsTEST;
-  const securedChats = securedChatsTest;
+  const securedChats = securedChatsTEST;
 
   return (
-    <div>
-      {chats.map((chat) => (
-        <MenuPoint
-          key={chat.uuid}
-          chat={chat}
-          secured={securedChats.has(chat.uuid)}
-        />
-      ))}
+    <div className="overflow-y-scroll scroller mr-1">
+      {chats
+        .filter((e) => e.name.includes(filterName))
+        .map((chat) => (
+          <div
+            className={
+              chatActiveId == chat.uuid
+                ? "transaction-all duration-100 px-5"
+                : "transaction-all duration-100 px-5"
+            }
+            onClick={() => {
+              setChatActive(chat.uuid);
+              init(chat);
+            }}
+          >
+            <MenuPoint
+              key={chat.uuid}
+              chat={chat}
+              secured={securedChats.has(chat.uuid)}
+            />
+          </div>
+        ))}
     </div>
   );
 };

@@ -1,38 +1,34 @@
 "use client";
 
-import { useState } from "react";
-import TextOfMessage from "../TextOfMessage/TextOfMessage";
-import TimeMessage from "../TimeMessage/TimeMessage";
-import { Message } from "postcss";
+import { Message } from "@/entities/Message";
 import { typeOfTextMessage } from ".";
-import Username from "../Username/Username";
-import AdminName from "../AdminName/AdminName";
 
-interface IType {
-  type: string;
-}
-export default function TextMessage({ type }: IType) {
-  const [countOfLike, setCountOfLike] = useState(0);
-  let classIfLike: string = "";
-  function handleDoubleClick() {
-    setCountOfLike((n) => n + 1);
-    if (countOfLike > 0) {
-      classIfLike = "flex";
-    }
-    console.log(countOfLike);
-  }
-
+export default function TextMessage({
+  type,
+  hours,
+  text,
+  minutes,
+  userName,
+  adminName,
+  reactions,
+}: Message) {
   return (
-    <div className={typeOfTextMessage(type)} onDoubleClick={handleDoubleClick}>
+    <div className={typeOfTextMessage(type)}>
       {type == "top" ? (
         <div className="flex justify-between ">
-          <Username userName="qwerty" />
-          <AdminName adminName="asdff" />
+          <p className=" text-7289D9 font-semibold text-xs select-none">
+            {userName}
+          </p>
+          <p className=" text-xs font-normal text-A1AAB3 select-none">
+            {adminName}
+          </p>
         </div>
       ) : null}
-      <div className={classIfLike}>
-        <TextOfMessage text="jjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk" />
-        <TimeMessage hours={13} minutes={14} />
+      <div className={reactions.length > 0 ? "mt-1" : "mt-1 flex items-end"}>
+        <p className="text-sm text-C8D1DA pr-2 ">{text}</p>
+        <p className=" text-xs font-light text-end select-none">
+          {hours}:{minutes}
+        </p>
       </div>
     </div>
   );

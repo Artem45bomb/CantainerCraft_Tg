@@ -24,15 +24,52 @@ const isEmail = (text: string): boolean => {
   return bool;
 };
 
-const isPassword = (text: string): boolean => {
+export const isPassword = (text: string): boolean => {
   const lettersRegex = /^[A-Z]+$/;
-  const signsRegex = /^[!"@#$;:%^&?\/*\-+=]+$/;
+  const signsRegex = /^[!"@#$ ;:%^&?\/*\-_+=]+$/;
+  const arabicNumbers = /[0-9]/;
 
-  if (!lettersRegex.test(text)) {
+  if (!lettersRegex.test(text) || text.length > 16 || text.length < 8) {
     return false;
   }
 
-  return signsRegex.test(text);
+  return signsRegex.test(text) && arabicNumbers.test(text);
+};
+
+export const checkComplixityPassword = (text: string): string => {
+  const upperCaseRegex = /[A-Z]/;
+  const specialCharsRegex = /[!"@#$ ;:%^&?\/*\-_+=]/;
+  const numbersRegex = /[0-9]/;
+
+  let count = 0;
+  let repetitions = 0;
+
+  for (let i of text) {
+    if (
+      upperCaseRegex.test(i) ||
+      specialCharsRegex.test(i) ||
+      numbersRegex.test(i)
+    ) {
+      count += 1;
+    }
+  }
+
+  for (let i = 0; i < text.length; i++) {
+    if (text[i] === text[i + 1] || text[i] === text[i + 2]) {
+      repetitions += 2;
+    }
+  }
+
+  if (text.length - 8 + count - repetitions > 14) {
+    return "Strong";
+  } else if (
+    text.length - 8 + count - repetitions > 6 &&
+    text.length - 8 + count - repetitions <= 14
+  ) {
+    return "Medium";
+  } else {
+    return "Weak";
+  }
 };
 
 export const checkEmail = (email: string): boolean | string => {

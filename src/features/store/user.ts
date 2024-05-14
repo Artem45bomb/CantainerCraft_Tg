@@ -9,7 +9,7 @@ interface Action {
   init: (user: User) => void;
 }
 
-const defaultState: State = {
+const initState: State = {
   user: {
     id: 0,
     email: "",
@@ -20,6 +20,6 @@ const defaultState: State = {
 };
 
 export const userStore = create<State & Action>((set) => ({
-  ...defaultState,
+  ...initState,
   init: (user) => set((set) => ({ user })),
 }));

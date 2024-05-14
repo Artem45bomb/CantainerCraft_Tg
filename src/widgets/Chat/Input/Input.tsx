@@ -7,7 +7,12 @@ export default function Input() {
             <div className=" mr-5">
               <img src="/assets/testicons/files.svg" alt="files" />
             </div>
-            <div className=" text-base text-8A8A8A">Write a message...</div>
+            <input
+              type="text"
+              placeholder="Write a message..."
+              className="text-base text-white"
+            />
+            {/* <div className=" text-base text-8A8A8A">Write a message...</div> */}
           </div>
           <div className="flex">
             <div>

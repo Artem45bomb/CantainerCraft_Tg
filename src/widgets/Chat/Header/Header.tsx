@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Search from "../../../shared/ButtonChat/Search";
 import Shape from "../../../shared/ButtonChat/Shape";
 import More from "../../../shared/ButtonChat/More";
@@ -8,7 +7,12 @@ export default function Header() {
   return (
     <header className=" border-b border-fff005">
       <div className="flex justify-between items-center px-11 h-21">
-        <ChatInfo />
+        <ChatInfo
+          logoSrc="/assets/testIcons/logo.jpg"
+          chatName="73 TP"
+          countOfMembers={10}
+          countOfOnlineMembers={4}
+        />
         <nav className="flex space-x-2.5">
           <Search />
           <Shape />
