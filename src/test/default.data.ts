@@ -13,6 +13,7 @@ export const chatsTEST: Chat[] = [
         type: "text",
         text: "Hi",
         date: "1234",
+        srcImages: [],
         userId: 1,
         reactions: [],
       },
