@@ -1,9 +1,12 @@
 import Image from "next/image";
-import ChatName from "../ChatName/ChatName";
-import Members from "../Members/Members";
-import OnlineMembers from "../OnlineMembers/OnlineMembers";
+import { InfoAboutChat } from "@/entities/InfoAboutChat";
 
-export default function ChatInfo() {
+export default function ChatInfo({
+  logoSrc,
+  chatName,
+  countOfMembers,
+  countOfOnlineMembers,
+}: InfoAboutChat) {
   return (
     <a href="#" className="flex">
       <div className=" mr-2.5">
@@ -11,15 +14,18 @@ export default function ChatInfo() {
           className="rounded-full"
           width="50"
           height="50"
-          src="/assets/testIcons/logo.jpg"
+          src={logoSrc}
           alt="logo of chat"
         />
       </div>
       <div className=" ">
-        <ChatName chatName="73 TP" />
+        <div className="text-white font-semibold text-base pb-0.5">
+          {chatName}
+        </div>
+
         <div className=" text-xs font-normal text-c88">
-          <Members countOfMembers={5} />
-          <OnlineMembers countOfOnlineMembers={3} />
+          <span>{countOfMembers} members,</span>
+          <span> {countOfOnlineMembers} online</span>
         </div>
       </div>
     </a>

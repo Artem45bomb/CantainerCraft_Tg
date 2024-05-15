@@ -2,13 +2,13 @@
 import EmailIcon from "@assets/Email-icon.svg";
 import PasswordIcon from "@assets/Password-icon.svg";
 import GoogleIcon from "@assets/icon/Google-icon.svg";
-import TgIcon from "@assets/icon/Tg-icon.svg";
-import VkIcon from "@assets/icon/Vk-icon.svg";
+import Eye from "@assets/icon/Eye.svg";
+import EyeClosed from "@assets/icon/Eye-closed.svg";
 import { ButtonAuth } from "@/shared/ButtonsAuth/ButtonAuth";
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useState, FormEvent, useEffect } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormStatus } from "react-dom";
 import { checkExistUser, login } from "@/features/api/service/user.service";
 import { checkEmail, checkPassword } from "@/features/api/util/form";
 import Link from "next/link";
@@ -96,11 +96,21 @@ export default function Login() {
                 <PasswordIcon />
               </div>
               <input
-                className="w-full"
+                className="w-full text-c88"
                 name="password"
                 placeholder="Password"
                 type={!isShow ? "password" : "text"}
               />
+              <div
+                onClick={() => setShow((prev) => !prev)}
+                className="relative w-6 h-5"
+              >
+                {isShow ? (
+                  <Image fill src="/assets/icon/Eye.svg" alt="" />
+                ) : (
+                  <Image fill src="/assets/icon/Eye-closed.svg" alt="" />
+                )}
+              </div>
             </div>
             <div className="text-red-700 h-4">{error && error}</div>
           </div>

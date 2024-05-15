@@ -1,6 +1,6 @@
 "use server";
 import axios from "axios";
-import { User } from "@/features/api/model/index";
+import { User } from "@/entities/index";
 import { JwtAuthDTO } from "../dto";
 
 const usersServiceApi = process.env.USERS_SERVICE_API;

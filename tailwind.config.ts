@@ -14,6 +14,10 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      padding: {
+        "0.5": "0.125rem",
+        "2.5": "0.625rem",
+      },
       colors: {
         verdigris: "#46b8b2",
         crystal: "#9fdad7",
@@ -24,11 +28,13 @@ const config: Config = {
         fff005: "#FFFFFF0D",
         fff007: "#FFFFFF12",
         c88: "#888888",
+        "white-transparent": "##ffffff15",
         fff018: "#FFFFFF2E",
         "30595F": "#30595F",
         "8A8A8A": "#8A8A8A",
         fff010: "#FFFFFF1A",
         "7289D9": "#7289D9",
+        "0078D4": "#0078D4",
         A1AAB3: "#A1AAB3",
         C8D1DA: "#C8D1DA",
         "45B8B1": "#45B8B1",
@@ -44,7 +50,11 @@ const config: Config = {
         "21": "5.19rem",
         "13": "3.25rem",
       },
+      maxHeight: {
+        "full-vh": "100vh",
+      },
       borderColor: {
+        "white-transparent": "#ffffff15",
         "desaturated-cyan": "#61979a",
       },
       borderRadius: {
