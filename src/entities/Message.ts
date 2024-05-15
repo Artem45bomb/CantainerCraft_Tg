@@ -4,10 +4,9 @@ export type Message = {
   uuid: string;
   text: string;
   date: string;
-  userId: string;
-  srcImages: string[];
-  adminName: string;
+  userId: number;
+  srcContent: string[];
   userName: string;
-  type: "text" | "photo" | "document";
+  type: "text" | "photo";
   reactions: Reaction[];
 };

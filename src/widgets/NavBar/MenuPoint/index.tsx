@@ -1,7 +1,6 @@
 import { Chat } from "@/entities";
 import { FC } from "react";
 import Image from "next/image";
-import ShareIcon from "@assets/icon/Shape.svg";
 import SecuredIcon from "@assets/icon/Secured-icon.svg";
 
 interface IMenuPoint {
@@ -46,7 +45,7 @@ export const MenuPoint: FC<IMenuPoint> = ({ chat, secured }) => {
             <div className="flex gap-1 items-center">
               <div className="w-5 h-5 relative rounded-sm">
                 <Image
-                  src={messageEnd.srcImages[0]}
+                  src={messageEnd.srcContent[0]}
                   className="rounded-sm"
                   fill
                   alt=""

@@ -1,4 +1,4 @@
-import { Message, User, MessageVideo } from "./index";
+import { Message, User, MessageResource } from "./index";
 
 export type Chat = {
   uuid: string;
@@ -6,5 +6,5 @@ export type Chat = {
   type: "private" | "group" | "channel";
   srcImage: string;
   users: Omit<User, "password" | "email">[] | { userId: number };
-  messages: (Message | MessageVideo)[];
+  messages: (Message | MessageResource)[];
 };
