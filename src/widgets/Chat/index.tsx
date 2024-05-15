@@ -16,7 +16,7 @@ export default function Content() {
       <Header />
       <MainChat />
       <Input />
-      <MessageComponent message={MessageTest} isTop={true} />
+      <MessageComponent message={MessageTest} isNameView={true} />
 
       <Userlogo />
       <CountOfUnreadMessage countOfUnreadMessage={34} />

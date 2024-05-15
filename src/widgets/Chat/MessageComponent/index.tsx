@@ -3,11 +3,11 @@
 import { Message } from "@/entities/Message";
 
 interface Props {
-  isTop: boolean;
+  isNameView: boolean;
   message: Message;
 }
 
-export default function MessageComponent({ message, isTop }: Props) {
+export default function MessageComponent({ message, isNameView }: Props) {
   // function typeOfTextMessage(type: string) {
   //   let partOfClass: string =
   //     "inline-block bg-fff010 rounded-1.5xl ml-2 p-2 select-auto";
@@ -15,11 +15,13 @@ export default function MessageComponent({ message, isTop }: Props) {
   //   else if (type == "middle") return partOfClass + " rounded-l";
   //   else if (type == "bottom") return partOfClass + " rounded-tl";
   // }
+  let date: Date = new Date(message.date);
+
   return (
     <div
       className={"inline-block bg-fff010 rounded-1.5xl ml-2 p-2 select-auto"}
     >
-      {isTop ? (
+      {isNameView ? (
         <div className="flex justify-between ">
           <p className=" text-7289D9 font-semibold text-xs select-none">
             {message.userName}
@@ -33,7 +35,8 @@ export default function MessageComponent({ message, isTop }: Props) {
       >
         <p className="text-sm text-C8D1DA pr-2 ">{message.text}</p>
         <p className=" text-xs font-light text-end select-none">
-          {message.date}
+          {date.getHours().toString().padStart(2, "0")}:
+          {date.getMinutes().toString().padStart(2, "0")}
         </p>
       </div>
     </div>

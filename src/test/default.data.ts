@@ -80,7 +80,7 @@ export const securedChatsTEST = new Set<string>();
 export const MessageTest: Message = {
   uuid: "asdf",
   text: "lasdfahsdfhasdhf asdf ahsdf asdf hjasd fhasdfhasd khjakjsdf",
-  date: "13:45",
+  date: "04 Dec 2006 01:11:00",
   userId: 5,
   userName: "asdf",
   type: "text",
