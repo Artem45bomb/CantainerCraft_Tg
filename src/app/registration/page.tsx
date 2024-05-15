@@ -14,12 +14,15 @@ import { checkEmail, checkName, checkPassword } from "@/features/api/util/form";
 import { useInput } from "@/features/hooks/customHook";
 import { useRouter } from "next/navigation";
 import { useFormStatus } from "react-dom";
+import ComplixityPassword from "@/widgets/ComplixityPassword";
 
 export default function Registration() {
   const [isShow, setShow] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [username, setUsername, setInputName] = useInput("");
   const [email, setEmail, setInputEmail] = useInput("");
+  const [password, setPassword, setInputPassword] = useInput("");
+
   const session = useSession();
   const router = useRouter();
   const { pending } = useFormStatus();
@@ -127,6 +130,8 @@ export default function Registration() {
                 <PasswordIcon />
               </div>
               <input
+                value={password}
+                onChange={setInputPassword}
                 className="w-full"
                 name="password"
                 placeholder="Password"
@@ -146,6 +151,9 @@ export default function Registration() {
               placeholder="Repeat your password"
               type={!isShow ? "password" : "text"}
             />
+          </div>
+          <div className="w-full mb-6">
+            <ComplixityPassword password={password} />
           </div>
           <button
             disabled={pending}

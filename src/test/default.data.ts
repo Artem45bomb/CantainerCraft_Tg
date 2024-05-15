@@ -11,8 +11,10 @@ export const chatsTEST: Chat[] = [
       {
         uuid: "fjfuajlljii",
         type: "text",
+        userName: "",
         text: "Hi",
         date: "1234",
+        srcContent: [],
         userId: 1,
         reactions: [],
       },
@@ -28,8 +30,9 @@ export const chatsTEST: Chat[] = [
       {
         uuid: "uineo9",
         type: "photo",
+        userName: "",
         text: "Hi",
-        srcImages: ["/assets/png/images1.jpg"],
+        srcContent: ["/assets/png/images1.jpg"],
         date: "1234",
         userId: 1,
         reactions: [],
@@ -46,7 +49,7 @@ export const chatsTEST: Chat[] = [
       {
         uuid: "fkeuk",
         type: "document",
-        text: "Hi",
+        srcContent: "",
         date: "1234",
         userId: 1,
         reactions: [],
