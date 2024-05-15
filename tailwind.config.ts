@@ -28,7 +28,7 @@ const config: Config = {
         fff005: "#FFFFFF0D",
         fff007: "#FFFFFF12",
         c88: "#888888",
-        "white-transparent": "##ffffff15",
+        "white-transparent": "#ffffff15",
         fff018: "#FFFFFF2E",
         "30595F": "#30595F",
         "8A8A8A": "#8A8A8A",

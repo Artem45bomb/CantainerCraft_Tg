@@ -1,5 +1,6 @@
 import { ChangeEvent, FC, useState } from "react";
 import InputIcon from "@assets/icon/SearchInput-icon.svg";
+import Image from "next/image";
 
 interface IHeader {
   value: string;
@@ -44,10 +45,12 @@ export const Header: FC<IHeader> = ({ value, setInputValue }) => {
             type="text"
             value={value}
             onChange={setInputValue}
-            className="w-full text-base"
+            className="w-full text-base text-white"
           />
-          <div className=" text-4xl p-3">
-            <InputIcon />
+          <div className="p-3">
+            <div className="relative w-6 aspect-square">
+              <Image src={"/assets/icon/Search-input.svg"} fill alt="" />
+            </div>
           </div>
         </div>
       </div>

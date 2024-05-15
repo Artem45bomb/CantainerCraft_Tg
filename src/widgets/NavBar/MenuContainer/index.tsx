@@ -22,21 +22,24 @@ export const MenuContainer: FC<Props> = ({ filterName }) => {
   const securedChats = securedChatsTEST;
 
   return (
-    <div className="overflow-y-scroll scroller mr-1">
+    <div className="overflow-y-scroll scroller mr-1 p-5">
       {chats
         .filter((e) => e.name.includes(filterName))
         .map((chat) => (
           <div
-            className={
-              chatActiveId == chat.uuid
-                ? "transaction-all duration-100 px-5"
-                : "transaction-all duration-100 px-5"
-            }
+            className={`relative transition-all duration-100 
+            ${chat.uuid === chatActiveId ? "bg-white-transparent rounded-lg" : ""} `}
             onClick={() => {
               setChatActive(chat.uuid);
               init(chat);
             }}
           >
+            {chat.uuid === chatActiveId && (
+              <div
+                style={{ left: "-11px", transform: "translateY(-50%)" }}
+                className=" top-1/2 rounded-full absolute w-1 h-7 bg-0078D4"
+              ></div>
+            )}
             <MenuPoint
               key={chat.uuid}
               chat={chat}

@@ -14,7 +14,7 @@ export const MenuPoint: FC<IMenuPoint> = ({ chat, secured }) => {
   const chatType = chat.type;
 
   return (
-    <div className="w-full py-2.5 flex items-center justify-between">
+    <div className="w-full py-2.5 flex items-center justify-between px-1">
       <div className="flex items-center gap-3 w-full pr-3">
         <div className="relative w-20 aspect-square rounded-full">
           <Image src={chat.srcImage} fill alt="" className="rounded-full" />
@@ -65,13 +65,15 @@ export const MenuPoint: FC<IMenuPoint> = ({ chat, secured }) => {
           )}
         </div>
       </div>
-      <div className="flex flex-col gap-1">
-        <p className="text-c88">8:32PM</p>
-        {secured && (
-          <div>
-            <SecuredIcon />
-          </div>
-        )}
+      <div className="flex flex-col justify-start">
+        <p className="text-c88 mb-1">8:32PM</p>
+        <div>
+          {secured && (
+            <div>
+              <SecuredIcon />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

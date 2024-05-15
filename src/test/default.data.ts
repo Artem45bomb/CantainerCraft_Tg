@@ -1,4 +1,4 @@
-import { Chat, Message } from "@/entities";
+import { Chat } from "@/entities";
 
 export const chatsTEST: Chat[] = [
   {
