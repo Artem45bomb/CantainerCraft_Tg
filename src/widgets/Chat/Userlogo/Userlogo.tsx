@@ -2,10 +2,9 @@ import Image from "next/image";
 
 export default function Userlogo() {
   return (
-    <div>
+    <div className=" size-full relative">
       <Image
-        width={35}
-        height={35}
+        fill
         src={"/assets/testIcons/logo.jpg"}
         alt="userlogo"
         className="rounded-full"

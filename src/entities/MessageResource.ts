@@ -1,8 +1,8 @@
 import { Reaction } from "./Reaction";
 
-export type MessageVideo = {
+export type MessageResource = {
   uuid: string;
-  type: "video";
+  type: "video" | "document";
   date: string;
   srcContent: string;
   userId: number;

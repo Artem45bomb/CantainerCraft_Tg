@@ -1,4 +1,4 @@
-import { Chat } from "@/entities";
+import { Chat, Message } from "@/entities";
 
 export const chatsTEST: Chat[] = [
   {
@@ -73,5 +73,16 @@ export const chatsTEST: Chat[] = [
 ];
 
 export const securedChatsTEST = new Set<string>();
+
+export const MessageTest: Message = {
+  uuid: "asdf",
+  text: "lasdfahsdfhasdhf asdf ahsdf asdf hjasd fhasdfhasd khjakjsdf",
+  date: "13:45",
+  userId: 5,
+  userName: "asdf",
+  type: "text",
+  reactions: [],
+  srcContent: [],
+};
 
 securedChatsTEST.add("43589jj-ll");
