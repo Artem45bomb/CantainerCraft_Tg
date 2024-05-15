@@ -152,6 +152,9 @@ export default function Registration() {
               type={!isShow ? "password" : "text"}
             />
           </div>
+          <div className="w-full mb-6">
+            <ComplixityPassword password={password} />
+          </div>
           <button
             disabled={pending}
             type="submit"

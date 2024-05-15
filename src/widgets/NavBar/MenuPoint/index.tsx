@@ -17,7 +17,7 @@ export const MenuPoint: FC<IMenuPoint> = ({ chat, secured }) => {
   return (
     <div className="w-full py-2.5 flex items-center justify-between">
       <div className="flex items-center gap-3 w-full pr-3">
-        <div className="relative w-12 h-12 rounded-full">
+        <div className="relative w-20 aspect-square rounded-full">
           <Image src={chat.srcImage} fill alt="" className="rounded-full" />
         </div>
 
@@ -27,11 +27,11 @@ export const MenuPoint: FC<IMenuPoint> = ({ chat, secured }) => {
         >
           <div className="flex items-center gap-1">
             {chatType === "group" ? (
-              <div className="relative w-4 h-4">
+              <div className="relative w-4 aspect-square">
                 <Image fill src="/assets/icon/Group-chat-icon.svg" alt="" />
               </div>
             ) : chatType === "channel" ? (
-              <div className="relative w-4 h-4">
+              <div className="relative w-4 aspect-square">
                 <Image fill src="/assets/icon/Megaphone.svg" alt="/" />
               </div>
             ) : (
