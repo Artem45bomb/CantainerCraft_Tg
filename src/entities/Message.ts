@@ -1,3 +1,4 @@
+import { Content } from "./Content";
 import { Reaction } from "./Reaction";
 
 export type Message = {
@@ -5,7 +6,7 @@ export type Message = {
   text: string;
   date: string;
   userId: number;
-  srcContent: string[];
+  srcContent: Content[];
   userName: string;
   type: "text" | "photo";
   reactions: Reaction[];

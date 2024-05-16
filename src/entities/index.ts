@@ -6,3 +6,4 @@ export type * from "./SecuredType";
 export type * from "./Chat";
 export type * from "./MessageRead";
 export type * from "./MessageResource";
+export type * from "./index";

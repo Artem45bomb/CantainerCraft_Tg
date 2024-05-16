@@ -5,6 +5,7 @@ export type MessageResource = {
   type: "video" | "document";
   date: string;
   srcContent: string;
+  username: string;
   userId: number;
   reactions: Reaction[];
 };

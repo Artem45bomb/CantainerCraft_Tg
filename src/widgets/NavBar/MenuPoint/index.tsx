@@ -9,9 +9,17 @@ interface IMenuPoint {
 }
 
 export const MenuPoint: FC<IMenuPoint> = ({ chat, secured }) => {
-  const { messages } = chat;
-  const messageEnd = messages[messages.length - 1];
+  const { messages, messageResource } = chat;
+
   const chatType = chat.type;
+
+  const messagesAll = [...messages, ...messageResource].sort((a, b) => {
+    let date1 = new Date(a.date);
+    let date2 = new Date(b.date);
+    return date1.getMilliseconds() - date2.getMilliseconds();
+  });
+
+  const messageEnd = messagesAll[messagesAll.length - 1];
 
   return (
     <div className="w-full py-2.5 flex items-center justify-between px-1">
@@ -45,7 +53,10 @@ export const MenuPoint: FC<IMenuPoint> = ({ chat, secured }) => {
             <div className="flex gap-1 items-center">
               <div className="w-5 h-5 relative rounded-sm">
                 <Image
-                  src={messageEnd.srcContent[0]}
+                  src={
+                    messageEnd.srcContent[messageEnd.srcContent.length - 1]
+                      .srcContent
+                  }
                   className="rounded-sm"
                   fill
                   alt=""

@@ -5,6 +5,7 @@ export type Chat = {
   name: string;
   type: "private" | "group" | "channel";
   srcImage: string;
+  messageResource: MessageResource[];
   users: Omit<User, "password" | "email">[] | { userId: number };
-  messages: (Message | MessageResource)[];
+  messages: Message[];
 };
