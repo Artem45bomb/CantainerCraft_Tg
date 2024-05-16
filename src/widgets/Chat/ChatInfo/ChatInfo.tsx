@@ -1,12 +1,18 @@
 import Image from "next/image";
-import { InfoAboutChat } from "@/entities/InfoAboutChat";
+
+interface Props {
+  logoSrc: string;
+  chatName: string;
+  countOfMembers: number;
+  countOfOnlineMembers: number;
+}
 
 export default function ChatInfo({
   logoSrc,
   chatName,
   countOfMembers,
   countOfOnlineMembers,
-}: InfoAboutChat) {
+}: Props) {
   return (
     <a href="#" className="flex">
       <div className=" mr-2.5">
