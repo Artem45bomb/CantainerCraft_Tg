@@ -13,11 +13,11 @@ export default function Header() {
           countOfMembers={10}
           countOfOnlineMembers={4}
         />
-        <nav className="flex space-x-2.5">
+        <div className="flex gap-2.5">
           <Search />
           <Shape />
           <More />
-        </nav>
+        </div>
       </div>
     </header>
   );

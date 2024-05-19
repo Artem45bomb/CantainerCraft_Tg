@@ -1,4 +1,4 @@
-import { Chat } from "@/entities";
+import { Chat,Message } from "@/entities";
 
 export const chatsTEST: Chat[] = [
   {
@@ -6,6 +6,7 @@ export const chatsTEST: Chat[] = [
     name: "74tp",
     type: "channel",
     srcImage: "/assets/png/images1.jpg",
+    messageResource:[],
     users: [],
     messages: [
       {
@@ -26,13 +27,14 @@ export const chatsTEST: Chat[] = [
     type: "group",
     srcImage: "/assets/png/images2.png",
     users: [],
+    messageResource:[],
     messages: [
       {
         uuid: "uineo9",
         type: "photo",
         userName: "",
         text: "Hi",
-        srcContent: ["/assets/png/images1.jpg"],
+        srcContent: [{uuid:"749jjjf",srcContent:"/assets/png/images1.jpg"}],
         date: "1234",
         userId: 1,
         reactions: [],
@@ -45,12 +47,15 @@ export const chatsTEST: Chat[] = [
     type: "private",
     srcImage: "/assets/png/images1.jpg",
     users: [],
+    messageResource:[],
     messages: [
       {
         uuid: "fkeuk",
-        type: "document",
-        srcContent: "",
+        type: "text",
+        text:"",
+        srcContent: [],
         date: "1234",
+        userName:"j",
         userId: 1,
         reactions: [],
       },
@@ -62,15 +67,17 @@ export const chatsTEST: Chat[] = [
     type: "private",
     srcImage: "/assets/png/images1.jpg",
     users: [],
-    messages: [
-      {
+    messageResource:[      {
         uuid: "fkekpppk",
         type: "video",
         date: "1234",
         srcContent: "",
+        username:"tima",
         userId: 1,
         reactions: [],
-      },
+      }],
+    messages: [
+
     ],
   },
 ];

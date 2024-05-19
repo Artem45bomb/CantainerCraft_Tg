@@ -79,3 +79,35 @@ input {
     transform: rotate(360deg);
   }
 }
+
+
+
+.scroller-chat::-webkit-scrollbar {
+  width: 8px;
+  margin: 3px;
+}
+
+/* Track */
+.scroller-chat::-webkit-scrollbar-track {
+  border-radius:999px;
+  background: #30595F;
+  -webkit-border-radius:999px;
+  -moz-border-radius:999px;
+  -ms-border-radius:999px;
+  -o-border-radius:999px;
+}
+
+/* Handle */
+.scroller-chat::-webkit-scrollbar-thumb {
+  background: #C8D1DA;
+  border-radius: 999px;
+  -webkit-border-radius: 999px;
+  -moz-border-radius: 999px;
+  -ms-border-radius: 999px;
+  -o-border-radius: 999px;
+}
+
+/* Handle on hover */
+.scroller-chat::-webkit-scrollbar-thumb:hover {
+    background: #30595F;
+}

@@ -6,7 +6,7 @@ export type Message = {
   text: string;
   date: string;
   userId: number;
-  srcContent: Content[];
+  srcContent: Omit<Content, "messageId">[];
   userName: string;
   type: "text" | "photo";
   reactions: Reaction[];

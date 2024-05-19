@@ -2,6 +2,7 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
+    "./src/shared/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -17,6 +18,9 @@ const config: Config = {
       padding: {
         "0.5": "0.125rem",
         "2.5": "0.625rem",
+      },
+      translate: {
+        "x--1/2":"translate(-50%, -50%)"
       },
       colors: {
         verdigris: "#46b8b2",
