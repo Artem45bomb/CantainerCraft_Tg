@@ -2,15 +2,22 @@
 
 import { useEffect, useState } from "react";
 import Userlogo from "../Userlogo/Userlogo";
+import { ObjectFields } from "@/features/api/util";
+
+
+
+
 
 function VoiceChat() {
   const [time, setTime] = useState(0);
-  const [buttonStates, setButtonStates] = useState({
+  const [settings, setSettings] = useState({
     Voice: false,
     Screen: false,
     Micro: false,
     Telephone: false,
   });
+  type SettingsT = typeof settings;
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -19,13 +26,15 @@ function VoiceChat() {
 
     return () => clearInterval(interval);
   }, []);
+  
+
 
   const formattedTime = new Date(time * 1000).toISOString().substr(14, 5);
 
-  const handleButtonPress = (buttonName) => {
-    setButtonStates((prevStates) => ({
-      ...prevStates,
-      [buttonName]: !prevStates[buttonName],
+  const handleButtonPress = (buttonName:ObjectFields<SettingsT>) => {
+    setSettings((prevState) => ({
+      ...prevState,
+      [buttonName]: !prevState[buttonName],
     }));
   };
 
@@ -63,7 +72,7 @@ function VoiceChat() {
       </div>
       <div className="w-full h-18 my-6 flex items-center justify-center space-x-8">
         <button
-          className={`transition-all duration-150 w-14 h-14 flex items-center justify-center rounded-full ${buttonStates.Voice ? "bg-police-blue" : "bg-desaturated-cyan"} `}
+          className={`transition-all duration-150 w-14 h-14 flex items-center justify-center rounded-full ${settings.Voice ? "bg-police-blue" : "bg-desaturated-cyan"} `}
           onClick={() => handleButtonPress("Voice")}
         >
           <img
@@ -73,7 +82,7 @@ function VoiceChat() {
           />
         </button>
         <button
-          className={`transition-all duration-150 w-14 h-14 flex items-center justify-center rounded-full ${buttonStates.Screen ? "bg-police-blue" : "bg-desaturated-cyan"} `}
+          className={`transition-all duration-150 w-14 h-14 flex items-center justify-center rounded-full ${settings.Screen ? "bg-police-blue" : "bg-desaturated-cyan"} `}
           onClick={() => handleButtonPress("Screen")}
         >
           <img
@@ -83,7 +92,7 @@ function VoiceChat() {
           />
         </button>
         <button
-          className={`transition-all duration-150 w-14 h-14 flex items-center justify-center rounded-full ${buttonStates.Micro ? "bg-police-blue" : "bg-desaturated-cyan"} `}
+          className={`transition-all duration-150 w-14 h-14 flex items-center justify-center rounded-full ${settings.Micro ? "bg-police-blue" : "bg-desaturated-cyan"} `}
           onClick={() => handleButtonPress("Micro")}
         >
           <img
@@ -93,7 +102,7 @@ function VoiceChat() {
           />
         </button>
         <button
-          className={`transition-all duration-150 w-14 h-14 flex items-center justify-center rounded-full ${buttonStates.Telephone ? "bg-police-blue" : "bg-red-500"} `}
+          className={`transition-all duration-150 w-14 h-14 flex items-center justify-center rounded-full ${settings.Telephone ? "bg-police-blue" : "bg-red-500"} `}
           onClick={() => handleButtonPress("Telephone")}
         >
           <img
