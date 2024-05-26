@@ -1,5 +1,5 @@
 import { NavBar } from "@/widgets/NavBar";
-import Chat from "@/widgets/Chat/index";
+import {Chat} from "@/widgets/Chat";
 import { Loader } from "@/widgets/NavBar/Loader";
 
 export default function Functest() {
