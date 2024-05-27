@@ -10,11 +10,12 @@ import {
   checkExistUser,
   registration,
 } from "@/features/api/service/user.service";
-import { checkEmail, checkName, checkPassword } from "@/features/api/util/form";
+import { checkEmail, checkName, checkPassword } from "@/features/api/util";
 import { useInput } from "@/features/hooks/customHook";
 import { useRouter } from "next/navigation";
 import { useFormStatus } from "react-dom";
 import ComplixityPassword from "@/widgets/ComplixityPassword";
+import Image from "next/image";
 
 export default function Registration() {
   const [isShow, setShow] = useState<boolean>(false);
@@ -23,7 +24,9 @@ export default function Registration() {
   const [email, setEmail, setInputEmail] = useInput("");
   const [password, setPassword, setInputPassword] = useInput("");
 
+
   const session = useSession();
+  const { data } = session;
   const router = useRouter();
   const { pending } = useFormStatus();
 
@@ -34,8 +37,10 @@ export default function Registration() {
           router.push("/");
         })
         .catch(() => {
-          setUsername(session.data?.user?.name!);
-          setEmail(session?.data?.user?.email!);
+
+          setUsername(data?.user?.name || "");
+          setEmail(data?.user?.email || "");
+          setPassword("");
         });
     };
     if (session.status === "authenticated") {
@@ -78,7 +83,9 @@ export default function Registration() {
     }
 
     await registration({ email, name, password })
-      .then((user) => {})
+      .then((user) => {
+        console.log(user);
+      })
       .catch((error) => {
         console.log(error);
       });
@@ -137,6 +144,16 @@ export default function Registration() {
                 placeholder="Password"
                 type={!isShow ? "password" : "text"}
               />
+              <div
+                onClick={() => setShow((prev) => !prev)}
+                className="relative w-6 h-5"
+              >
+                {isShow ? (
+                  <Image fill src="/assets/icon/Eye.svg" alt="" />
+                ) : (
+                  <Image fill src="/assets/icon/Eye-closed.svg" alt="" />
+                )}
+              </div>
             </div>
             <div className="text-red-700 h-4">{error && error}</div>
           </div>

@@ -20,7 +20,7 @@ const config: Config = {
         "2.5": "0.625rem",
       },
       translate: {
-        "x--1/2":"translate(-50%, -50%)"
+        "x--1/2": "translate(-50%, -50%)",
       },
       colors: {
         verdigris: "#46b8b2",

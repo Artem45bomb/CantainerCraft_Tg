@@ -2,15 +2,13 @@
 import EmailIcon from "@assets/Email-icon.svg";
 import PasswordIcon from "@assets/Password-icon.svg";
 import GoogleIcon from "@assets/icon/Google-icon.svg";
-import Eye from "@assets/icon/Eye.svg";
-import EyeClosed from "@assets/icon/Eye-closed.svg";
 import { ButtonAuth } from "@/shared/ButtonsAuth/ButtonAuth";
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useState, FormEvent, useEffect } from "react";
 import { useFormStatus } from "react-dom";
 import { checkExistUser, login } from "@/features/api/service/user.service";
-import { checkEmail, checkPassword } from "@/features/api/util/form";
+import { checkEmail, checkPassword } from "@/features/api/util";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -30,7 +28,8 @@ export default function Login() {
       });
     };
     if (session.status === "authenticated") {
-      check(session.data.user?.email!);
+      if (session.data.user?.email) 
+      check(session.data.user.email);
     }
   }, [session.status]);
 
@@ -57,7 +56,9 @@ export default function Login() {
     }
 
     await login({ email, password })
-      .then((user) => {})
+      .then((user) => {
+        console.log(user);
+      })
       .catch((error) => {
         console.log(error);
       });

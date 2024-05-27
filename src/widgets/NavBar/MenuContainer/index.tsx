@@ -1,8 +1,7 @@
 "use client";
-import { userStore } from "@/features/store/user";
-import { FC, use, useState } from "react";
+//import { userStore } from "@/features/store/user";
+import { FC, useState } from "react";
 import { MenuPoint } from "../MenuPoint";
-import { getChats, getSecuredChats } from "@/features/api/service/chat.service";
 import { chatsTEST, securedChatsTEST } from "@/test/default.data";
 import { chatStore } from "@/features/store/chat";
 
@@ -11,7 +10,7 @@ interface Props {
 }
 
 export const MenuContainer: FC<Props> = ({ filterName }) => {
-  const { user } = userStore();
+  //const { user } = userStore();
   const { init } = chatStore();
   const [chatActiveId, setChatActive] = useState<string>("");
   // const [chats, securedChats] = use(Promise.all([
@@ -27,6 +26,7 @@ export const MenuContainer: FC<Props> = ({ filterName }) => {
         .filter((e) => e.name.includes(filterName))
         .map((chat) => (
           <div
+            key={chat.uuid+"i0"}
             className={`relative transition-all duration-100 
             ${chat.uuid === chatActiveId ? "bg-white-transparent rounded-lg" : ""} `}
             onClick={() => {

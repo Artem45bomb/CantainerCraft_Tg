@@ -1,2 +1,2 @@
 export * from "./form/form.check";
-export * from "./type/utilityTs"
+export * from "./type/utilityTs";

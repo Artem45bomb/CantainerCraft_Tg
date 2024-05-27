@@ -1,5 +1,3 @@
-import { count } from "console";
-
 const errorText = {
   latinNot: "the text must contain Latin letters",
   emailValidate: "email entered incorrectly",
@@ -15,7 +13,7 @@ const isLatin = (text: string): boolean => {
 const isEmail = (text: string): boolean => {
   let bool = false;
   let count = 0;
-  for (let s of text) {
+  for (const s of text) {
     if (s === "@" && count === 0) {
       count += 1;
       bool = true;

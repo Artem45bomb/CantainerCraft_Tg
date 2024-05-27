@@ -8,14 +8,14 @@ const usersServiceApi = process.env.USERS_SERVICE_API;
 export const registration = async (
   user: Omit<User, "id" | "roles">,
 ): Promise<User> => {
-  const { data, status } = await axios.post(usersServiceApi + "/create", user);
+  const { data } = await axios.post(usersServiceApi + "/create", user);
   return data;
 };
 
 export const login = async (
   user: Omit<User, "id" | "roles" | "name">,
 ): Promise<User> => {
-  const { data, status } = await axios.post(
+  const { data } = await axios.post(
     usersServiceApi + "/email",
     user.email,
   );
@@ -30,7 +30,7 @@ export const checkExistUser = async (username: string) => {
     const { status, data } = await axios.get<JwtAuthDTO>(
       "https://6538cc17a543859d1bb1ef16.mockapi.io/api/posts/users",
     );
-    console.log(data);
+    console.log(username);
     if (status >= 200 && status < 300) {
       return data;
     }

@@ -21,5 +21,5 @@ const initState: State = {
 
 export const userStore = create<State & Action>((set) => ({
   ...initState,
-  init: (user) => set((set) => ({ user })),
+  init: (user) => set(() => ({ user })),
 }));

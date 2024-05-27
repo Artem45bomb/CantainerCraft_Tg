@@ -15,5 +15,5 @@ const initState: State = {
 
 export const chatStore = create<State & Action>((set) => ({
   ...initState,
-  init: (chat) => set((state) => ({ chat })),
+  init: (chat) => set(() => ({ chat })),
 }));

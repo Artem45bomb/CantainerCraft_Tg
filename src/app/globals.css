@@ -80,8 +80,6 @@ input {
   }
 }
 
-
-
 .scroller-chat::-webkit-scrollbar {
   width: 8px;
   margin: 3px;
@@ -89,17 +87,17 @@ input {
 
 /* Track */
 .scroller-chat::-webkit-scrollbar-track {
-  border-radius:999px;
-  background: #30595F;
-  -webkit-border-radius:999px;
-  -moz-border-radius:999px;
-  -ms-border-radius:999px;
-  -o-border-radius:999px;
+  border-radius: 999px;
+  background: #30595f;
+  -webkit-border-radius: 999px;
+  -moz-border-radius: 999px;
+  -ms-border-radius: 999px;
+  -o-border-radius: 999px;
 }
 
 /* Handle */
 .scroller-chat::-webkit-scrollbar-thumb {
-  background: #C8D1DA;
+  background: #c8d1da;
   border-radius: 999px;
   -webkit-border-radius: 999px;
   -moz-border-radius: 999px;
@@ -109,5 +107,5 @@ input {
 
 /* Handle on hover */
 .scroller-chat::-webkit-scrollbar-thumb:hover {
-    background: #30595F;
+  background: #30595f;
 }

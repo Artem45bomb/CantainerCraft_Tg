@@ -1,13 +1,9 @@
 "use client";
-import { userStore } from "@/features/store/user";
 import { Chat } from "@/widgets/Chat";
 import { NavBar } from "@/widgets/NavBar";
-import { disconnect } from "process";
-import React, { FC, useEffect, useState } from "react";
-import SockJS from "sockjs-client";
-import StompJs, { Client } from "stompjs";
+import {FC} from "react";
 
-type PropType = {};
+
 
 const Main: FC = () => {
   // const [stompClient, setStompClient] = useState<Client>();
@@ -29,7 +25,7 @@ const Main: FC = () => {
   return (
     <main className="h-full w-full flex bg-msu-green">
       <NavBar />
-      <Chat/>
+      <Chat />
     </main>
   );
 };

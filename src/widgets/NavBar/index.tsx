@@ -10,7 +10,7 @@ export const NavBar: FC = () => {
 
   return (
     <div className="w-1/3 h-full bg-msu-green ">
-      <Header value={value} setInputValue={setInputValue} />
+      <Header setValue={setValue} value={value} setInputValue={setInputValue} />
       <Suspense
         fallback={
           <div className="w-full flex justify-center">

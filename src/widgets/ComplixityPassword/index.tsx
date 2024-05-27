@@ -1,5 +1,5 @@
 import React from "react"; // Import React if not already imported
-import { checkComplixityPassword } from "@/features/api/util/form";
+import { checkComplixityPassword } from "@/features/api/util";
 
 const ComplixityPassword = ({ password }: { password: string }) => {
   return (

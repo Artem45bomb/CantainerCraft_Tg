@@ -1,9 +1,9 @@
 import { ChangeEvent, FC, useState } from "react";
-import InputIcon from "@assets/icon/SearchInput-icon.svg";
 import Image from "next/image";
 
 interface IHeader {
   value: string;
+  setValue: (arg:string) => void;
   setInputValue: (elem: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -31,7 +31,7 @@ export const Header: FC<IHeader> = ({ value, setInputValue }) => {
               <path
                 d="M0.5 5.5H15.5M0.5 0.5H15.5M0.5 10.5H15.5"
                 stroke="white"
-                stroke-linecap="round"
+                strokeLinecap="round"
               />
             </svg>
           </button>

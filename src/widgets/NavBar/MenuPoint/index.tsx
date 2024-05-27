@@ -14,8 +14,8 @@ export const MenuPoint: FC<IMenuPoint> = ({ chat, secured }) => {
   const chatType = chat.type;
 
   const messagesAll = [...messages, ...messageResource].sort((a, b) => {
-    let date1 = new Date(a.date);
-    let date2 = new Date(b.date);
+    const date1 = new Date(a.date);
+    const date2 = new Date(b.date);
     return date1.getMilliseconds() - date2.getMilliseconds();
   });
 
@@ -47,9 +47,9 @@ export const MenuPoint: FC<IMenuPoint> = ({ chat, secured }) => {
             <p className="text-7289D9">{chat.name}</p>
           </div>
 
-          {messageEnd.type === "text" ? (
+          {messageEnd?.type === "text" ? (
             <p className="text-c88">{messageEnd.text}</p>
-          ) : messageEnd.type === "photo" ? (
+          ) : messageEnd?.type === "photo" ? (
             <div className="flex gap-1 items-center">
               <div className="w-5 h-5 relative rounded-sm">
                 <Image
@@ -64,7 +64,7 @@ export const MenuPoint: FC<IMenuPoint> = ({ chat, secured }) => {
               </div>
               <p className="text-0078D4">Photo</p>
             </div>
-          ) : messageEnd.type === "document" ? (
+          ) : messageEnd?.type === "document" ? (
             <div className="flex items-center">
               <div className="relative w-6 h-6">
                 <Image fill src="/assets/icon/Document-icon.svg" alt="" />
