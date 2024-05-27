@@ -11,7 +11,7 @@ export default function TestPage() {
 
   return (
     <div className="w-full h-full bg-black">
-      <VoiceChat/>
+      <VoiceChat userIncomingName="Artem"/>
     </div>
   );
 }

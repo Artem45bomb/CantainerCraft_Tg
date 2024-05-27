@@ -5,7 +5,13 @@ import Userlogo from "../Userlogo/Userlogo";
 import { ObjectFields } from "@/features/api/util";
 import Image from "next/image";
 
-function VoiceChat() {
+
+interface IVoiceChat{
+  userIncomingName:string
+}
+
+
+function VoiceChat({userIncomingName}:IVoiceChat) {
   const [time, setTime] = useState(0);
   const [settings, setSettings] = useState({
     Voice: false,
@@ -66,7 +72,7 @@ function VoiceChat() {
   return (
     <div className="flex flex-col h-screen w-screen bg-msu-green">
       <div className="h-auto mt-4 flex">
-        <div className="w-2/3 ml-6 text-verdigris">Никита Ефремов</div>
+        <div className="w-2/3 ml-6 text-verdigris">{userIncomingName}</div>
         <div className="flex w-1/3 justify-end space-x-4 mr-6">
           <button className="relative w-6 h-6 mx-2">
             <Image
@@ -88,14 +94,14 @@ function VoiceChat() {
             </div>
           </div>
         ) : (
-          <div className="w-full h-2/4 mb-6">
-            <div className="flex w-full gap-5 h-full justify-center">
+          <div className="w-full flex justify-center mb-6">
+              <div className="flex gap-5">
               <video
-                className="h-full rounded-xl border-2 border-dark-50"
+                className=" transition-all duration-0 w-full  rounded-xl border-2 border-dark-50"
                 ref={videoUserRef}
               ></video>
               <video
-                className="h-full rounded-xl border-2 border-dark-50"
+                className=" transition-all duration-0 w-full rounded-xl border-2 border-dark-50"
                 ref={videoIncomingRef}
               ></video>
             </div>
@@ -108,14 +114,14 @@ function VoiceChat() {
           className={`transition-all duration-150 w-14 h-14 flex items-center justify-center rounded-full ${settings.Voice ? "bg-police-blue" : "bg-desaturated-cyan"} `}
           onClick={() => {
             handleButtonPress("Voice");
-            if (!settings.Voice) videoStart(true);
+            if (!settings.Voice) videoStart(settings.Voice);
             else videoStop();
           }}
         >
           <div className="relative w-8 h-8 mx-auto">
             <Image
               layout="fill"
-              src="/assets/icon/Voice-Call-icon.svg"
+              src="/assets/icon/Voice-call-icon.svg"
               alt="no video call"
             />
           </div>
