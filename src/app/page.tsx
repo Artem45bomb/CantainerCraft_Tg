@@ -23,7 +23,7 @@ const Main: FC = () => {
   // }, []);
 
   return (
-    <main className="h-full w-full flex bg-msu-green">
+    <main className="h-full w-full flex bg-msu-green relative">
       <NavBar />
       <Chat />
     </main>

@@ -1,11 +1,16 @@
 import Image from "next/image";
 
-export default function Userlogo() {
+
+interface IUserLogo{
+  srcImage: string
+}
+
+export default function Userlogo({srcImage}:IUserLogo) {
   return (
     <div className=" size-full relative">
       <Image
         fill
-        src={"/assets/testIcons/logo.jpg"}
+        src={srcImage}
         alt="userlogo"
         className="rounded-full"
       />

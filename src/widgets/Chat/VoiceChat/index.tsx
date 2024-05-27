@@ -1,17 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import Userlogo from "../Userlogo/Userlogo";
 import { ObjectFields } from "@/features/api/util";
 import Image from "next/image";
 
 
 interface IVoiceChat{
-  userIncomingName:string
+  userIncomingName?: string
+  setActiveVoiceChat:Dispatch<SetStateAction<boolean>>
 }
 
 
-function VoiceChat({userIncomingName}:IVoiceChat) {
+function VoiceChat({userIncomingName,setActiveVoiceChat}:IVoiceChat) {
   const [time, setTime] = useState(0);
   const [settings, setSettings] = useState({
     Voice: false,
@@ -72,11 +73,20 @@ function VoiceChat({userIncomingName}:IVoiceChat) {
   return (
     <div className="flex flex-col h-screen w-screen bg-msu-green">
       <div className="h-auto mt-4 flex">
-        <div className="w-2/3 ml-6 text-verdigris">{userIncomingName}</div>
-        <div className="flex w-1/3 justify-end space-x-4 mr-6">
+        {
+          userIncomingName && <div className="w-2/3 ml-6 text-verdigris">{userIncomingName}</div>
+        }
+        <div className="flex w-full justify-end space-x-4 mr-6">
           <button className="relative w-6 h-6 mx-2">
             <Image
               src="/assets/icon/Voice-icon.svg"
+              alt="off/on voice"
+              layout="fill"
+            />
+          </button>
+          <button className="relative w-6 h-6 mx-2">
+            <Image
+              src="/assets/icon/Add-user-icon.svg"
               alt="off/on voice"
               layout="fill"
             />
@@ -87,10 +97,10 @@ function VoiceChat({userIncomingName}:IVoiceChat) {
         {settings.Voice == false ? (
           <div>
             <div className="border rounded-full m-6 border-green-300 inline-block w-32 h-32">
-              <Userlogo />
+              <Userlogo srcImage="/assets/testIcons/logo.jpg"/>
             </div>
             <div className="border rounded-full m-6 border-green-300 inline-block w-32 h-32">
-              <Userlogo />
+              <Userlogo srcImage="/assets/testIcons/logo.jpg"/>
             </div>
           </div>
         ) : (
@@ -155,7 +165,10 @@ function VoiceChat({userIncomingName}:IVoiceChat) {
         </button>
         <button
           className={`relative transition-all duration-150 w-14 h-14 flex items-center justify-center rounded-full ${settings.Telephone ? "bg-police-blue" : "bg-red-500"} `}
-          onClick={() => handleButtonPress("Telephone")}
+          onClick={() => {
+            handleButtonPress("Telephone")
+            setActiveVoiceChat(prev => !prev)
+          }}
         >
           <div className="relative w-10 h-10">
             <Image

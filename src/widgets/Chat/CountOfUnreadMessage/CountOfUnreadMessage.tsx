@@ -1,4 +1,4 @@
-interface ICountOfUnreadMessage {
+export interface ICountOfUnreadMessage {
   countOfUnreadMessage: number;
 }
 

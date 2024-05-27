@@ -1,4 +1,6 @@
-import { Chat, Message } from "@/entities";
+import { Chat, Message, MessageResource } from "@/entities";
+import { PropsHeader } from "@/widgets/Chat/Header/Header";
+import { ICountOfUnreadMessage } from "@/widgets/Chat/CountOfUnreadMessage/CountOfUnreadMessage";
 
 export const chatsTEST: Chat[] = [
   {
@@ -69,8 +71,7 @@ export const chatsTEST: Chat[] = [
     type: "private",
     srcImage: "/assets/png/images1.jpg",
     users: [],
-    messageResource: [
-    ],
+    messageResource: [],
     messages: [],
   },
 ];
@@ -87,5 +88,39 @@ export const MessageTest: Message = {
   reactions: [],
   srcContent: [],
 };
+
+export const ChatInfoTest: PropsHeader = {
+  logoSrc: "/assets/testIcons/logo.jpg",
+  chatName: "Temik Krutoi",
+  countOfMembers: 123,
+  countOfOnlineMembers: 23,
+};
+
+export const countUnreadMessagesTest: ICountOfUnreadMessage = {
+  countOfUnreadMessage: 34,
+};
+
+export const msgTest: Message[] = [
+  {
+    uuid: "asdf",
+    text: "lasdfahsdfhasdhf asdf ahsdf asdf hjasd fhasdfhasd khjakjsdf",
+    date: "04 Dec 2006 01:11:00",
+    userId: 5,
+    userName: "asdf",
+    type: "text",
+    reactions: [],
+    srcContent: [],
+  },
+  {
+    uuid: "asdf",
+    text: "Temik krutoi",
+    date: "04 Dec 2006 01:12:00",
+    userId: 6,
+    userName: "fdfa",
+    type: "text",
+    reactions: [],
+    srcContent: [],
+  },
+];
 
 securedChatsTEST.add("43589jj-ll");
