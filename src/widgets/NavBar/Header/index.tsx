@@ -8,17 +8,16 @@ interface IHeader {
 }
 
 export const Header: FC<IHeader> = ({ value, setInputValue }) => {
-  const [isShow, setShow] = useState(false);
+  const [isShow, setIsShow] = useState(false);
 
-  const baseClassName = "flex items-center justify-center w-6 h-6";
 
   return (
-    <div className="w-full bg-msu-green">
+    <div className="w-full bg-msu-green ">
       <div className="flex px-4 py-3 items-center gap-4">
-        <div className={!isShow ? baseClassName : baseClassName + " bg-white"}>
+        <div className={`flex w-8 transition-all duration-300 aspect-square  items-center justify-center ${isShow && "rounded-full bg-[#ffffff52]"}`}>
           <button
             onClick={() => {
-              setShow((prev) => prev!);
+              setIsShow((prev) => !prev);
             }}
           >
             <svg

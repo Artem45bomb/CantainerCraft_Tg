@@ -1,9 +1,8 @@
-export type * from "./Role";
-export type * from "./User";
-export type * from "./Message";
+export type * from "./user/Role";
+export type * from "./user/User";
+export type * from "./chat/message/Message";
 export type * from "./SecuredType";
 export type * from "./SecuredType";
-export type * from "./Chat";
-export type * from "./MessageRead";
-export type * from "./MessageResource";
-export type * from "./index";
+export type * from "./chat/Chat";
+export type * from "./chat/MessageResource";
+

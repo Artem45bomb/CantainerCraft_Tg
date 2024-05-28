@@ -146,8 +146,7 @@ export default function Registration() {
               />
               <div
                 onClick={() => setShow((prev) => !prev)}
-                className="relative w-6 h-5"
-              >
+                className="relative w-6 h-5">
                 {isShow ? (
                   <Image fill src="/assets/icon/Eye.svg" alt="" />
                 ) : (

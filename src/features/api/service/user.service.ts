@@ -5,15 +5,18 @@ import { JwtAuthDTO } from "../dto";
 
 const usersServiceApi = process.env.USERS_SERVICE_API;
 
+
+type AuthUser = Omit<User, "id" | "roles" | "subscriptions" | "userOnline">;
+
 export const registration = async (
-  user: Omit<User, "id" | "roles">,
+  user: AuthUser,
 ): Promise<User> => {
   const { data } = await axios.post(usersServiceApi + "/create", user);
   return data;
 };
 
 export const login = async (
-  user: Omit<User, "id" | "roles" | "name">,
+  user: Omit<AuthUser,"name" >,
 ): Promise<User> => {
   const { data } = await axios.post(
     usersServiceApi + "/email",

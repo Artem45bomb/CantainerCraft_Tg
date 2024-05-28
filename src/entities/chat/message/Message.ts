@@ -1,5 +1,5 @@
-import { Content } from "./Content";
-import { Reaction } from "./Reaction";
+import { Content } from "../Content";
+import { Emotion } from "../Emotion";
 
 export type Message = {
   uuid: string;
@@ -8,6 +8,6 @@ export type Message = {
   userId: number;
   srcContent: Omit<Content, "messageId">[];
   userName: string;
-  type: "text" | "photo";
-  reactions: Reaction[];
+  type: "text" | "photo" | "document" | "file" | "voice";
+  emotions: Emotion[];
 };

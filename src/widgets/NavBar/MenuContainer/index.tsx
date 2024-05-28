@@ -25,7 +25,7 @@ export const MenuContainer: FC<Props> = ({ filterName }) => {
       {chats
         .filter((e) => e.name.includes(filterName))
         .map((chat) => (
-          <div
+          <button
             key={chat.uuid+"i0"}
             className={`relative transition-all duration-100 
             ${chat.uuid === chatActiveId ? "bg-white-transparent rounded-lg" : ""} `}
@@ -45,7 +45,7 @@ export const MenuContainer: FC<Props> = ({ filterName }) => {
               chat={chat}
               secured={securedChats.has(chat.uuid)}
             />
-          </div>
+          </button>
         ))}
     </div>
   );

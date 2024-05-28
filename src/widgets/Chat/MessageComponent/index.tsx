@@ -1,6 +1,6 @@
 "use client";
 
-import { Message } from "@/entities/Message";
+import { Message } from "@/entities/chat/message/Message";
 
 interface Props {
   isNameView: boolean;
