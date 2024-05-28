@@ -1,8 +1,8 @@
-import { User, Chat } from "../";
+import { Chat } from "../";
 
 export type Chat_Info = {
 	uuid: string,
-	user: User,
+	userId:number,
 	chat: Chat,
 	is_secured: boolean,
 	is_notification:boolean
