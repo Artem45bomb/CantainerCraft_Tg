@@ -9,17 +9,8 @@ interface IMenuPoint {
 }
 
 export const MenuPoint: FC<IMenuPoint> = ({ chat, secured }) => {
-  const { messages, messageResource } = chat;
-
-  const chatType = chat.type;
-
-  const messagesAll = [...messages, ...messageResource].sort((a, b) => {
-    const date1 = new Date(a.date);
-    const date2 = new Date(b.date);
-    return date1.getMilliseconds() - date2.getMilliseconds();
-  });
-
-  const messageEnd = messagesAll[messagesAll.length - 1];
+  const { messages } = chat;
+  const messageEnd = messages[messages.length - 1];
 
   return (
     <div className="w-full py-2.5 flex items-center justify-between px-1">
@@ -32,23 +23,22 @@ export const MenuPoint: FC<IMenuPoint> = ({ chat, secured }) => {
           style={{ borderColor: "#ffffff15", borderBottomWidth: "1.5px" }}
           className="py-1  flex flex-col gap-1   w-full"
         >
-          <div className="flex items-center gap-1">
-            {chatType === "group" ? (
-              <div className="relative w-4 aspect-square">
+          <div className="flex items-center gap-1 h-full">
+            <div className={`relative ${chat.type !== "private" && "w-4"} aspect-square`}>
+                  {chat.type === "group" ? (
                 <Image fill src="/assets/icon/Group-chat-icon.svg" alt="" />
-              </div>
-            ) : chatType === "channel" ? (
-              <div className="relative w-4 aspect-square">
-                <Image fill src="/assets/icon/Megaphone.svg" alt="/" />
-              </div>
+                ) : chat.type === "channel" ? (
+                <Image fill src="/assets/icon/Megaphone.svg" alt="fjfjfj" />
             ) : (
               <></>
             )}
-            <p className="text-7289D9">{chat.name}</p>
+              </div>
+
+            <p className="text-7289D9 text-left">{chat.name}</p>
           </div>
 
           {messageEnd?.type === "text" ? (
-            <p className="text-c88">{messageEnd.text}</p>
+            <p className="text-c88 text-left min-h-4">{messageEnd.text}</p>
           ) : messageEnd?.type === "photo" ? (
             <div className="flex gap-1 items-center">
               <div className="w-5 h-5 relative rounded-sm">

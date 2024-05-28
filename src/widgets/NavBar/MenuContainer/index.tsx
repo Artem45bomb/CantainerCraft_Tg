@@ -27,7 +27,7 @@ export const MenuContainer: FC<Props> = ({ filterName }) => {
         .map((chat) => (
           <button
             key={chat.uuid+"i0"}
-            className={`relative transition-all duration-100 
+            className={`relative transition-all duration-100 w-full
             ${chat.uuid === chatActiveId ? "bg-white-transparent rounded-lg" : ""} `}
             onClick={() => {
               setChatActive(chat.uuid);
