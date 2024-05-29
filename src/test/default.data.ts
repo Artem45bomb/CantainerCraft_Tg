@@ -108,7 +108,7 @@ export const msgTest: Message[] = [
     userId: 5,
     userName: "asdf",
     type: "text",
-    reactions: [],
+    emotions: [],
     srcContent: [],
   },
   {
@@ -118,7 +118,7 @@ export const msgTest: Message[] = [
     userId: 6,
     userName: "fdfa",
     type: "text",
-    reactions: [],
+    emotions: [],
     srcContent: [],
   },
 ];

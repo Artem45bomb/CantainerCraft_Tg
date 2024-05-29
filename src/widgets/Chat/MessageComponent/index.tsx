@@ -29,9 +29,7 @@ export default function MessageComponent({ message, isNameView }: Props) {
         </div>
       ) : null}
       <div
-        className={
-          message.reactions.length > 0 ? "mt-1" : "mt-1 flex items-end"
-        }
+        className={message.emotions.length > 0 ? "mt-1" : "mt-1 flex items-end"}
       >
         <p className="text-sm text-C8D1DA pr-2 ">{message.text}</p>
         <p className=" text-xs font-light text-end select-none">
