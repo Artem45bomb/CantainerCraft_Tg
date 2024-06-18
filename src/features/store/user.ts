@@ -1,5 +1,6 @@
 import { User } from "@/entities";
 import { create } from "zustand";
+import { userEmpty } from "../empty/object.empty";
 
 interface State {
   user: User;
@@ -9,14 +10,8 @@ interface Action {
   init: (user: User) => void;
 }
 
-const initState: State = {
-  user: {
-    id: 0,
-    email: "",
-    name: "",
-    password: "",
-    roles: [],
-  },
+export const initState: State = {
+  user: userEmpty,
 };
 
 export const userStore = create<State & Action>((set) => ({

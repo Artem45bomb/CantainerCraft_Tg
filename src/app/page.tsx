@@ -1,9 +1,7 @@
 "use client";
 import { Chat } from "@/widgets/Chat";
 import { NavBar } from "@/widgets/NavBar";
-import {FC} from "react";
-
-
+import { FC } from "react";
 
 const Main: FC = () => {
   // const [stompClient, setStompClient] = useState<Client>();

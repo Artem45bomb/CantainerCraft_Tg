@@ -1,8 +1,7 @@
-import { User } from ".."
-
+import { User } from "..";
 
 export type User_Online = {
-	uuid: string,
-	user: User,
-	is_online:string
-}
+  uuid: string;
+  user: User;
+  is_online: string;
+};

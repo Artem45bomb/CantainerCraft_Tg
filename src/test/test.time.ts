@@ -1,4 +1,3 @@
-
 export function delay<T>(ms: number, promise: Promise<T>): Promise<T> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {

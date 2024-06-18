@@ -18,6 +18,10 @@ const config: Config = {
       padding: {
         "0.5": "0.125rem",
         "2.5": "0.625rem",
+        "4.5": "1.125rem",
+      },
+      fontSize:{
+        "sm-9":"9px"
       },
       translate: {
         "x--1/2": "translate(-50%, -50%)",
@@ -42,6 +46,11 @@ const config: Config = {
         A1AAB3: "#A1AAB3",
         C8D1DA: "#C8D1DA",
         "45B8B1": "#45B8B1",
+        "969DA3":"#969DA3",
+        "254C4C":"#254C4C",
+        "1D4846":"#1D4846",
+        "365C5E":"#365C5E",
+        "5BC4BB":"#5BC4BB"
       },
       width: {
         "2/5": "40%",

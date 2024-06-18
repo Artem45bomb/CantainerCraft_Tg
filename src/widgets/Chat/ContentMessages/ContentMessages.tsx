@@ -1,6 +1,5 @@
 import { Message } from "@/entities";
 import MessageComponent from "../MessageComponent";
-import { MessageTest } from "@/test/default.data";
 
 export interface IMessage {
   messages: Message[];

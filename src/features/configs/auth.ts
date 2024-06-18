@@ -1,12 +1,10 @@
 import { NextAuthConfig } from "next-auth";
 import GoggleProvider from "next-auth/providers/google";
-import NextAuth from "next-auth"
+import NextAuth from "next-auth";
 
 const authOptions: NextAuthConfig = {
   secret: process.env.NEXTAUTH_SECRET,
-  callbacks: {
-    
-  },
+  callbacks: {},
   providers: [
     GoggleProvider({
       clientId: process.env.GOOGLE_ID!,

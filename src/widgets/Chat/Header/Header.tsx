@@ -9,7 +9,7 @@ export interface PropsHeader {
   chatName: string;
   countOfMembers: number;
   countOfOnlineMembers: number;
-  setActiveVoiceChat:Dispatch<SetStateAction<boolean>>
+  setActiveVoiceChat: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function Header({
@@ -17,7 +17,7 @@ export default function Header({
   chatName,
   countOfMembers,
   countOfOnlineMembers,
-  setActiveVoiceChat
+  setActiveVoiceChat,
 }: PropsHeader) {
   return (
     <header className=" border-b border-fff005">
@@ -30,10 +30,12 @@ export default function Header({
         />
         <div className="flex gap-2.5">
           <Search />
-          <Shape callback={() => {
-            setActiveVoiceChat(prev => !prev)
-          }}/>
-          <More  />
+          <Shape
+            callback={() => {
+              setActiveVoiceChat((prev) => !prev);
+            }}
+          />
+          <More />
         </div>
       </div>
     </header>

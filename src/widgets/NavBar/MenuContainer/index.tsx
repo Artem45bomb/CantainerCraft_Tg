@@ -26,7 +26,7 @@ export const MenuContainer: FC<Props> = ({ filterName }) => {
         .filter((e) => e.name.includes(filterName))
         .map((chat) => (
           <button
-            key={chat.uuid+"i0"}
+            key={chat.uuid + "i0"}
             className={`relative transition-all duration-100 w-full
             ${chat.uuid === chatActiveId ? "bg-white-transparent rounded-lg" : ""} `}
             onClick={() => {

@@ -24,15 +24,17 @@ export const MenuPoint: FC<IMenuPoint> = ({ chat, secured }) => {
           className="py-1  flex flex-col gap-1   w-full"
         >
           <div className="flex items-center gap-1 h-full">
-            <div className={`relative ${chat.type !== "private" && "w-4"} aspect-square`}>
-                  {chat.type === "group" ? (
+            <div
+              className={`relative ${chat.type !== "private" && "w-4"} aspect-square`}
+            >
+              {chat.type === "group" ? (
                 <Image fill src="/assets/icon/Group-chat-icon.svg" alt="" />
-                ) : chat.type === "channel" ? (
+              ) : chat.type === "channel" ? (
                 <Image fill src="/assets/icon/Megaphone.svg" alt="fjfjfj" />
-            ) : (
-              <></>
-            )}
-              </div>
+              ) : (
+                <></>
+              )}
+            </div>
 
             <p className="text-7289D9 text-left">{chat.name}</p>
           </div>

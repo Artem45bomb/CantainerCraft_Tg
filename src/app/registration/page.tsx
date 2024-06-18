@@ -24,7 +24,6 @@ export default function Registration() {
   const [email, setEmail, setInputEmail] = useInput("");
   const [password, setPassword, setInputPassword] = useInput("");
 
-
   const session = useSession();
   const { data } = session;
   const router = useRouter();
@@ -37,7 +36,6 @@ export default function Registration() {
           router.push("/");
         })
         .catch(() => {
-
           setUsername(data?.user?.name || "");
           setEmail(data?.user?.email || "");
           setPassword("");
@@ -146,7 +144,8 @@ export default function Registration() {
               />
               <div
                 onClick={() => setShow((prev) => !prev)}
-                className="relative w-6 h-5">
+                className="relative w-6 h-5"
+              >
                 {isShow ? (
                   <Image fill src="/assets/icon/Eye.svg" alt="" />
                 ) : (

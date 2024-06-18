@@ -1,4 +1,4 @@
-import { Chat, Message, MessageResource } from "@/entities";
+import {Chat, Message, MessageResource, User} from "@/entities";
 import { PropsHeader } from "@/widgets/Chat/Header/Header";
 import { ICountOfUnreadMessage } from "@/widgets/Chat/CountOfUnreadMessage/CountOfUnreadMessage";
 
@@ -124,3 +124,16 @@ export const msgTest: Message[] = [
 ];
 
 securedChatsTEST.add("43589jj-ll");
+
+
+export const userTest:User = {
+  email: "",
+  id: 0,
+  name: "Nikite",
+  password: "",
+  roles: [],
+  srcImageProfile: "/assets/png/Ellipse.png",
+  subscriptions: [],
+  userOnline: undefined
+
+}

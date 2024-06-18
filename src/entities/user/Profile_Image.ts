@@ -1,7 +1,7 @@
-import { Profile } from "./Profile"
+import { Profile } from "./Profile";
 
 export type Profile_Image = {
-	uuid: string,
-	srcContent: string,
-	profile:Profile
-}
+  uuid: string;
+  srcContent: string;
+  profile: Profile;
+};

@@ -28,8 +28,7 @@ export default function Login() {
       });
     };
     if (session.status === "authenticated") {
-      if (session.data.user?.email) 
-      check(session.data.user.email);
+      if (session.data.user?.email) check(session.data.user.email);
     }
   }, [session.status]);
 

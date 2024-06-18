@@ -4,17 +4,24 @@ import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import Userlogo from "../Userlogo/Userlogo";
 import { ObjectFields } from "@/features/api/util";
 import Image from "next/image";
+import {userStore} from "@/features/store/user";
 
+export type Settings = {
+  Voice: boolean;
+  Screen: boolean;
+  Micro: boolean;
+  Telephone: boolean;
+};
 
-interface IVoiceChat{
-  userIncomingName?: string
-  setActiveVoiceChat:Dispatch<SetStateAction<boolean>>
+interface IVoiceChat {
+  userIncomingName?: string;
+  setActiveVoiceChat: Dispatch<SetStateAction<boolean>>;
 }
 
-
-function VoiceChat({userIncomingName,setActiveVoiceChat}:IVoiceChat) {
+function VoiceChat({ userIncomingName, setActiveVoiceChat }: IVoiceChat) {
   const [time, setTime] = useState(0);
-  const [settings, setSettings] = useState({
+  const {user} = userStore();
+  const [settings, setSettings] = useState<Settings>({
     Voice: false,
     Screen: false,
     Micro: false,
@@ -71,41 +78,60 @@ function VoiceChat({userIncomingName,setActiveVoiceChat}:IVoiceChat) {
   };
 
   return (
-    <div className="flex flex-col h-screen w-screen bg-msu-green">
+    <div className="flex flex-col h-full w-full bg-1D4846 relative">
+      <div className="absolute top-6 left-6 flex justify-center items-center gap-1.5">
+          <button className="w-6 bg-365C5E aspect-square flex items-center justify-center rounded-full">
+            <div className="relative w-5 aspect-square">
+              <Image
+                  src="/assets/icon/Left-icon.svg"
+                  alt=""
+                  fill
+              />
+            </div>
+          </button>
+        <p className="text-5BC4BB">{user.name}KKK</p>
+      </div>
       <div className="h-auto mt-4 flex">
-        {
-          userIncomingName && <div className="w-2/3 ml-6 text-verdigris">{userIncomingName}</div>
-        }
+        {userIncomingName && (
+            <div className="w-2/3 ml-6 text-verdigris">{userIncomingName}</div>
+        )}
         <div className="flex w-full justify-end space-x-4 mr-6">
           <button className="relative w-6 h-6 mx-2">
             <Image
-              src="/assets/icon/Voice-icon.svg"
-              alt="off/on voice"
-              layout="fill"
+                src="/assets/icon/Chat-icon.svg"
+                alt="off/on voice"
+                layout="fill"
             />
           </button>
           <button className="relative w-6 h-6 mx-2">
             <Image
-              src="/assets/icon/Add-user-icon.svg"
-              alt="off/on voice"
-              layout="fill"
+                src="/assets/icon/Voice-icon.svg"
+                alt="off/on voice"
+                layout="fill"
+            />
+          </button>
+          <button className="relative w-6 h-6 mx-2">
+            <Image
+                src="/assets/icon/Add-user-icon.svg"
+                alt="off/on voice"
+                layout="fill"
             />
           </button>
         </div>
       </div>
       <div className="flex-1 flex flex-col items-center justify-center">
         {settings.Voice == false ? (
-          <div>
-            <div className="border rounded-full m-6 border-green-300 inline-block w-32 h-32">
-              <Userlogo srcImage="/assets/testIcons/logo.jpg"/>
+            <div>
+              <div className="border rounded-full m-6 border-green-300 inline-block w-32 h-32">
+              <Userlogo srcImage="/assets/testIcons/logo.jpg" />
             </div>
             <div className="border rounded-full m-6 border-green-300 inline-block w-32 h-32">
-              <Userlogo srcImage="/assets/testIcons/logo.jpg"/>
+              <Userlogo srcImage="/assets/testIcons/logo.jpg" />
             </div>
           </div>
         ) : (
           <div className="w-full flex justify-center mb-6">
-              <div className="flex gap-5">
+            <div className="flex gap-5">
               <video
                 className=" transition-all duration-0 w-full  rounded-xl border-2 border-dark-50"
                 ref={videoUserRef}
@@ -166,8 +192,8 @@ function VoiceChat({userIncomingName,setActiveVoiceChat}:IVoiceChat) {
         <button
           className={`relative transition-all duration-150 w-14 h-14 flex items-center justify-center rounded-full ${settings.Telephone ? "bg-police-blue" : "bg-red-500"} `}
           onClick={() => {
-            handleButtonPress("Telephone")
-            setActiveVoiceChat(prev => !prev)
+            handleButtonPress("Telephone");
+            setActiveVoiceChat((prev) => !prev);
           }}
         >
           <div className="relative w-10 h-10">

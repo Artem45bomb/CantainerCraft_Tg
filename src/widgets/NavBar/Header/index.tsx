@@ -3,18 +3,19 @@ import Image from "next/image";
 
 interface IHeader {
   value: string;
-  setValue: (arg:string) => void;
+  setValue: (arg: string) => void;
   setInputValue: (elem: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const Header: FC<IHeader> = ({ value, setInputValue }) => {
   const [isShow, setIsShow] = useState(false);
 
-
   return (
     <div className="w-full bg-msu-green ">
       <div className="flex px-4 py-3 items-center gap-4">
-        <div className={`flex w-8 transition-all duration-300 aspect-square  items-center justify-center ${isShow && "rounded-full bg-[#ffffff52]"}`}>
+        <div
+          className={`flex w-8 transition-all duration-300 aspect-square  items-center justify-center ${isShow && "rounded-full bg-[#ffffff52]"}`}
+        >
           <button
             onClick={() => {
               setIsShow((prev) => !prev);

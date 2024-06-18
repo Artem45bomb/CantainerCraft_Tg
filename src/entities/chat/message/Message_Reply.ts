@@ -1,11 +1,7 @@
-import { Message } from "postcss"
-
-
-
+import { Message } from "postcss";
 
 export type Message_Reply = {
-	uuid: string,
-	message: Message,
-	messageReplyId:Message
-}
-
+  uuid: string;
+  message: Message;
+  messageReplyId: Message;
+};
