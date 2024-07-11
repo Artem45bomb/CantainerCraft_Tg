@@ -3,7 +3,7 @@ import { create } from "zustand";
 import { userEmpty } from "../empty/object.empty";
 
 interface State {
-  user: User;
+  userAuth: User;
 }
 
 interface Action {
@@ -11,10 +11,10 @@ interface Action {
 }
 
 export const initState: State = {
-  user: userEmpty,
+  userAuth: userEmpty,
 };
 
 export const userStore = create<State & Action>((set) => ({
   ...initState,
-  init: (user) => set(() => ({ user })),
+  init: (user) => set(() => ({ userAuth: user })),
 }));

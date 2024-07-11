@@ -1,23 +1,12 @@
 "use client";
-
-import SettingsPanel from "@/widgets/SettingsPanel";
+import { Chat } from "@/widgets/Chat";
 
 export default function TestPage() {
+  //const [active, setActive] = useState<boolean>(false);
+
   return (
-    // <div className="w-full h-full bg-black">
-    //   <div className="flex h-full justify-center items-center">
-    //     <Panel settingsChat={{
-    //       Voice: false,
-    //       Screen: false,
-    //       Micro: false,
-    //       Telephone: false,
-    //     }}
-    //            user={userTest}
-    //            usersInChat={[]}
-    //     />
-    //     <VoiceChat setActiveVoiceChat={setValue} userIncomingName={""}/>
-    //   </div>
-    // </div>
-    <SettingsPanel />
+    <div className="w-full h-full bg-black">
+      <Chat />
+    </div>
   );
 }

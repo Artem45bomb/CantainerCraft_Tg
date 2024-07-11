@@ -7,7 +7,6 @@ export type Message = {
   date: string;
   userId: number;
   srcContent: Omit<Content, "messageId">[];
-  userName: string;
   type: "text" | "photo" | "document" | "file" | "voice";
   emotions: Emotion[];
 };

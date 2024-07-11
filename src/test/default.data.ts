@@ -1,6 +1,7 @@
-import { Chat, Message, MessageResource, User } from "@/entities";
+import { Chat, Message, User } from "@/entities";
 import { PropsHeader } from "@/widgets/Chat/Header/Header";
 import { ICountOfUnreadMessage } from "@/widgets/Chat/CountOfUnreadMessage/CountOfUnreadMessage";
+import { UserChat } from "@/features/store/chat";
 
 export const chatsTEST: Chat[] = [
   {
@@ -8,18 +9,16 @@ export const chatsTEST: Chat[] = [
     name: "74tp",
     type: "channel",
     srcImage: "/assets/png/images1.jpg",
-    messageResource: [],
     users: [],
     messages: [
       {
         uuid: "fjfuajlljii",
         type: "text",
-        userName: "",
         text: "Hi",
         date: "1234",
         srcContent: [],
         userId: 1,
-        reactions: [],
+        emotions: [],
       },
     ],
   },
@@ -29,19 +28,17 @@ export const chatsTEST: Chat[] = [
     type: "group",
     srcImage: "/assets/png/images2.png",
     users: [],
-    messageResource: [],
     messages: [
       {
         uuid: "uineo9",
         type: "photo",
-        userName: "",
         text: "Hi",
         srcContent: [
           { uuid: "749jjjf", srcContent: "/assets/png/images1.jpg" },
         ],
         date: "1234",
         userId: 1,
-        reactions: [],
+        emotions: [],
       },
     ],
   },
@@ -51,7 +48,6 @@ export const chatsTEST: Chat[] = [
     type: "private",
     srcImage: "/assets/png/images1.jpg",
     users: [],
-    messageResource: [],
     messages: [
       {
         uuid: "fkeuk",
@@ -59,9 +55,8 @@ export const chatsTEST: Chat[] = [
         text: "",
         srcContent: [],
         date: "1234",
-        userName: "j",
         userId: 1,
-        reactions: [],
+        emotions: [],
       },
     ],
   },
@@ -71,7 +66,6 @@ export const chatsTEST: Chat[] = [
     type: "private",
     srcImage: "/assets/png/images1.jpg",
     users: [],
-    messageResource: [],
     messages: [],
   },
 ];
@@ -83,9 +77,8 @@ export const MessageTest: Message = {
   text: "lasdfahsdfhasdhf asdf ahsdf asdf hjasd fhasdfhasd khjakjsdf",
   date: "04 Dec 2006 01:11:00",
   userId: 5,
-  userName: "asdf",
   type: "text",
-  reactions: [],
+  emotions: [],
   srcContent: [],
 };
 
@@ -103,22 +96,20 @@ export const countUnreadMessagesTest: ICountOfUnreadMessage = {
 export const msgTest: Message[] = [
   {
     uuid: "asdf",
-    text: "lasdfahsdfhasdhf asdf ahsdf asdf hjasd fhasdfhasd khjakjsdf",
-    date: "04 Dec 2006 01:11:00",
+    text: "Temik krutoi",
+    date: "04 Dec 2006 01:12:00",
     userId: 5,
-    userName: "asdf",
     type: "text",
-    reactions: [],
+    emotions: [],
     srcContent: [],
   },
   {
     uuid: "asdf",
-    text: "Temik krutoi",
-    date: "04 Dec 2006 01:12:00",
-    userId: 6,
-    userName: "fdfa",
+    text: "Temik krutoijjjjfajlflajfaljflalffjflflajf",
+    date: "05 Dec 2006 02:12:00",
+    userId: 5,
     type: "text",
-    reactions: [],
+    emotions: [],
     srcContent: [],
   },
 ];
@@ -135,3 +126,16 @@ export const userTest: User = {
   subscriptions: [],
   userOnline: undefined,
 };
+
+export const userChatTest: UserChat[] = [
+  {
+    id: 5,
+    name: "Artem",
+    userOnline: {
+      is_online: false,
+    },
+    srcImageProfile: "",
+    roles: [],
+    subscriptions: [],
+  },
+];

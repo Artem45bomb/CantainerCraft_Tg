@@ -1,4 +1,5 @@
-import { Message, User } from "../index";
+import { Message } from "../index";
+import { UserChat } from "@/features/store/chat";
 
 //User пользователей надо получать будет отдельно
 export type Chat = {
@@ -6,6 +7,6 @@ export type Chat = {
   name: string;
   type: "private" | "group" | "channel";
   srcImage: string;
-  users: Omit<User, "password" | "email">[] | { userId: number };
+  users: UserChat[];
   messages: Message[];
 };

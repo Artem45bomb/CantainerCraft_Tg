@@ -1,8 +1,11 @@
-import { Chat } from "@/entities";
+import { Chat, User } from "@/entities";
 import { create } from "zustand";
+import { chatEmpty } from "@/features/empty/object.empty";
+
+export type UserChat = Omit<User, "password" | "email">;
 
 interface State {
-  chatIn: Chat | null;
+  chatIn: Chat;
   chats: Chat[];
 }
 
@@ -11,7 +14,7 @@ interface Action {
 }
 
 const initState: State = {
-  chatIn: null,
+  chatIn: chatEmpty,
   chats: [],
 };
 

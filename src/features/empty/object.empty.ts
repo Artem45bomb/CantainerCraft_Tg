@@ -1,5 +1,6 @@
-import { User } from "@/entities";
+import { Chat, User } from "@/entities";
 import { Profile } from "@/entities/user/Profile";
+import { msgTest, userChatTest } from "@/test/default.data";
 
 export const userEmpty: User = {
   id: 0,
@@ -18,4 +19,13 @@ export const profileEmpty: Profile = {
   aboutUser: "",
   user: userEmpty,
   profileImages: [],
+};
+
+export const chatEmpty: Chat = {
+  uuid: "",
+  name: "",
+  type: "group",
+  srcImage: "",
+  users: [...userChatTest],
+  messages: [...msgTest],
 };

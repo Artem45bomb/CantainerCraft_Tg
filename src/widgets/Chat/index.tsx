@@ -5,9 +5,11 @@ import Input from "./Input/Input";
 import { ChatInfoTest, msgTest } from "@/test/default.data";
 import VoiceChat from "./VoiceChat";
 import { useEffect, useState } from "react";
+import { chatStore } from "@/features/store/chat";
 
 export function Chat() {
   const [isVoiceChat, setActiveVoiceChat] = useState(false);
+  const { chatIn } = chatStore();
 
   useEffect(() => {});
 
@@ -35,7 +37,10 @@ export function Chat() {
           </p>
         </div>
         <div className="w-full absolute max-w-full max-h-full h-full scroller-chat overflow-y-scroll">
-          <ContentMessages messages={msgTest} />
+          <ContentMessages
+            users={chatIn.users}
+            messages={chatIn?.messages || msgTest}
+          />
         </div>
       </div>
       <div className="w-full self-end">
