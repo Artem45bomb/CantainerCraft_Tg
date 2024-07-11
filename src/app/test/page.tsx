@@ -1,33 +1,23 @@
 "use client";
 
-//
-// import VoiceChat from "@/widgets/Chat/VoiceChat";
-// import {useState} from "react";
-
-import { useQuery } from "@tanstack/react-query";
+import SettingsPanel from "@/widgets/SettingsPanel";
 
 export default function TestPage() {
-  //const [value,setValue] =  useState<boolean>(true)
-  const { data, isPending, error } = useQuery({
-    queryKey: ["chats"],
-    queryFn: () =>
-      fetch("https://api.github.com/repos/TanStack/query").then((res) =>
-        res.json(),
-      ),
-  });
-
-  if (isPending) {
-    return <div>Loader</div>;
-  }
-
-  if (error) {
-    return <div>Error</div>;
-  }
-
   return (
-    <div className="w-full h-full bg-black">
-      {/*<VoiceChat activeVoiceChat={value} setActiveVoiceChat={setValue}/>*/}
-      {data.id}
-    </div>
+    // <div className="w-full h-full bg-black">
+    //   <div className="flex h-full justify-center items-center">
+    //     <Panel settingsChat={{
+    //       Voice: false,
+    //       Screen: false,
+    //       Micro: false,
+    //       Telephone: false,
+    //     }}
+    //            user={userTest}
+    //            usersInChat={[]}
+    //     />
+    //     <VoiceChat setActiveVoiceChat={setValue} userIncomingName={""}/>
+    //   </div>
+    // </div>
+    <SettingsPanel />
   );
 }
