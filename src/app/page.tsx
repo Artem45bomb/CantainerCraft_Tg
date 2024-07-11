@@ -21,10 +21,9 @@ const Main: FC = () => {
   // }, []);
 
   return (
-    <main className="h-full w-full flex bg-msu-green relative">
-      <NavBar />
+    <div className="h-full w-full bg-msu-green relative">
       <Chat />
-    </main>
+    </div>
   );
 };
 

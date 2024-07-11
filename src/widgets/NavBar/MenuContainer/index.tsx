@@ -17,6 +17,7 @@ export const MenuContainer: FC<Props> = ({ filterName }) => {
   //   getChats(user.id),
   //   getSecuredChats(user.id)
   // ]));
+
   const chats = chatsTEST;
   const securedChats = securedChatsTEST;
 

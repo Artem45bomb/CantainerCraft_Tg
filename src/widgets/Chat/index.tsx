@@ -1,25 +1,15 @@
 "use client";
 import ContentMessages from "./ContentMessages/ContentMessages";
-import CountOfUnreadMessage, {
-  ICountOfUnreadMessage,
-} from "./CountOfUnreadMessage/CountOfUnreadMessage";
-import Header, { PropsHeader } from "./Header/Header";
+import Header from "./Header/Header";
 import Input from "./Input/Input";
-import {
-  ChatInfoTest,
-  countUnreadMessagesTest,
-  msgTest,
-} from "@/test/default.data";
+import { ChatInfoTest, msgTest } from "@/test/default.data";
 import VoiceChat from "./VoiceChat";
-import { useState } from "react";
-
-export interface IChat {
-  HeaderInfo: PropsHeader;
-  countUnreadMessages: ICountOfUnreadMessage;
-}
+import { useEffect, useState } from "react";
 
 export function Chat() {
   const [isVoiceChat, setActiveVoiceChat] = useState(false);
+
+  useEffect(() => {});
 
   return (
     <div className="flex flex-col bg-[#1D4846] w-full h-full border rounded-lg border-white">
@@ -32,7 +22,10 @@ export function Chat() {
       />
       {isVoiceChat && (
         <div className="absolute top-0 left-0 w-full h-full z-10">
-          <VoiceChat setActiveVoiceChat={setActiveVoiceChat} />
+          <VoiceChat
+            activeVoiceChat={isVoiceChat}
+            setActiveVoiceChat={setActiveVoiceChat}
+          />
         </div>
       )}
       <div className="relative max-w-full max-x-full h-full max-h-full">
@@ -42,9 +35,6 @@ export function Chat() {
           </p>
         </div>
         <div className="w-full absolute max-w-full max-h-full h-full scroller-chat overflow-y-scroll">
-          <CountOfUnreadMessage
-            countOfUnreadMessage={countUnreadMessagesTest.countOfUnreadMessage}
-          />
           <ContentMessages messages={msgTest} />
         </div>
       </div>

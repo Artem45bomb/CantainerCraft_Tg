@@ -1,10 +1,10 @@
-import {Chat, Message, MessageResource, User} from "@/entities";
+import { Chat, Message, MessageResource, User } from "@/entities";
 import { PropsHeader } from "@/widgets/Chat/Header/Header";
 import { ICountOfUnreadMessage } from "@/widgets/Chat/CountOfUnreadMessage/CountOfUnreadMessage";
 
 export const chatsTEST: Chat[] = [
   {
-    uuid: "43589jj-ll",
+    uuid: "23589jj-ll",
     name: "74tp",
     type: "channel",
     srcImage: "/assets/png/images1.jpg",
@@ -24,7 +24,7 @@ export const chatsTEST: Chat[] = [
     ],
   },
   {
-    uuid: "4358op9jj-ll",
+    uuid: "4388op9jj-ll",
     name: "73tp",
     type: "group",
     srcImage: "/assets/png/images2.png",
@@ -46,7 +46,7 @@ export const chatsTEST: Chat[] = [
     ],
   },
   {
-    uuid: "43589jj-ll",
+    uuid: "48589jj-ll",
     name: "74tp",
     type: "private",
     srcImage: "/assets/png/images1.jpg",
@@ -66,7 +66,7 @@ export const chatsTEST: Chat[] = [
     ],
   },
   {
-    uuid: "43589jj-ll",
+    uuid: "43509jj-ll",
     name: "74tp",
     type: "private",
     srcImage: "/assets/png/images1.jpg",
@@ -125,15 +125,13 @@ export const msgTest: Message[] = [
 
 securedChatsTEST.add("43589jj-ll");
 
-
-export const userTest:User = {
+export const userTest: User = {
   email: "",
-  id: 0,
+  id: 3,
   name: "Nikite",
   password: "",
   roles: [],
-  srcImageProfile: "/assets/png/Ellipse.png",
+  srcImageProfile: "/assets/png/Ellipse 18.png",
   subscriptions: [],
-  userOnline: undefined
-
-}
+  userOnline: undefined,
+};

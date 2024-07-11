@@ -2,7 +2,8 @@ import { Chat } from "@/entities";
 import { create } from "zustand";
 
 interface State {
-  chat: Chat | null;
+  chatIn: Chat | null;
+  chats: Chat[];
 }
 
 interface Action {
@@ -10,10 +11,11 @@ interface Action {
 }
 
 const initState: State = {
-  chat: null,
+  chatIn: null,
+  chats: [],
 };
 
 export const chatStore = create<State & Action>((set) => ({
   ...initState,
-  init: (chat) => set(() => ({ chat })),
+  init: (chatIn) => set(() => ({ chatIn })),
 }));
