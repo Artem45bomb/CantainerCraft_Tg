@@ -1,6 +1,13 @@
 "use client";
 import Image from "next/image";
-function ContextMenu() {
+import { FC } from "react";
+
+interface Props {
+  chatId: string;
+}
+
+const ContextMenu: FC<Props> = ({ chatId }) => {
+  console.log(chatId);
   return (
     <div className="w-52 h-64  ">
       <div className="pb-6 transition-all duration-150 border-b-2 border-gray-800 h-6 w-full text-msu-green text-xs flex bg-crystal justify-start pl-3 pt-2 font-medium hover:bg-desaturated-cyan rounded-t-xl">
@@ -59,6 +66,6 @@ function ContextMenu() {
       </button>
     </div>
   );
-}
+};
 
 export default ContextMenu;

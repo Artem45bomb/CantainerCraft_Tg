@@ -22,7 +22,10 @@ export default function RootLayout({
       <AuthProvider>
         <html lang="en">
           <body className={inter.className}>
-            <main className={"w-full h-full flex"}>
+            <main
+              style={{ maxHeight: "100vh" }}
+              className={"w-full h-full overflow-hidden flex"}
+            >
               <NavBar />
               {children}
             </main>

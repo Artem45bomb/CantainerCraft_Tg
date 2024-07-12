@@ -21,7 +21,7 @@ export const NavBar: FC = () => {
   }, []);
 
   return (
-    <div className="w-1/3 h-full bg-msu-green ">
+    <div className="w-1/3 h-full bg-msu-green relative">
       <Header setValue={setValue} value={value} setInputValue={setInputValue} />
       <Suspense
         fallback={

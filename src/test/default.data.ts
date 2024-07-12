@@ -106,7 +106,7 @@ export const msgTest: Message[] = [
   {
     uuid: "asdf",
     text: "Temik krutoijjjjfajlflajfaljflalffjflflajf",
-    date: "05 Dec 2006 02:12:00",
+    date: "05 Dec 2006 00:13:00",
     userId: 5,
     type: "text",
     emotions: [],

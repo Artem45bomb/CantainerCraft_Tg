@@ -1,9 +1,9 @@
 "use client";
-
 import { Message } from "@/entities/chat/message/Message";
 import { UserChat } from "@/features/store/chat";
 import { userStore } from "@/features/store/user";
 import UserLogo from "@/widgets/Chat/Userlogo/UserLogo";
+import { RefObject, useEffect, useRef } from "react";
 
 interface Props {
   isNameView: boolean;
@@ -11,6 +11,8 @@ interface Props {
   user: UserChat;
   prevMessage?: Message;
   nextMessage?: Message;
+  setMessagesDate: (arg: Date) => void;
+  contextMessage: RefObject<HTMLDivElement>;
 }
 
 export default function MessageComponent({
@@ -19,38 +21,71 @@ export default function MessageComponent({
   user,
   prevMessage,
   nextMessage,
+  contextMessage,
+  setMessagesDate,
 }: Props) {
+  const ref = useRef<HTMLDivElement>(null);
   const { userAuth } = userStore();
-
   const date: Date = new Date(message.date);
   const widthMessage =
     message.text.length > 40 ? 300 : message.text.length > 10 ? 250 : 200;
 
+  let timeBetweenMessages = 3;
+  if (prevMessage) {
+    timeBetweenMessages =
+      (new Date(message.date).getSeconds() -
+        new Date(prevMessage.date).getSeconds()) /
+      60;
+  }
+
+  useEffect(() => {
+    //experimental function
+    // const interval = setInterval(() =>{
+    //   if(ref.current && contextMessage.current) {
+    //     if ((contextMessage.current.scrollTop >= ref.current.offsetTop) &&
+    //         (contextMessage.current.scrollTop <= ref.current.offsetTop + ref.current.offsetHeight)) {
+    //       setMessagesDate(new Date(message.date))
+    //       console.log("message:",message.text,",pos:",ref.current?.offsetTop,",posScroll",contextMessage.current?.scrollTop);
+    //     }
+    //   }
+    //
+    //
+    // },1000);
+    //
+    // return () => clearInterval(interval);
+  }, []);
+
   return (
     <div
-      className={`flex w-full gap-2 ${nextMessage?.userId !== message.userId && "items-end"}`}
+      ref={ref}
+      className={`flex w-full gap-2 relative
+       ${nextMessage?.userId !== message.userId && "items-end"}
+       ${message.userId === userAuth.id && "justify-end"}
+       `}
     >
-      {nextMessage?.userId !== message.userId && (
-        <div
-          style={{
-            width: 45,
-            height: 45,
-          }}
-          className={"rounded-full"}
-        >
-          <UserLogo
-            srcImage={user.srcImageProfile || "/assets/testIcons/logo.jpg"}
-          />
-        </div>
-      )}
-      {nextMessage?.userId === message.userId && (
-        <div style={{ width: 45, height: 45 }}></div>
-      )}
+      {message.userId !== userAuth.id &&
+        nextMessage?.userId !== message.userId && (
+          <div
+            style={{
+              width: 45,
+              height: 45,
+            }}
+            className={"rounded-full"}
+          >
+            <UserLogo
+              srcImage={user.srcImageProfile || "/assets/testIcons/logo.jpg"}
+            />
+          </div>
+        )}
+      {message.userId != userAuth.id &&
+        nextMessage?.userId === message.userId && (
+          <div style={{ width: 45, height: 45 }}></div>
+        )}
       <div
         style={{ width: widthMessage }}
         className={`${widthMessage}
-        ${prevMessage?.userId === message.userId && "mt-1"}
-        ${prevMessage?.userId !== message.userId && "mt-2.5"}
+        ${timeBetweenMessages <= 2 && prevMessage?.userId === message.userId && "mt-1"}
+        ${(prevMessage?.userId !== message.userId || timeBetweenMessages > 2) && "mt-2.5"}
        bg-fff010 rounded-1.5xl p-2 select-auto
        `}
       >
@@ -62,9 +97,9 @@ export default function MessageComponent({
           </div>
         ) : null}
         <div
-          className={
-            message.emotions.length > 0 ? "mt-1" : "mt-1 flex items-end"
-          }
+          className={`
+            flex items-end justify-between mt-1 
+          `}
         >
           <p className="text-sm text-C8D1DA pr-2 break-words">{message.text}</p>
           <p className=" text-xs font-light text-end select-none">

@@ -4,17 +4,20 @@ import Header from "./Header/Header";
 import Input from "./Input/Input";
 import { ChatInfoTest, msgTest } from "@/test/default.data";
 import VoiceChat from "./VoiceChat";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { chatStore } from "@/features/store/chat";
+import MessageDate from "@/widgets/Chat/MessageDate";
 
 export function Chat() {
   const [isVoiceChat, setActiveVoiceChat] = useState(false);
+  const [messagesDate, setMessagesDate] = useState<Date>(new Date());
+  const ref = useRef<HTMLDivElement>(null);
   const { chatIn } = chatStore();
 
   useEffect(() => {});
 
   return (
-    <div className="flex flex-col bg-[#1D4846] w-full h-full border rounded-lg border-white">
+    <div className="overflow-hidden flex flex-col bg-[#1D4846] w-full h-full border rounded-lg border-white">
       <Header
         logoSrc={ChatInfoTest.logoSrc}
         chatName={ChatInfoTest.chatName}
@@ -32,12 +35,15 @@ export function Chat() {
       )}
       <div className="relative max-w-full max-x-full h-full max-h-full">
         <div className="absolute top-1 left-1/2">
-          <p className="rounded-full my-2 mx-2 px-3 py-2 bg-fff018 text-black text-sm inline-flex translate-x--1/2">
-            {"7 May"}
-          </p>
+          <MessageDate date={messagesDate} />
         </div>
-        <div className="w-full absolute max-w-full max-h-full h-full scroller-chat overflow-y-scroll">
+        <div
+          ref={ref}
+          className="w-full absolute max-w-full max-h-full h-full scroller-chat overflow-y-scroll"
+        >
           <ContentMessages
+            contextMessage={ref}
+            setMessagesDate={setMessagesDate}
             users={chatIn.users}
             messages={chatIn?.messages || msgTest}
           />
