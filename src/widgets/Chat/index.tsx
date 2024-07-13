@@ -11,8 +11,8 @@ import MessageDate from "@/widgets/Chat/MessageDate";
 export function Chat() {
   const [isVoiceChat, setActiveVoiceChat] = useState(false);
   const [messagesDate, setMessagesDate] = useState<Date>(new Date());
+  const [scroll, setScroll] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
-  const { chatIn } = chatStore();
 
   useEffect(() => {});
 
@@ -35,22 +35,22 @@ export function Chat() {
       )}
       <div className="relative max-w-full max-x-full h-full max-h-full">
         <div className="absolute top-1 left-1/2">
-          <MessageDate date={messagesDate} />
+          <MessageDate date={messagesDate} scroll={scroll} />
         </div>
         <div
           ref={ref}
+          onScroll={() => setScroll((prev) => !prev)}
           className="w-full absolute max-w-full max-h-full h-full scroller-chat overflow-y-scroll"
         >
           <ContentMessages
+            scroll={scroll}
             contextMessage={ref}
             setMessagesDate={setMessagesDate}
-            users={chatIn.users}
-            messages={chatIn?.messages || msgTest}
           />
         </div>
       </div>
       <div className="w-full self-end">
-        <Input></Input>
+        <Input />
       </div>
     </div>
   );

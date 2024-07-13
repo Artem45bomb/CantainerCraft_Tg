@@ -1,21 +1,19 @@
 "use client";
 import Image from "next/image";
+import { MenuPoint } from "@/widgets/ContextMenu/MenuPoint";
 
-function ContextMenu() {
+interface Props {
+  chatId: string;
+}
+
+function ContextMenu({ chatId }: Props) {
   return (
     <div className="w-52 h-64 relative">
-      <div className="pb-6 transition-all duration-150 border-b-2 border-gray-800 h-6 w-full text-msu-green text-xs flex bg-crystal justify-start pl-3 pt-2 font-medium hover:bg-desaturated-cyan rounded-t-xl ">
-        <Image
-          layout="intrinsic"
-          width={1}
-          height={1}
-          src="/assets/icon/Open-In-New-Window.svg"
-          alt="Open in new window"
-          className="w-4 h-4 mr-1"
-        />
-        Открыть в отдельном окне
-      </div>
-      <button className="transition-all duration-150 pb-6 h-6 w-full text-msu-green text-xs flex bg-crystal justify-start pl-3 pt-1 font-medium hover:bg-desaturated-cyan">
+      <MenuPoint
+        srcImage={"/assets/icon/Open-In-New-Window.svg"}
+        textPoint={"Открыть в отдельном окне"}
+      />
+      <button className="transition-all duration-150 pb-6 h-6 w-full text-msu-green text-xs flex bg-[#1B5155] justify-start pl-3 pt-1 font-medium hover:bg-desaturated-cyan">
         <Image
           layout="intrinsic"
           width={1}
@@ -26,7 +24,7 @@ function ContextMenu() {
         />
         Архивировать
       </button>
-      <button className="transition-all duration-150 pb-6 h-6 w-full text-msu-green text-xs flex bg-crystal justify-start pl-3 pt-1 font-medium hover:bg-desaturated-cyan">
+      <button className="transition-all duration-150 pb-6 h-6 w-full text-msu-green text-xs flex bg-[#1B5155] justify-start pl-3 pt-1 font-medium hover:bg-desaturated-cyan">
         <Image
           layout="intrinsic"
           width={1}
@@ -37,7 +35,7 @@ function ContextMenu() {
         />
         Закрепить
       </button>
-      <button className="transition-all duration-150 pb-6 h-6 w-full text-msu-green text-xs flex bg-crystal justify-start pl-3 pt-1 font-medium hover:bg-desaturated-cyan">
+      <button className="transition-all duration-150 pb-6 h-6 w-full text-msu-green text-xs flex bg-[#1B5155] justify-start pl-3 pt-1 font-medium hover:bg-desaturated-cyan">
         <Image
           layout="intrinsic"
           width={1}
@@ -48,7 +46,7 @@ function ContextMenu() {
         />
         Выключить уведомления
       </button>
-      <button className="transition-all duration-150 pb-6 h-6 w-full text-msu-green text-xs flex bg-crystal justify-start pl-3 pt-1 font-medium hover:bg-desaturated-cyan">
+      <button className="transition-all duration-150 pb-6 h-6 w-full text-msu-green text-xs flex bg-[#1B5155] justify-start pl-3 pt-1 font-medium hover:bg-desaturated-cyan">
         <Image
           layout="intrinsic"
           width={1}
@@ -59,7 +57,7 @@ function ContextMenu() {
         />
         Пометить как прочитанное
       </button>
-      <button className="transition-all duration-150 pb-6 h-6 w-full text-red-600 text-xs flex bg-crystal justify-start pl-3 pt-1 font-medium hover:bg-desaturated-cyan rounded-b-xl ">
+      <button className="transition-all duration-150 pb-6 h-6 w-full text-red-600 text-xs flex bg-[#1B5155] justify-start pl-3 pt-1 font-medium hover:bg-desaturated-cyan rounded-b-xl ">
         <Image
           layout="intrinsic"
           width={1}

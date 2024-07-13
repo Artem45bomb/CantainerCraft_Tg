@@ -6,7 +6,7 @@ import UserLogo from "@/widgets/Chat/Userlogo/UserLogo";
 import { RefObject, useEffect, useRef } from "react";
 
 interface Props {
-  isNameView: boolean;
+  scroll: boolean;
   message: Message;
   user: UserChat;
   prevMessage?: Message;
@@ -17,7 +17,7 @@ interface Props {
 
 export default function MessageComponent({
   message,
-  isNameView,
+  scroll,
   user,
   prevMessage,
   nextMessage,
@@ -27,6 +27,11 @@ export default function MessageComponent({
   const ref = useRef<HTMLDivElement>(null);
   const { userAuth } = userStore();
   const date: Date = new Date(message.date);
+  const isNameView =
+    (message.userId !== prevMessage?.userId &&
+      message.userId !== nextMessage?.userId) ||
+    (message.userId !== prevMessage?.userId &&
+      message.userId === nextMessage?.userId);
   const widthMessage =
     message.text.length > 40 ? 300 : message.text.length > 10 ? 250 : 200;
 
@@ -40,20 +45,24 @@ export default function MessageComponent({
 
   useEffect(() => {
     //experimental function
-    // const interval = setInterval(() =>{
-    //   if(ref.current && contextMessage.current) {
-    //     if ((contextMessage.current.scrollTop >= ref.current.offsetTop) &&
-    //         (contextMessage.current.scrollTop <= ref.current.offsetTop + ref.current.offsetHeight)) {
-    //       setMessagesDate(new Date(message.date))
-    //       console.log("message:",message.text,",pos:",ref.current?.offsetTop,",posScroll",contextMessage.current?.scrollTop);
-    //     }
-    //   }
-    //
-    //
-    // },1000);
-    //
-    // return () => clearInterval(interval);
-  }, []);
+    if (ref.current && contextMessage.current) {
+      if (
+        contextMessage.current.scrollTop >= ref.current.offsetTop &&
+        contextMessage.current.scrollTop <=
+          ref.current.offsetTop + ref.current.offsetHeight
+      ) {
+        setMessagesDate(new Date(message.date));
+        console.log(
+          "message:",
+          message.text,
+          ",pos:",
+          ref.current?.offsetTop,
+          ",posScroll",
+          contextMessage.current?.scrollTop,
+        );
+      }
+    }
+  }, [scroll]);
 
   return (
     <div

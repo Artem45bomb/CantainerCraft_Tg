@@ -32,7 +32,7 @@ export const MenuContainer: FC<Props> = ({ filterName }) => {
 
   const menuOpen = (e: MouseEvent<HTMLButtonElement>, chatId: string) => {
     x.current = 30;
-    y.current = e.clientY + 10;
+    y.current = e.currentTarget.offsetTop + e.currentTarget.offsetHeight * 0.75;
     setMenuActive(true);
     setSelectChat(chatId);
   };
@@ -43,9 +43,9 @@ export const MenuContainer: FC<Props> = ({ filterName }) => {
         <div
           onMouseOut={menuOut}
           style={{ top: y.current, left: x.current }}
-          className="absolute w-56 h-36 bg-black z-10"
+          className="absolute z-10"
         >
-          {/*<ContextMenu chatId={selectChat}/>*/}
+          <ContextMenu chatId={selectChat} />
         </div>
       )}
       {chats
