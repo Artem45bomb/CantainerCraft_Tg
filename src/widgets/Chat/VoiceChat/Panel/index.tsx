@@ -1,23 +1,18 @@
 import { FC } from "react";
-import { Settings } from "..";
 import { User } from "@/entities";
 import { useInput } from "@/features/hooks/customHook";
 import Image from "next/image";
+import { Settings } from "@/features/types/voiceChat";
+import { userStore } from "@/features/store/user";
 
 interface Props {
-  settingsChat: Settings;
   stopStream: () => void;
   usersInChat: { user: User; settings: Settings }[];
-  user: User;
 }
 
-export const Panel: FC<Props> = ({
-  settingsChat,
-  stopStream,
-  user,
-  usersInChat,
-}) => {
-  const [value, setValue, setInputValue] = useInput("");
+export const Panel: FC<Props> = ({ stopStream, usersInChat }) => {
+  const { userAuth } = userStore();
+  const [value, setInputValue] = useInput("");
 
   return (
     <div className="border-l border-white w-80 bg-msu-green h-full text-xl text-969DA3 flex flex-col">
@@ -71,7 +66,7 @@ export const Panel: FC<Props> = ({
                   </div>
                   <p>{e.user.name}</p>
                 </div>
-                {!settingsChat.Voice && (
+                {!e.settings.Voice && (
                   <div className="bg-5BC4BB w-6 aspect-square rounded-full flex justify-center items-center">
                     <div className="relative w-4 aspect-square">
                       <Image
@@ -98,10 +93,10 @@ export const Panel: FC<Props> = ({
           <div className="flex justify-between items-center">
             <div className="flex gap-2">
               <div className="relative w-9 aspect-square">
-                <Image src={user.srcImageProfile} fill alt="" />
+                <Image src={userAuth.srcImageProfile} fill alt="" />
               </div>
               <div className="flex gap-1 flex-col">
-                <p>{user.name}</p>
+                <p>{userAuth.name}</p>
                 <p className="text-sm">В сети</p>
               </div>
             </div>

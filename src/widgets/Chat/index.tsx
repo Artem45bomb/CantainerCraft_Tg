@@ -2,27 +2,30 @@
 import ContentMessages from "./ContentMessages/ContentMessages";
 import Header from "./Header/Header";
 import Input from "./Input/Input";
-import { ChatInfoTest, msgTest } from "@/test/default.data";
+import { ChatInfoTest } from "@/test/default.data";
 import VoiceChat from "./VoiceChat";
 import { useEffect, useRef, useState } from "react";
-import { chatStore } from "@/features/store/chat";
 import MessageDate from "@/widgets/Chat/MessageDate";
 
 export function Chat() {
   const [isVoiceChat, setActiveVoiceChat] = useState(false);
-  const [messagesDate, setMessagesDate] = useState<Date>(new Date());
+  const [messagesDate, setMessagesDate] = useState<Date | undefined>(undefined);
   const [scroll, setScroll] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
+
+  const changeDate = (date: Date) => setMessagesDate(date);
 
   useEffect(() => {});
 
   return (
     <div className="overflow-hidden flex flex-col bg-[#1D4846] w-full h-full border rounded-lg border-white">
       <Header
-        logoSrc={ChatInfoTest.logoSrc}
-        chatName={ChatInfoTest.chatName}
-        countOfMembers={ChatInfoTest.countOfMembers}
-        countOfOnlineMembers={ChatInfoTest.countOfOnlineMembers}
+        description={{
+          logoSrc: ChatInfoTest.logoSrc,
+          chatName: ChatInfoTest.chatName,
+          countOfMembers: ChatInfoTest.countOfMembers,
+          countOfOnlineMembers: ChatInfoTest.countOfOnlineMembers,
+        }}
         setActiveVoiceChat={setActiveVoiceChat}
       />
       {isVoiceChat && (
@@ -45,7 +48,7 @@ export function Chat() {
           <ContentMessages
             scroll={scroll}
             contextMessage={ref}
-            setMessagesDate={setMessagesDate}
+            setMessagesDate={changeDate}
           />
         </div>
       </div>

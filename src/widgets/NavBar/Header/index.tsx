@@ -2,12 +2,11 @@ import { ChangeEvent, FC, useState } from "react";
 import Image from "next/image";
 
 interface IHeader {
-  value: string;
-  setValue: (arg: string) => void;
   setInputValue: (elem: ChangeEvent<HTMLInputElement>) => void;
+  onSearchCb: () => void;
 }
 
-export const Header: FC<IHeader> = ({ value, setInputValue }) => {
+export const Header: FC<IHeader> = ({ setInputValue, onSearchCb }) => {
   const [isShow, setIsShow] = useState(false);
 
   return (
@@ -43,14 +42,13 @@ export const Header: FC<IHeader> = ({ value, setInputValue }) => {
           <input
             placeholder="Search"
             type="text"
-            value={value}
             onChange={setInputValue}
             className="w-full text-base text-white"
           />
           <div className="p-3">
-            <div className="relative w-6 aspect-square">
+            <button className="relative w-6 aspect-square" onClick={onSearchCb}>
               <Image src={"/assets/icon/Search-input.svg"} fill alt="" />
-            </div>
+            </button>
           </div>
         </div>
       </div>

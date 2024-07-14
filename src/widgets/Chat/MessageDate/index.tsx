@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 interface Props {
-  date: Date;
+  date: Date | undefined;
   scroll: boolean;
 }
 
@@ -20,11 +20,15 @@ const MessageDate: FC<Props> = ({ date, scroll }) => {
   }, [scroll]);
 
   return (
-    <p
-      className={`transition-all ${!isShow && "opacity-0"} rounded-full my-2 mx-2 px-3 py-2 bg-fff018 text-black text-sm inline-flex translate-x--1/2`}
-    >
-      {date.getDate()} {t("" + date.getMonth())}
-    </p>
+    <>
+      {date && (
+        <p
+          className={`transition-all ${!isShow && "opacity-0"} rounded-full my-2 mx-2 px-3 py-2 bg-fff018 text-black text-sm inline-flex translate-x--1/2`}
+        >
+          {date.getDate()} {t("" + date.getMonth())}
+        </p>
+      )}
+    </>
   );
 };
 
