@@ -1,16 +1,15 @@
 "use client";
-
 import { FC, RefObject, useEffect, useRef } from "react";
 import UserLogo from "@/widgets/Chat/Userlogo/UserLogo";
-import { Settings } from "@/widgets/Chat/VoiceChat";
 import { User } from "@/entities";
+import { Settings } from "@/features/types/voiceChat";
 
 interface Props {
   user: User;
   settings: Settings;
   isFullscreen?: boolean;
-  streamStart: (settings: Settings, ref: RefObject<HTMLVideoElement>) => void;
-  streamStop: (ref: RefObject<HTMLVideoElement>) => void;
+  streamStartCb?: () => void;
+  streamStopCb?: () => void;
   userRef?: RefObject<HTMLVideoElement>;
 }
 
@@ -18,11 +17,37 @@ export const UserStream: FC<Props> = ({
   settings,
   user,
   userRef,
-  streamStart,
-  streamStop,
+  streamStartCb,
+  streamStopCb,
   isFullscreen = false,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  const streamStart = (
+    settings: Settings,
+    ref: RefObject<HTMLVideoElement>,
+  ) => {
+    navigator.mediaDevices
+      .getUserMedia({ video: settings.Micro, audio: settings.Voice })
+      .then((stream) => {
+        if (ref.current && ref.current.paused) {
+          ref.current.srcObject = stream;
+          ref.current.play();
+          streamStartCb && streamStartCb();
+        }
+      })
+      .catch((err) => {
+        console.error(`An error occurred: ${err}`);
+      });
+  };
+
+  const streamStop = (ref: RefObject<HTMLVideoElement>) => {
+    if (ref.current) {
+      ref.current.pause();
+      ref.current.srcObject = null;
+      streamStopCb && streamStopCb();
+    }
+  };
 
   useEffect(() => {
     if (settings.Voice || settings.Micro) {

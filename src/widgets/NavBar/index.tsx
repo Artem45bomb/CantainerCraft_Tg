@@ -8,7 +8,7 @@ import Stomp from "stompjs";
 import SockJS from "sockjs-client";
 
 export const NavBar: FC = () => {
-  const [value, setValue, setInputValue] = useInput("");
+  const [value, setInputValue] = useInput("", false);
   const websocket = useRef<Stomp.Client>();
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export const NavBar: FC = () => {
 
   return (
     <div className="w-1/3 h-full bg-msu-green relative">
-      <Header setValue={setValue} value={value} setInputValue={setInputValue} />
+      <Header onSearchCb={() => {}} setInputValue={setInputValue} />
       <Suspense
         fallback={
           <div className="w-full flex justify-center">

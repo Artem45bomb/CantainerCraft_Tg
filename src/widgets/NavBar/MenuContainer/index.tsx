@@ -1,5 +1,4 @@
 "use client";
-//import { userStore } from "@/features/store/user";
 import { MouseEvent, useRef } from "react";
 import { FC, useState } from "react";
 import { MenuPoint } from "../MenuPoint";
@@ -18,10 +17,6 @@ export const MenuContainer: FC<Props> = ({ filterName }) => {
   const [selectChat, setSelectChat] = useState<string>("");
   const x = useRef(0);
   const y = useRef(0);
-  // const [chats, securedChats] = use(Promise.all([
-  //   getChats(user.id),
-  //   getSecuredChats(user.id)
-  // ]));
 
   const chats = [...chatsTEST];
   const securedChats = securedChatsTEST;
