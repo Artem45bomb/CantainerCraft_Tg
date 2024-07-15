@@ -1,8 +1,145 @@
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { useInput } from "@/features/hooks/customHook";
 
-export default function SettingsPanel() {
-  const [inputValue, setInputValue] = useInput("7");
+interface Item {
+  id: number;
+  isLanguage: boolean;
+  icon: string;
+  text: string;
+}
+function Item({ id, isLanguage, icon, text }: Item) {
+  if (isLanguage) {
+    return (
+      <li key={id}>
+        <button className="flex justify-between py-3 w-90">
+          <div className="flex ">
+            <Image src={icon} width={18} height={18} alt="account" />
+            <p className=" ml-3 text-white text-base font-semibold ">{text}</p>
+          </div>
+          <p className=" text-base text-9FDAD6 font-semibold opacity-55">
+            Русский
+          </p>
+        </button>
+      </li>
+    );
+  } else {
+    return (
+      <li key={id}>
+        <button className="flex py-3 w-90">
+          <Image src={icon} width={18} height={18} alt="account" />
+          <p className=" ml-3 text-white text-base font-semibold ">{text}</p>
+        </button>
+      </li>
+    );
+  }
+}
+
+const mainItems: Item[] = [
+  {
+    id: 0,
+    isLanguage: false,
+    icon: "/assets/testIcons/account.svg",
+    text: "Мой аккаунт",
+  },
+  {
+    id: 1,
+    isLanguage: false,
+    icon: "/assets/testIcons/lock.svg",
+    text: "Конфиденциальность",
+  },
+  {
+    id: 2,
+    isLanguage: false,
+    icon: "/assets/testIcons/ring.svg",
+    text: "Уведомления и звуки",
+  },
+  {
+    id: 3,
+    isLanguage: false,
+    icon: "/assets/testIcons/message.svg",
+    text: "Настройка чатов",
+  },
+  {
+    id: 4,
+    isLanguage: false,
+    icon: "/assets/testIcons/folder.svg",
+    text: "Папки с чатами",
+  },
+  {
+    id: 5,
+    isLanguage: false,
+    icon: "/assets/testIcons/gears.svg",
+    text: "Продвинутые настройки",
+  },
+  {
+    id: 6,
+    isLanguage: false,
+    icon: "/assets/testIcons/volume.svg",
+    text: "Звуки и камера",
+  },
+  {
+    id: 7,
+    isLanguage: false,
+    icon: "/assets/testIcons/battery.svg",
+    text: "Заряд батареи и анимация",
+  },
+  {
+    id: 8,
+    isLanguage: true,
+    icon: "/assets/testIcons/language.svg",
+    text: "Язык",
+  },
+  {
+    id: 9,
+    isLanguage: false,
+    icon: "/assets/testIcons/weather.svg",
+    text: "Погода",
+  },
+];
+
+export default function SettingsPage() {
+  const [volumeOfRange, setVolumeOfRange] = useState(100);
+  const [isCheck, setIsCheck] = useState(true);
+
+  const a = useRef<HTMLInputElement>(null);
+
+  const listMainItems = mainItems.map((item) => (
+    <Item
+      id={item.id}
+      isLanguage={item.isLanguage}
+      text={item.text}
+      icon={item.icon}
+    />
+  ));
+
+  function handleVolumeChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const value = event.target.value;
+    setVolumeOfRange(parseInt(value));
+    if (value != "100") setIsCheck(false);
+    else setIsCheck(true);
+  }
+
+  function handleChecked(event: React.ChangeEvent<HTMLInputElement>) {
+    const checked = event.target.checked;
+    setIsCheck(checked);
+    if (checked) {
+      setVolumeOfRange(100);
+    }
+  }
+
+  useEffect(() => {
+    if (a.current) {
+      a.current.checked = isCheck;
+    }
+  });
+
+  useEffect(() => {
+    const volumeInput = document.getElementById("volume") as HTMLInputElement;
+    if (volumeInput) {
+      const value = ((volumeInput.valueAsNumber - 50) / (300 - 50)) * 100;
+      volumeInput.style.setProperty("--value", `${value}%`);
+    }
+  });
 
   return (
     <>
@@ -51,180 +188,105 @@ export default function SettingsPanel() {
           </div>
         </div>
       </header>
-      <div className=" h-3 bg-msu-green w-104"></div>
-      <main className="w-104 bg-1b5155 ">
-        <div className=" mx-8">
-          <ul>
-            <li>
-              <button className="flex py-3">
-                <Image
-                  src={"/assets/testIcons/account.svg"}
-                  width={18}
-                  height={18}
-                  alt="account"
-                />
-                <p className=" ml-3 text-white text-base font-semibold ">
-                  Мой аккаунт
-                </p>
-              </button>
-            </li>
-            <li>
-              <button className="flex py-3">
-                <Image
-                  src={"/assets/testIcons/lock.svg"}
-                  width={18}
-                  height={18}
-                  alt="account"
-                />
-                <p className=" ml-3 text-white text-base font-semibold ">
-                  Конфиденциальность
-                </p>
-              </button>
-            </li>
-            <li>
-              <button className="flex py-3">
-                <Image
-                  src={"/assets/testIcons/ring.svg"}
-                  width={18}
-                  height={18}
-                  alt="account"
-                />
-                <p className=" ml-3 text-white text-base font-semibold ">
-                  Уведомления и звуки
-                </p>
-              </button>
-            </li>
-            <li>
-              <button className="flex py-3">
-                <Image
-                  src={"/assets/testIcons/message.svg"}
-                  width={18}
-                  height={18}
-                  alt="account"
-                />
-                <p className=" ml-3 text-white text-base font-semibold ">
-                  Настройка чатов
-                </p>
-              </button>
-            </li>
-            <li>
-              <button className="flex py-3">
-                <Image
-                  src={"/assets/testIcons/folder.svg"}
-                  width={18}
-                  height={18}
-                  alt="account"
-                />
-                <p className=" ml-3 text-white text-base font-semibold ">
-                  Папки с чатами
-                </p>
-              </button>
-            </li>
-            <li>
-              <button className="flex py-3">
-                <Image
-                  src={"/assets/testIcons/gears.svg"}
-                  width={18}
-                  height={18}
-                  alt="account"
-                />
-                <p className=" ml-3 text-white text-base font-semibold ">
-                  Продвинутые настройки
-                </p>
-              </button>
-            </li>
-            <li>
-              <button className="flex py-3">
-                <Image
-                  src={"/assets/testIcons/volume.svg"}
-                  width={18}
-                  height={18}
-                  alt="account"
-                />
-                <p className=" ml-3 text-white text-base font-semibold ">
-                  Звуки и камера
-                </p>
-              </button>
-            </li>
-            <li>
-              <button className="flex py-3">
-                <Image
-                  src={"/assets/testIcons/battery.svg"}
-                  width={18}
-                  height={18}
-                  alt="account"
-                />
-                <p className=" ml-3 text-white text-base font-semibold ">
-                  Заряд батареи и анимация
-                </p>
-              </button>
-            </li>
-            <li>
-              <button className="flex justify-between py-3 w-90">
-                <div className="flex ">
-                  <Image
-                    src={"/assets/testIcons/language.svg"}
-                    width={18}
-                    height={18}
-                    alt="account"
-                  />
-                  <p className=" ml-3 text-white text-base font-semibold ">
-                    Язык
-                  </p>
-                </div>
-                <p className=" text-base text-#9FDAD6 font-semibold opacity-55">
-                  Русский
-                </p>
-              </button>
-            </li>
-            <li>
-              <button className="flex py-3">
-                <Image
-                  src={"/assets/testIcons/weather.svg"}
-                  width={18}
-                  height={18}
-                  alt="account"
-                />
-                <p className=" ml-3 text-white text-base font-semibold ">
-                  Погода
-                </p>
-              </button>
-            </li>
-          </ul>
-        </div>
-      </main>
-      <div className=" h-3 bg-msu-green w-104"></div>
-      <div className="w-104 bg-1b5155 ">
-        <div className="mx-8">
-          <div className="flex justify-between py-3 w-90">
-            <div className="flex ">
-              <Image
-                src={"/assets/testIcons/language.svg"}
-                width={18}
-                height={18}
-                alt="account"
-              />
-              <p className=" ml-3 text-white text-base font-semibold ">
-                Масштаб по умолчанию
-              </p>
-            </div>
-            <input type="checkbox" />
+      <div className=" overflow-scroll h-vh90 w-104">
+        <div className=" h-3 bg-msu-green w-104"></div>
+        <div className="w-104 bg-1b5155 ">
+          <div className=" mx-8">
+            <ul>{listMainItems}</ul>
           </div>
-          <input
-            onChange={setInputValue}
-            type="range"
-            id="volume"
-            min="0"
-            max="11"
-            value={inputValue}
-            step="1"
-            className=" w-86"
-          />
-          {/* <Slider defaultValue={100}/> */}
+        </div>
+        <div className=" h-3 bg-msu-green w-104"></div>
+        <div className="w-104 bg-1b5155 ">
+          <div className="mx-8">
+            <div className="flex justify-between py-3 w-90">
+              <div className="flex ">
+                <Image
+                  src={"/assets/testIcons/eye.svg"}
+                  width={18}
+                  height={18}
+                  alt="account"
+                />
+                <p className=" ml-3 text-white text-base font-semibold ">
+                  Масштаб по умолчанию
+                </p>
+              </div>
+              <label
+                className=" relative inline-block w-10 h-4"
+                onClick={() => {}}
+              >
+                <input
+                  type="checkbox"
+                  className=" hidden"
+                  id="checkbox"
+                  onChange={handleChecked}
+                  ref={a}
+                />
+                <span className=" absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-msu-green slider"></span>
+                {/* slider round */}
+              </label>
+            </div>
+            <div className="flex">
+              <div className="pb-3 mr-3">
+                <input
+                  type="range"
+                  id="volume"
+                  min="50"
+                  max="300"
+                  value={volumeOfRange}
+                  step="5"
+                  onChange={handleVolumeChange}
+                  className="appearance-none w-86 h-1 rounded-full outline-none bg-9FDAD6"
+                />
+              </div>
+              <span className="text-9FDAD6 select-none">{volumeOfRange}%</span>
+            </div>
+          </div>
+        </div>
+        <div className=" h-3 bg-msu-green w-104"></div>
+        <div className=" w-104  bg-1b5155">
+          <div className="mx-8">
+            <ul>
+              <Item
+                isLanguage={false}
+                id={10}
+                text="Emerald Premium"
+                icon="/assets/testIcons/bunny.svg"
+              />
+              <Item
+                isLanguage={false}
+                id={10}
+                text="Подарить Premium"
+                icon="/assets/testIcons/gift.svg"
+              />
+            </ul>
+          </div>
+        </div>
+        <div className=" h-3 bg-msu-green w-104"></div>
+        <div className=" w-104  bg-1b5155">
+          <div className="mx-8">
+            <ul>
+              <Item
+                isLanguage={false}
+                id={10}
+                text="Вопросы о Emerald"
+                icon="/assets/testIcons/question.svg"
+              />
+              <Item
+                isLanguage={false}
+                id={10}
+                text="Возможности Emerald"
+                icon="/assets/testIcons/idea.svg"
+              />
+              <Item
+                isLanguage={false}
+                id={10}
+                text="Задать вопрос"
+                icon="/assets/testIcons/chats.svg"
+              />
+            </ul>
+          </div>
         </div>
       </div>
-      <div></div>
-      <div className=" h-3 bg-msu-green w-104"></div>
     </>
   );
 }
