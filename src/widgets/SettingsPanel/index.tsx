@@ -1,7 +1,9 @@
 import Image from "next/image";
-import { Slider } from "@material-tailwind/react";
+import { useInput } from "@/features/hooks/customHook";
 
-export default function () {
+export default function SettingsPanel() {
+  const [inputValue, setInputValue] = useInput("7");
+
   return (
     <>
       <header className="w-104 bg-1b5155 ">
@@ -209,11 +211,12 @@ export default function () {
             <input type="checkbox" />
           </div>
           <input
+            onChange={setInputValue}
             type="range"
             id="volume"
             min="0"
             max="11"
-            value="7"
+            value={inputValue}
             step="1"
             className=" w-86"
           />
