@@ -13,7 +13,7 @@ function ContextMenu({ chatId }: Props) {
         srcImage={"/assets/icon/Open-In-New-Window.svg"}
         textPoint={"Открыть в отдельном окне"}
       />
-      <button className="transition-all duration-150 pb-6 h-6 w-full text-msu-green text-xs flex bg-[#1B5155] justify-start pl-3 pt-1 font-medium hover:bg-desaturated-cyan">
+      <button className="transition-all duration-150 pb-6 h-6 w-full text-A1B0B6 text-xs flex bg-1B5155 justify-start pl-3 pt-1 font-medium hover:bg-2F4F4D font-ALM">
         <Image
           layout="intrinsic"
           width={1}
@@ -24,7 +24,7 @@ function ContextMenu({ chatId }: Props) {
         />
         Архивировать
       </button>
-      <button className="transition-all duration-150 pb-6 h-6 w-full text-msu-green text-xs flex bg-[#1B5155] justify-start pl-3 pt-1 font-medium hover:bg-desaturated-cyan">
+      <button className="transition-all duration-150 pb-6 h-6 w-full text-A1B0B6 text-xs flex bg-1B5155 justify-start pl-3 pt-1 font-medium hover:bg-2F4F4D">
         <Image
           layout="intrinsic"
           width={1}
@@ -35,7 +35,7 @@ function ContextMenu({ chatId }: Props) {
         />
         Закрепить
       </button>
-      <button className="transition-all duration-150 pb-6 h-6 w-full text-msu-green text-xs flex bg-[#1B5155] justify-start pl-3 pt-1 font-medium hover:bg-desaturated-cyan">
+      <button className="transition-all duration-150 pb-6 h-6 w-full text-A1B0B6 text-xs flex bg-1B5155 justify-start pl-3 pt-1 font-medium hover:bg-2F4F4D">
         <Image
           layout="intrinsic"
           width={1}
@@ -46,7 +46,7 @@ function ContextMenu({ chatId }: Props) {
         />
         Выключить уведомления
       </button>
-      <button className="transition-all duration-150 pb-6 h-6 w-full text-msu-green text-xs flex bg-[#1B5155] justify-start pl-3 pt-1 font-medium hover:bg-desaturated-cyan">
+      <button className="transition-all duration-150 pb-6 h-6 w-full text-A1B0B6 text-xs flex bg-1B5155 justify-start pl-3 pt-1 font-medium hover:bg-2F4F4D">
         <Image
           layout="intrinsic"
           width={1}
@@ -57,7 +57,7 @@ function ContextMenu({ chatId }: Props) {
         />
         Пометить как прочитанное
       </button>
-      <button className="transition-all duration-150 pb-6 h-6 w-full text-red-600 text-xs flex bg-[#1B5155] justify-start pl-3 pt-1 font-medium hover:bg-desaturated-cyan rounded-b-xl ">
+      <button className="transition-all duration-150 pb-6 h-6 w-full text-red-600 text-xs flex bg-1B5155 justify-start pl-3 pt-1 font-medium hover:bg-2F4F4D rounded-b-xl ">
         <Image
           layout="intrinsic"
           width={1}

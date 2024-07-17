@@ -56,6 +56,8 @@ const config: Config = {
         A1B0B6: "#A1B0B6",
         "1b5155": "#1b5155",
         "#9FDAD6": "#9FDAD6",
+        "2F4F4D": "#2F4F4D",
+        "1B5155": "#1B5155",
       },
       width: {
         "1/4-vw": "25vw",
