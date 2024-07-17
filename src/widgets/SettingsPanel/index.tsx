@@ -97,7 +97,7 @@ const mainItems: Item[] = [
   },
 ];
 
-export default function SettingsPage() {
+export default function SettingsPanel() {
   const [volumeOfRange, setVolumeOfRange] = useState(100);
   const [isCheck, setIsCheck] = useState(true);
 
@@ -105,6 +105,7 @@ export default function SettingsPage() {
 
   const listMainItems = mainItems.map((item) => (
     <Item
+      key={item.id}
       id={item.id}
       isLanguage={item.isLanguage}
       text={item.text}

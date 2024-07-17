@@ -19,7 +19,9 @@ const config: Config = {
         "0.5": "0.125rem",
         "2.5": "0.625rem",
         "4.5": "1.125rem",
+        "1/4": "25%",
       },
+
       fontSize: {
         "sm-9": "9px",
       },
@@ -56,6 +58,7 @@ const config: Config = {
         "#9FDAD6": "#9FDAD6",
       },
       width: {
+        "1/4-vw": "25vw",
         "2/5": "40%",
         "21": "5.19rem",
         "104": "26.06rem",
@@ -78,6 +81,7 @@ const config: Config = {
       },
       borderRadius: {
         "1.5xl": "0.88rem",
+        "2.5xl": "1.25rem",
       },
     },
   },

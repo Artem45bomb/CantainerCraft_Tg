@@ -1,15 +1,18 @@
 "use client";
 import { useInput } from "@/features/hooks/customHook";
-import { FC, Suspense, useEffect, useRef } from "react";
+import { FC, Suspense, useEffect, useRef, useState } from "react";
 import { Header } from "./Header";
 import { MenuContainer } from "./MenuContainer";
 import { Loader } from "./Loader";
 import Stomp from "stompjs";
 import SockJS from "sockjs-client";
+import SettingsPanel from "@/widgets/SettingsPanel";
 
 export const NavBar: FC = () => {
-  const [value, setInputValue] = useInput("", false);
+  const [isActive, setActive] = useState<boolean>(false);
+  const [value, setInputValue] = useInput("");
   const websocket = useRef<Stomp.Client>();
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const socket = new SockJS(`http://localhost:8082/gs-guide-websocket`);
@@ -21,17 +24,31 @@ export const NavBar: FC = () => {
   }, []);
 
   return (
-    <div className="w-1/3 h-full bg-msu-green relative">
-      <Header onSearchCb={() => {}} setInputValue={setInputValue} />
-      <Suspense
-        fallback={
-          <div className="w-full flex justify-center">
-            <Loader />
-          </div>
-        }
+    <>
+      <div
+        style={{ left: isActive ? 0 : -436 }}
+        ref={ref}
+        className={`transition-all z-30 absolute top-0`}
       >
-        <MenuContainer filterName={value} />
-      </Suspense>
-    </div>
+        <SettingsPanel />
+      </div>
+      <div className="w-1/3 h-full bg-msu-green relative">
+        <Header
+          isActivePanel={isActive}
+          setActivePanel={setActive}
+          onSearchCb={() => {}}
+          setInputValue={setInputValue}
+        />
+        <Suspense
+          fallback={
+            <div className="w-full flex justify-center">
+              <Loader />
+            </div>
+          }
+        >
+          <MenuContainer filterName={value} />
+        </Suspense>
+      </div>
+    </>
   );
 };

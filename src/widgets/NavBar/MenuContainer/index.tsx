@@ -2,7 +2,7 @@
 import { MouseEvent, useRef } from "react";
 import { FC, useState } from "react";
 import { MenuPoint } from "../MenuPoint";
-import { chatsTEST, securedChatsTEST } from "@/test/default.data";
+import { securedChatsTEST } from "@/test/default.data";
 import { chatStore } from "@/features/store/chat";
 import ContextMenu from "@/widgets/ContextMenu";
 
@@ -11,14 +11,12 @@ interface Props {
 }
 
 export const MenuContainer: FC<Props> = ({ filterName }) => {
-  const { init } = chatStore();
+  const { init, chats } = chatStore();
   const [chatActiveId, setChatActive] = useState<string>("");
   const [menuActive, setMenuActive] = useState(false);
   const [selectChat, setSelectChat] = useState<string>("");
   const x = useRef(0);
   const y = useRef(0);
-
-  const chats = [...chatsTEST];
   const securedChats = securedChatsTEST;
 
   const menuOut = () => {
@@ -44,28 +42,28 @@ export const MenuContainer: FC<Props> = ({ filterName }) => {
         </div>
       )}
       {chats
-        .filter((e) => e.name.includes(filterName))
-        .map((chat) => (
+        .filter((e) => e.chat.name.includes(filterName))
+        .map((chatItem) => (
           <button
-            onContextMenu={(event) => menuOpen(event, chat.uuid)}
-            key={chat.uuid + "i0"}
+            onContextMenu={(event) => menuOpen(event, chatItem.chat.uuid)}
+            key={chatItem.chat.uuid + "i0"}
             className={`relative transition-all duration-100 w-full
-            ${chat.uuid === chatActiveId ? "bg-white-transparent rounded-lg" : ""} `}
+            ${chatItem.chat.uuid === chatActiveId ? "bg-white-transparent rounded-lg" : ""} `}
             onClick={() => {
-              setChatActive(chat.uuid);
-              init(chat);
+              setChatActive(chatItem.chat.uuid);
+              init(chatItem.chat);
             }}
           >
-            {chat.uuid === chatActiveId && (
+            {chatItem.chat.uuid === chatActiveId && (
               <div
                 style={{ left: "-11px", transform: "translateY(-50%)" }}
                 className=" top-1/2 rounded-full absolute w-1 h-9 bg-0078D4"
               ></div>
             )}
             <MenuPoint
-              key={chat.uuid}
-              chat={chat}
-              secured={securedChats.has(chat.uuid)}
+              key={chatItem.chat.uuid}
+              chatItem={chatItem}
+              secured={securedChats.has(chatItem.chat.uuid)}
             />
           </button>
         ))}

@@ -1,5 +1,5 @@
 "use client";
-import { FormEvent, useState, useEffect, use } from "react";
+import { FormEvent, useState, useEffect } from "react";
 import NameIcon from "@assets/Nick-icon.svg";
 import PasswordIcon from "@assets/Password-icon.svg";
 import EmailIcon from "@assets/Email-icon.svg";
@@ -20,12 +20,11 @@ import Image from "next/image";
 export default function Registration() {
   const [isShow, setShow] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
-  const [username, setUsername, setInputName] = useInput("");
-  const [email, setEmail, setInputEmail] = useInput("");
-  const [password, setPassword, setInputPassword] = useInput("");
+  const [username, setInputName, setUsername] = useInput("");
+  const [email, setInputEmail, setEmail] = useInput("");
+  const [password, setInputPassword, setPassword] = useInput("");
 
-  const session = useSession();
-  const { data } = session;
+  const { status, data } = useSession();
   const router = useRouter();
   const { pending } = useFormStatus();
 
@@ -41,10 +40,10 @@ export default function Registration() {
           setPassword("");
         });
     };
-    if (session.status === "authenticated") {
+    if (status === "authenticated") {
       check();
     }
-  }, [session.status]);
+  }, [status]);
 
   const input = () => {
     if (Boolean(error) === true) setError("");
@@ -88,7 +87,6 @@ export default function Registration() {
         console.log(error);
       });
   };
-  use;
 
   return (
     <main className="flex items-center justify-center w-full h-full bg-msu-green">
@@ -183,11 +181,7 @@ export default function Registration() {
             <hr className="w-full bg-white" style={{ height: 1 }} />
           </div>
           <div className="w-full">
-            <ButtonAuth
-              onClick={() => {
-                signIn("google");
-              }}
-            >
+            <ButtonAuth onClick={() => signIn("google")}>
               <div className="my-1">
                 <GoogleIcon />
               </div>

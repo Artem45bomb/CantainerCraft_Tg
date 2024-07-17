@@ -20,7 +20,7 @@ const Main: FC = () => {
   // }, []);
 
   return (
-    <div className="h-full w-full bg-msu-green relative">
+    <div className="h-full w-full bg-msu-green">
       <Chat />
     </div>
   );

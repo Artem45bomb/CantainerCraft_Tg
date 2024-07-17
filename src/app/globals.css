@@ -80,6 +80,20 @@ input {
   }
 }
 
+.scroller-input::-webkit-scrollbar {
+  width: 4px;
+  margin-right: 4px;
+}
+
+.scroller-input::-webkit-scrollbar-track {
+  background: rgba(238, 238, 238, 0);
+}
+
+/* Handle */
+.scroller-input::-webkit-scrollbar-thumb {
+  background: rgba(200, 209, 218, 0);
+}
+
 .scroller-chat::-webkit-scrollbar {
   width: 8px;
   margin: 3px;

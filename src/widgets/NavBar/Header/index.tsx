@@ -1,25 +1,26 @@
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, SetStateAction, Dispatch, FC } from "react";
 import Image from "next/image";
 
 interface IHeader {
+  isActivePanel: boolean;
+  setActivePanel: Dispatch<SetStateAction<boolean>>;
   setInputValue: (elem: ChangeEvent<HTMLInputElement>) => void;
   onSearchCb: () => void;
 }
 
-export const Header: FC<IHeader> = ({ setInputValue, onSearchCb }) => {
-  const [isShow, setIsShow] = useState(false);
-
+export const Header: FC<IHeader> = ({
+  setInputValue,
+  onSearchCb,
+  setActivePanel,
+  isActivePanel,
+}) => {
   return (
     <div className="w-full bg-msu-green ">
-      <div className="flex px-4 py-3 items-center gap-4">
+      <div className="flex py-3 items-center gap-4">
         <div
-          className={`flex w-8 transition-all duration-300 aspect-square  items-center justify-center ${isShow && "rounded-full bg-[#ffffff52]"}`}
+          className={`pl-4 flex transition-all duration-300 aspect-square  items-center justify-center ${isActivePanel && "rounded-full bg-[#ffffff52]"}`}
         >
-          <button
-            onClick={() => {
-              setIsShow((prev) => !prev);
-            }}
-          >
+          <button onClick={() => setActivePanel((prevState) => !prevState)}>
             <svg
               width="20"
               height="15"
@@ -37,19 +38,20 @@ export const Header: FC<IHeader> = ({ setInputValue, onSearchCb }) => {
         </div>
         <span className="text-white">Chats</span>
       </div>
-      <div className="flex items-center w-full px-4 pt-1 pb-3">
-        <div className="flex bg-fff010 items-center w-full rounded border-b-2 border-white py-1 px-3 pr-0">
+      <div className="flex items-center w-full pl-4 pr-2">
+        <div className="flex bg-fff010 items-center w-full rounded border-b-2 border-white pl-2.5">
           <input
             placeholder="Search"
             type="text"
             onChange={setInputValue}
             className="w-full text-base text-white"
           />
-          <div className="p-3">
-            <button className="relative w-6 aspect-square" onClick={onSearchCb}>
-              <Image src={"/assets/icon/Search-input.svg"} fill alt="" />
-            </button>
-          </div>
+          <button
+            className="relative w-6 aspect-square mr-3 my-2"
+            onClick={onSearchCb}
+          >
+            <Image src={"/assets/icon/Search-input.svg"} fill alt="" />
+          </button>
         </div>
       </div>
     </div>

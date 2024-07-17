@@ -7,7 +7,7 @@ export const userEmpty: User = {
   email: "",
   name: "",
   password: "",
-  srcImageProfile: "",
+  srcImageProfile: "/assets/testIcons/logo.jpg",
   roles: [],
   subscriptions: [],
 };

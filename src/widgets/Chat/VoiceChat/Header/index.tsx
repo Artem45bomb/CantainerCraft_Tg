@@ -3,13 +3,17 @@ import Image from "next/image";
 
 interface Props {
   userName: string;
+  clickShowCb: () => void;
 }
 
-export const Header: FC<Props> = ({ userName }) => {
+export const Header: FC<Props> = ({ userName, clickShowCb }) => {
   return (
     <div>
       <div className="absolute top-6 left-6 flex justify-center items-center gap-1.5">
-        <button className="w-6 bg-365C5E aspect-square flex items-center justify-center rounded-full">
+        <button
+          onClick={clickShowCb}
+          className="w-6 bg-365C5E aspect-square flex items-center justify-center rounded-full"
+        >
           <div className="relative w-5 aspect-square">
             <Image src="/assets/icon/Left-icon.svg" alt="" fill />
           </div>

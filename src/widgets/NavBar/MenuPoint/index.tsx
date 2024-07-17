@@ -1,22 +1,28 @@
-import { Chat } from "@/entities";
 import { FC } from "react";
 import Image from "next/image";
 import SecuredIcon from "@assets/icon/Secured-icon.svg";
+import { ChatItem } from "@/features/store/chat";
+import { NotReadMessageElem } from "@/shared/NotReadMessageElem";
 
 interface IMenuPoint {
-  chat: Chat;
+  chatItem: ChatItem;
   secured: boolean;
 }
 
-export const MenuPoint: FC<IMenuPoint> = ({ chat, secured }) => {
-  const { messages } = chat;
+export const MenuPoint: FC<IMenuPoint> = ({ chatItem, secured }) => {
+  const { messages } = chatItem.chat;
   const messageEnd = messages[messages.length - 1];
 
   return (
     <div className="w-full py-2.5 flex items-center justify-between px-1">
       <div className="flex items-center gap-3 w-full pr-3">
         <div className="relative w-20 aspect-square rounded-full">
-          <Image src={chat.srcImage} fill alt="" className="rounded-full" />
+          <Image
+            src={chatItem.chat.srcImage}
+            fill
+            alt=""
+            className="rounded-full"
+          />
         </div>
 
         <div
@@ -25,18 +31,18 @@ export const MenuPoint: FC<IMenuPoint> = ({ chat, secured }) => {
         >
           <div className="flex items-center gap-1 h-full">
             <div
-              className={`relative ${chat.type !== "private" && "w-4"} aspect-square`}
+              className={`relative ${chatItem.chat.type !== "private" && "w-4"} aspect-square`}
             >
-              {chat.type === "group" ? (
+              {chatItem.chat.type === "group" ? (
                 <Image fill src="/assets/icon/Group-chat-icon.svg" alt="" />
-              ) : chat.type === "channel" ? (
+              ) : chatItem.chat.type === "channel" ? (
                 <Image fill src="/assets/icon/Megaphone.svg" alt="fjfjfj" />
               ) : (
                 <></>
               )}
             </div>
 
-            <p className="text-7289D9 text-left">{chat.name}</p>
+            <p className="text-7289D9 text-left">{chatItem.chat.name}</p>
           </div>
 
           {messageEnd?.type === "text" ? (
@@ -70,7 +76,12 @@ export const MenuPoint: FC<IMenuPoint> = ({ chat, secured }) => {
       </div>
       <div className="flex flex-col justify-start">
         <p className="text-c88 mb-1">8:32PM</p>
-        <div>
+        <div className={"flex gap-2 items-center"}>
+          {chatItem.countNotReadMessage > 0 && (
+            <NotReadMessageElem
+              countNotReadMessage={chatItem.countNotReadMessage}
+            />
+          )}
           {secured && (
             <div>
               <SecuredIcon />

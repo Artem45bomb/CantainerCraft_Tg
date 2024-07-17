@@ -18,43 +18,45 @@ export function Chat() {
   useEffect(() => {});
 
   return (
-    <div className="overflow-hidden flex flex-col bg-[#1D4846] w-full h-full border rounded-lg border-white">
-      <Header
-        description={{
-          logoSrc: ChatInfoTest.logoSrc,
-          chatName: ChatInfoTest.chatName,
-          countOfMembers: ChatInfoTest.countOfMembers,
-          countOfOnlineMembers: ChatInfoTest.countOfOnlineMembers,
-        }}
-        setActiveVoiceChat={setActiveVoiceChat}
-      />
+    <>
       {isVoiceChat && (
-        <div className="absolute top-0 left-0 w-full h-full z-10">
+        <div className="absolute w-3/4 top-0 right-0 h-full z-20">
           <VoiceChat
             activeVoiceChat={isVoiceChat}
             setActiveVoiceChat={setActiveVoiceChat}
           />
         </div>
       )}
-      <div className="relative max-w-full max-x-full h-full max-h-full">
-        <div className="absolute top-1 left-1/2">
-          <MessageDate date={messagesDate} scroll={scroll} />
+      <div className="overflow-hidden flex flex-col bg-[#1D4846] w-full h-full border rounded-lg border-white">
+        <Header
+          description={{
+            logoSrc: ChatInfoTest.logoSrc,
+            chatName: ChatInfoTest.chatName,
+            countOfMembers: ChatInfoTest.countOfMembers,
+            countOfOnlineMembers: ChatInfoTest.countOfOnlineMembers,
+          }}
+          setActiveVoiceChat={setActiveVoiceChat}
+        />
+        <div className="relative max-w-full max-x-full h-full max-h-full">
+          <div className="absolute top-1 left-1/2">
+            <MessageDate date={messagesDate} scroll={scroll} />
+          </div>
+          <div
+            ref={ref}
+            onScroll={() => setScroll((prev) => !prev)}
+            className="w-full absolute max-w-full max-h-full h-full scroller-chat overflow-y-scroll"
+          >
+            <ContentMessages
+              scroll={scroll}
+              contextMessage={ref}
+              setMessagesDate={changeDate}
+            />
+          </div>
         </div>
-        <div
-          ref={ref}
-          onScroll={() => setScroll((prev) => !prev)}
-          className="w-full absolute max-w-full max-h-full h-full scroller-chat overflow-y-scroll"
-        >
-          <ContentMessages
-            scroll={scroll}
-            contextMessage={ref}
-            setMessagesDate={changeDate}
-          />
+        <div className="w-full self-end">
+          <Input />
         </div>
       </div>
-      <div className="w-full self-end">
-        <Input />
-      </div>
-    </div>
+    </>
   );
 }

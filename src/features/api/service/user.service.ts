@@ -5,7 +5,7 @@ import { JwtAuthDTO } from "../dto";
 
 const usersServiceApi = process.env.USERS_SERVICE_API;
 
-type AuthUser = Omit<User, "id" | "roles" | "subscriptions" | "userOnline">;
+type AuthUser = { name: string; password: string; email: string };
 
 export const registration = async (user: AuthUser): Promise<User> => {
   const { data } = await axios.post(usersServiceApi + "/create", user);

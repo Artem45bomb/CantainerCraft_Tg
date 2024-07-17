@@ -11,36 +11,21 @@ interface Props {
   streamStartCb?: () => void;
   streamStopCb?: () => void;
   fullStreamRef: RefObject<HTMLVideoElement>;
-  userRef?: RefObject<HTMLVideoElement>;
 }
 
-export const UserStream: FC<Props> = ({
+export const FullUserStream: FC<Props> = ({
   settings,
   user,
-  userRef,
-  streamStartCb,
-  streamStopCb,
   fullStreamRef,
+  streamStopCb,
   isFullscreen = false,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const streamStart = (
-    settings: Settings,
-    ref: RefObject<HTMLVideoElement>,
-  ) => {
-    navigator.mediaDevices
-      .getUserMedia({ video: settings.Micro, audio: settings.Voice })
-      .then((stream) => {
-        if (ref.current && ref.current.paused) {
-          ref.current.srcObject = stream;
-          ref.current.play();
-          streamStartCb && streamStartCb();
-        }
-      })
-      .catch((err) => {
-        console.error(`An error occurred: ${err}`);
-      });
+  const streamStart = (ref: RefObject<HTMLVideoElement>) => {
+    if (ref.current) {
+      ref.current.play();
+    }
   };
 
   const streamStop = (ref: RefObject<HTMLVideoElement>) => {
@@ -53,20 +38,11 @@ export const UserStream: FC<Props> = ({
 
   useEffect(() => {
     if (settings.Voice || settings.Micro) {
-      streamStart(settings, userRef || videoRef);
+      streamStart(fullStreamRef);
     } else if (!settings.Voice && !settings.Micro) {
       streamStop(videoRef);
     }
   }, [settings]);
-
-  useEffect(() => {
-    if (isFullscreen && fullStreamRef.current && videoRef.current) {
-      fullStreamRef.current.srcObject = videoRef.current.srcObject;
-    }
-    if (isFullscreen && fullStreamRef.current && userRef) {
-      fullStreamRef.current.srcObject = userRef.current!.srcObject;
-    }
-  }, [isFullscreen]);
 
   return (
     <div
@@ -80,8 +56,8 @@ export const UserStream: FC<Props> = ({
         </div>
       ) : (
         <video
-          className="h-full transition-all duration-0"
-          ref={userRef !== undefined ? userRef : videoRef}
+          className="h-full transition-all duration-0 rounded-3xl"
+          ref={fullStreamRef}
         ></video>
       )}
     </div>

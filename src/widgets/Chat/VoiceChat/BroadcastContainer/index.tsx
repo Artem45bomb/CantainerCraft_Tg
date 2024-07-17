@@ -1,5 +1,4 @@
 import { Header } from "@/widgets/Chat/VoiceChat/Header";
-import { UserStream } from "@/widgets/Chat/VoiceChat/UserStream";
 import { ButtonAction } from "@/widgets/Chat/VoiceChat/ButtonAction";
 import { userStore } from "@/features/store/user";
 import { Dispatch, SetStateAction, useRef, useState, FC } from "react";
@@ -7,8 +6,11 @@ import { Settings, UserInChat } from "@/features/types/voiceChat";
 import { UserContainer } from "@/widgets/Chat/VoiceChat/BroadcastContainer/UserContainer";
 import { ObjectFields } from "@/features/api/util";
 import { User } from "@/entities";
+import { FullUserStream } from "@/widgets/Chat/VoiceChat/FullUserStream";
 
 interface Props {
+  isShow: boolean;
+  setIsShow: Dispatch<SetStateAction<boolean>>;
   setSettings: Dispatch<SetStateAction<Settings>>;
   settings: Settings;
   streamOff: () => void;
@@ -20,10 +22,12 @@ export const BroadcastContainer: FC<Props> = ({
   settings,
   setSettings,
   usersInVoiceChat,
+  setIsShow,
 }) => {
   const [isFullScreen, setIsFullScreen] = useState<UserInChat | null>(null);
   const { userAuth } = userStore();
   const videoUserRef = useRef<HTMLVideoElement>(null);
+  const fullStreamRef = useRef<HTMLVideoElement>(null);
 
   const handleButtonPress = (buttonName: ObjectFields<Settings>) => {
     setSettings((prevState) => ({
@@ -36,21 +40,26 @@ export const BroadcastContainer: FC<Props> = ({
     setIsFullScreen(stream);
   };
 
+  const setShowPanelCb = () => setIsShow((prevState) => !prevState);
+
   return (
     <div className="flex flex-col h-full w-full bg-1D4846 relative">
-      <Header userName={userAuth.name} />
+      <Header clickShowCb={setShowPanelCb} userName={userAuth.name} />
       <div className="flex-1 flex flex-col pt-10 items-center justify-center">
         {isFullScreen !== null && isFullScreen.settings.Micro && (
           <div className="w-1/2 flex flex-col items-center justify-center">
-            <div className="w-full aspect-video mb-3">
-              <UserStream
+            <div className="w-full aspect-video mb-3 rounded-2xl">
+              <FullUserStream
+                fullStreamRef={fullStreamRef}
                 user={isFullScreen.user}
                 settings={isFullScreen.settings}
               />
             </div>
           </div>
         )}
+
         <UserContainer
+          fullStreamRef={fullStreamRef}
           isFullStream={isFullScreen}
           myRef={videoUserRef}
           usersInChat={usersInVoiceChat}

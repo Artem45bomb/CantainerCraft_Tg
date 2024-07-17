@@ -9,6 +9,7 @@ interface Props {
   isFullStream: UserInChat | null;
   activeStream: (arg: UserInChat) => void;
   myRef: RefObject<HTMLVideoElement>;
+  fullStreamRef: RefObject<HTMLVideoElement>;
 }
 
 export const UserContainer: FC<Props> = ({
@@ -16,6 +17,7 @@ export const UserContainer: FC<Props> = ({
   myRef,
   usersInChat,
   activeStream,
+  fullStreamRef,
 }) => {
   const { userAuth } = userStore();
   const [active, setActive] = useState<boolean>(true);
@@ -34,6 +36,8 @@ export const UserContainer: FC<Props> = ({
                   }
                 >
                   <UserStream
+                    isFullscreen={isFullStream?.user.id === e.user.id}
+                    fullStreamRef={fullStreamRef}
                     user={e.user}
                     settings={e.settings}
                     userRef={e.user.id == userAuth.id ? myRef : undefined}
