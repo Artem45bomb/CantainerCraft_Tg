@@ -17,13 +17,16 @@ export default function ContentMessages({
 
   return (
     <div className="h-full w-full px-11 relative">
-      <div style={{ width: "100%", height: "100vh" }} className="relative">
+      <div style={{ width: "100%", height: "200vh" }} className="relative">
         {chatIn.messages.map((message, i) => (
           <MessageComponent
+            description={{
+              message,
+              user: chatIn.users.filter((e) => e.id === message.userId)[0],
+            }}
             contextMessage={contextMessage}
             setMessagesDate={setMessagesDate}
             key={i}
-            message={message}
             prevMessage={i > 0 ? chatIn.messages[i - 1] : undefined}
             nextMessage={
               i + 1 < chatIn.messages.length
@@ -31,7 +34,6 @@ export default function ContentMessages({
                 : undefined
             }
             scroll={scroll}
-            user={chatIn.users.filter((e) => e.id === message.userId)[0]}
           />
         ))}
       </div>
