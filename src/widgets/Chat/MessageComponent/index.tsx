@@ -47,7 +47,7 @@ export default function MessageComponent({
   }, []);
 
   useEffect(() => {
-    //experimental function
+    //now message data
     if (ref.current && contextMessage.current) {
       if (
         contextMessage.current.scrollTop >= ref.current.offsetTop &&
@@ -57,20 +57,7 @@ export default function MessageComponent({
         setMessagesDate(new Date(message.date));
       }
 
-      //
-      console.log(
-        (contextMessage.current.scrollTop - 50 > ref.current.offsetTop &&
-          contextMessage.current.scrollTop - 50 >
-            ref.current.offsetHeight + ref.current.offsetTop) ||
-          (contextMessage.current.scrollTop +
-            contextMessage.current.offsetHeight +
-            50 <
-            ref.current.offsetTop &&
-            contextMessage.current.scrollTop +
-              contextMessage.current.offsetHeight +
-              50 <
-              ref.current.offsetHeight + ref.current.offsetTop),
-      );
+      //virtual message
       if (
         (contextMessage.current.scrollTop - 50 > ref.current.offsetTop &&
           contextMessage.current.scrollTop - 50 >
@@ -103,6 +90,7 @@ export default function MessageComponent({
         if (!isShow) setIsShow(true);
       }
     }
+    ref.current!.style.height = height.current + "px";
   }, [scroll]);
 
   return (
