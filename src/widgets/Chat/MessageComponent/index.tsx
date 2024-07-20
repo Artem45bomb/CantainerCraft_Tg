@@ -43,7 +43,10 @@ export default function MessageComponent({
     : 3;
 
   useEffect(() => {
-    if (ref.current) height.current = ref.current.offsetHeight;
+    if (ref.current) {
+      height.current = ref.current.offsetHeight;
+      ref.current!.style.height = height.current + "px";
+    }
   }, []);
 
   useEffect(() => {
@@ -58,39 +61,40 @@ export default function MessageComponent({
       }
 
       //virtual message
+      const borderContextTop =
+        contextMessage.current.scrollTop +
+        contextMessage.current.offsetHeight +
+        50;
+      const borderContextBottom = contextMessage.current.scrollTop - 50;
+      const borderMessageTop = ref.current.offsetTop + ref.current.offsetHeight;
+      const borderMessageBottom = ref.current.offsetTop;
+      console.log(
+        "borderContextTop:",
+        borderContextTop,
+        "\nborderContextBottom:",
+        borderContextBottom,
+      );
+
       if (
-        (contextMessage.current.scrollTop - 50 > ref.current.offsetTop &&
-          contextMessage.current.scrollTop - 50 >
-            ref.current.offsetHeight + ref.current.offsetTop) ||
-        (contextMessage.current.scrollTop +
-          contextMessage.current.offsetHeight +
-          50 <
-          ref.current.offsetTop &&
-          contextMessage.current.scrollTop +
-            contextMessage.current.offsetHeight +
-            50 <
-            ref.current.offsetHeight + ref.current.offsetTop)
+        isShow &&
+        ((borderContextBottom > borderMessageBottom &&
+          borderContextBottom > borderMessageTop) ||
+          (borderContextTop < borderMessageTop &&
+            borderContextTop < borderMessageBottom))
       ) {
-        if (isShow) setIsShow(false);
+        setIsShow(false);
+        return;
       }
 
       if (
-        (contextMessage.current.scrollTop - 50 < ref.current.offsetTop &&
-          contextMessage.current.scrollTop - 50 <
-            ref.current.offsetHeight + ref.current.offsetTop) ||
-        (contextMessage.current.scrollTop +
-          contextMessage.current.offsetHeight +
-          50 >
-          ref.current.offsetTop &&
-          contextMessage.current.scrollTop +
-            contextMessage.current.offsetHeight +
-            50 >
-            ref.current.offsetHeight + ref.current.offsetTop)
+        !isShow &&
+        (borderMessageBottom > borderMessageTop ||
+          borderMessageBottom < borderContextTop)
       ) {
-        if (!isShow) setIsShow(true);
+        setIsShow(true);
+        return;
       }
     }
-    ref.current!.style.height = height.current + "px";
   }, [scroll]);
 
   return (

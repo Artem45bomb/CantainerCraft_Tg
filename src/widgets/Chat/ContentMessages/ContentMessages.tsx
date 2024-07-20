@@ -17,7 +17,7 @@ export default function ContentMessages({
 
   return (
     <div className="h-full w-full px-11 relative">
-      <div style={{ width: "100%", height: "200vh" }} className="relative">
+      <div className="h-full w-full relative">
         {chatIn.messages.map((message, i) => (
           <MessageComponent
             description={{
