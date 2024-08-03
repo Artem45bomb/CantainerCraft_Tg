@@ -7,6 +7,7 @@ import { Loader } from "./Loader";
 import Stomp from "stompjs";
 import SockJS from "sockjs-client";
 import SettingsPanel from "@/widgets/SettingsPanel";
+import { useSocket } from "@/features/hooks/useSocket";
 
 export const NavBar: FC = () => {
   const [isActive, setActive] = useState<boolean>(false);
@@ -14,14 +15,14 @@ export const NavBar: FC = () => {
   const websocket = useRef<Stomp.Client>();
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const socket = new SockJS(`http://localhost:8082/gs-guide-websocket`);
-    websocket.current = Stomp.over(socket);
-
-    websocket.current!.connect({}, () => {
-      console.log("open");
-    });
-  }, []);
+  const socket = useSocket({
+    config: { brokerURL: "ws://localhost:8082/gs-guide-websocket" },
+    subscribers: {
+      "/topic": {
+        cb: (message) => {},
+      },
+    },
+  });
 
   return (
     <>

@@ -15,8 +15,6 @@ export function Chat() {
 
   const changeDate = (date: Date) => setMessagesDate(date);
 
-  useEffect(() => {});
-
   return (
     <>
       {isVoiceChat && (

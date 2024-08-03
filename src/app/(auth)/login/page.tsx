@@ -11,6 +11,7 @@ import { checkExistUser, login } from "@/features/api/service/user.service";
 import { checkEmail, checkPassword } from "@/features/api/util";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { userStore } from "@/features/store/user";
 
 console.log(`${checkPassword("aaa")}`);
 
@@ -19,6 +20,7 @@ export default function Login() {
   const [error, setError] = useState<string>("");
   const session = useSession();
   const router = useRouter();
+  const { initTokens } = userStore();
   const { pending } = useFormStatus();
 
   useEffect(() => {
@@ -35,32 +37,37 @@ export default function Login() {
   const submitForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const email = (formData.get("email") as string).trim();
+    const username = (formData.get("username") as string).trim();
     const password = (formData.get("password") as string).trim();
 
-    let resultCheck: string | boolean;
+    // let resultCheck: string | boolean;
 
-    resultCheck = checkEmail(email);
+    // resultCheck = checkEmail(email);
 
-    if (resultCheck !== true && typeof resultCheck === "string") {
-      setError(resultCheck);
+    // if (resultCheck !== true && typeof resultCheck === "string") {
+    //   setError(resultCheck);
+    //   return;
+    // }
+
+    // resultCheck = checkPassword(password);
+
+    // if (resultCheck !== true && typeof resultCheck === "string") {
+    //   setError(resultCheck);
+    //   return;
+    // }
+
+    const response = await login({ username, password });
+
+    if (response.message) {
+      setError(response.message);
       return;
     }
 
-    resultCheck = checkPassword(password);
-
-    if (resultCheck !== true && typeof resultCheck === "string") {
-      setError(resultCheck);
-      return;
-    }
-
-    await login({ email, password })
-      .then((user) => {
-        console.log(user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    initTokens({
+      accessToken: response.accessToken!,
+      refreshToken: response.token!,
+    });
+    router.push("/");
   };
 
   return (
@@ -85,8 +92,8 @@ export default function Login() {
             </div>
             <input
               className="w-full"
-              name="email"
-              placeholder="Email addres"
+              name="username"
+              placeholder="username"
               type="text"
             />
           </div>

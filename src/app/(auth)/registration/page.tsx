@@ -9,6 +9,8 @@ import { signIn, useSession } from "next-auth/react";
 import {
   checkExistUser,
   registration,
+  MessageError,
+  isMessageError,
 } from "@/features/api/service/user.service";
 import { checkEmail, checkName, checkPassword } from "@/features/api/util";
 import { useInput } from "@/features/hooks/customHook";
@@ -16,10 +18,12 @@ import { useRouter } from "next/navigation";
 import { useFormStatus } from "react-dom";
 import ComplixityPassword from "@/widgets/ComplixityPassword";
 import Image from "next/image";
+import { userStore } from "@/features/store/user";
 
 export default function Registration() {
   const [isShow, setShow] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
+  const { initTokens } = userStore();
   const [username, setInputName, setUsername] = useInput("");
   const [email, setInputEmail, setEmail] = useInput("");
   const [password, setInputPassword, setPassword] = useInput("");
@@ -52,40 +56,45 @@ export default function Registration() {
   const submitForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const name = (formData.get("name") as string).trim();
+    const username = (formData.get("name") as string).trim();
     const email = (formData.get("email") as string).trim();
     const password = (formData.get("password") as string).trim();
 
-    let resultCheck: string | boolean;
+    // let resultCheck: string | boolean;
 
-    resultCheck = checkName(name);
+    // resultCheck = checkName(username);
 
-    if (resultCheck !== true && typeof resultCheck === "string") {
-      setError(resultCheck);
+    // if (resultCheck !== true && typeof resultCheck === "string") {
+    //   setError(resultCheck);
+    //   return;
+    // }
+
+    // resultCheck = checkEmail(email);
+
+    // if (resultCheck !== true && typeof resultCheck === "string") {
+    //   setError(resultCheck);
+    //   return;
+    // }
+
+    // resultCheck = checkPassword(password);
+
+    // if (resultCheck !== true && typeof resultCheck === "string") {
+    //   setError(resultCheck);
+    //   return;
+    // }
+
+    const response = await registration({ email, username, password });
+
+    if (response.message) {
+      setError(response.message);
       return;
     }
 
-    resultCheck = checkEmail(email);
-
-    if (resultCheck !== true && typeof resultCheck === "string") {
-      setError(resultCheck);
-      return;
-    }
-
-    resultCheck = checkPassword(password);
-
-    if (resultCheck !== true && typeof resultCheck === "string") {
-      setError(resultCheck);
-      return;
-    }
-
-    await registration({ email, name, password })
-      .then((user) => {
-        console.log(user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    initTokens({
+      accessToken: response.accessToken!,
+      refreshToken: response.token!,
+    });
+    router.push("/");
   };
 
   return (

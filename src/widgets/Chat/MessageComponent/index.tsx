@@ -68,12 +68,6 @@ export default function MessageComponent({
       const borderContextBottom = contextMessage.current.scrollTop - 50;
       const borderMessageTop = ref.current.offsetTop + ref.current.offsetHeight;
       const borderMessageBottom = ref.current.offsetTop;
-      console.log(
-        "borderContextTop:",
-        borderContextTop,
-        "\nborderContextBottom:",
-        borderContextBottom,
-      );
 
       if (
         isShow &&
