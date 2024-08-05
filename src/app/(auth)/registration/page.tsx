@@ -19,6 +19,7 @@ import { useFormStatus } from "react-dom";
 import ComplixityPassword from "@/widgets/ComplixityPassword";
 import Image from "next/image";
 import { userStore } from "@/features/store/user";
+import { setCookie } from "cookies-next";
 
 export default function Registration() {
   const [isShow, setShow] = useState<boolean>(false);
@@ -94,7 +95,8 @@ export default function Registration() {
       accessToken: response.accessToken!,
       refreshToken: response.token!,
     });
-    router.push("/");
+    setCookie("accessToken", response.accessToken);
+    router.push("/app");
   };
 
   return (

@@ -1,15 +1,16 @@
 "use server";
 import axios, { AxiosError } from "axios";
-import { User } from "@/entities/index";
 import { JwtAuthDTO } from "../dto";
 
 const usersServiceApi =
   process.env.USERS_SERVICE_API || "http://localhost:8081/micro-users";
-type AuthUser = { username: string; password: string; email: string };
+export type AuthUser = { username: string; password: string; email: string };
 export type MessageDataError = { data: MessageError };
 export type MessageError = { message: string };
 export const isMessageDataError = (obj: any): obj is MessageDataError =>
-  obj.data !== undefined && obj.data!.message !== undefined;
+  obj !== undefined &&
+  obj.data !== undefined &&
+  obj.data!.message !== undefined;
 export const isMessageError = (obj: any): obj is MessageError =>
   typeof obj.message !== "undefined";
 
@@ -55,7 +56,7 @@ export const login = async (
 > => {
   try {
     const { data, status } = await axios.post(
-      usersServiceApi + "/auth/login",
+      "http://localhost:8081/micro-users/auth/login",
       user,
     );
 

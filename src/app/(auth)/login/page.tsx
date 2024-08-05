@@ -12,27 +12,15 @@ import { checkEmail, checkPassword } from "@/features/api/util";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { userStore } from "@/features/store/user";
-
-console.log(`${checkPassword("aaa")}`);
+import axios, { AxiosError } from "axios";
+import { setCookie } from "cookies-next";
 
 export default function Login() {
   const [isShow, setShow] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
-  const session = useSession();
   const router = useRouter();
   const { initTokens } = userStore();
   const { pending } = useFormStatus();
-
-  useEffect(() => {
-    const check = async (username: string) => {
-      await checkExistUser(username).then(() => {
-        router.push("/");
-      });
-    };
-    if (session.status === "authenticated") {
-      if (session.data.user?.email) check(session.data.user.email);
-    }
-  }, [session.status]);
 
   const submitForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -62,12 +50,13 @@ export default function Login() {
       setError(response.message);
       return;
     }
-
+    console.log("response", response);
     initTokens({
       accessToken: response.accessToken!,
       refreshToken: response.token!,
     });
-    router.push("/");
+    setCookie("accessToken", response.accessToken);
+    router.push("/app");
   };
 
   return (
