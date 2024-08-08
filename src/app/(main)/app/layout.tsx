@@ -16,9 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Provider>
-      <html lang="en">
-        <body className={inter.className}>
+    <html lang="en">
+      <body className={inter.className}>
+        <Provider>
           <main
             style={{ maxHeight: "100vh" }}
             className={"w-full h-full relative overflow-hidden flex"}
@@ -26,8 +26,8 @@ export default function RootLayout({
             <NavBar />
             {children}
           </main>
-        </body>
-      </html>
-    </Provider>
+        </Provider>
+      </body>
+    </html>
   );
 }

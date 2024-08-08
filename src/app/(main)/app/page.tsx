@@ -1,23 +1,30 @@
 "use client";
+import { initUser } from "@/features/api/service";
+import { userStore } from "@/features/store/user";
 import { Chat } from "@/widgets/Chat";
-import { FC } from "react";
+import { getCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
+import { FC, useEffect } from "react";
 
 const Main: FC = () => {
   // const [stompClient, setStompClient] = useState<Client>();
-  // const {user} = userStore();
+  const { userAuth, init } = userStore();
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   const socket = new SockJS("http://localhost:8080/gs-guide-websocket");
-  //   const client = StompJs.over(socket);
-  //   client.connect({}, (frame) => {
-  //     client.subscribe("/topic/public", (message) => {
-  //       const receiveMessage = message.body;
-  //       console.log(receiveMessage);
-  //     });
-  //   });
-
-  //   setStompClient(client);
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      if (userAuth.id === 0) {
+        try {
+          const user = await initUser();
+          console.log("user:", user);
+          init(user);
+        } catch (error) {
+          if (error instanceof Error)
+            error.message === "403" && router.push("/login");
+        }
+      }
+    })();
+  }, []);
 
   return (
     <div className="h-full w-full bg-msu-green">

@@ -1,6 +1,7 @@
 import { User } from "@/entities";
 import { create } from "zustand";
 import { userEmpty } from "../empty/object.empty";
+import axios from "axios";
 
 export type JwtTokens = {
   accessToken: string;

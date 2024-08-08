@@ -1,9 +1,9 @@
 "use server";
 import axios, { AxiosError } from "axios";
 import { JwtAuthDTO } from "../dto";
+import { User } from "@/entities";
+import { fetchWrapper } from "./request";
 
-const usersServiceApi =
-  process.env.USERS_SERVICE_API || "http://localhost:8081/micro-users";
 export type AuthUser = { username: string; password: string; email: string };
 export type MessageDataError = { data: MessageError };
 export type MessageError = { message: string };
@@ -17,6 +17,20 @@ export const isMessageError = (obj: any): obj is MessageError =>
 export type JwtAuthResponse = {
   accessToken?: string;
   token?: string; //refresh token
+};
+
+export const initUser = async (): Promise<User> => {
+  const data = await fetchWrapper<User>(
+    "http://localhost:8081/micro-users/api/user/account/loaded",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+    },
+  );
+
+  return data;
 };
 
 export const registration = async (

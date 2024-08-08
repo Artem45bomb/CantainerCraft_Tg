@@ -85,8 +85,6 @@ export const checkName = (name: string): boolean | string => {
 };
 
 export const checkPassword = (password: string): boolean | string => {
-  if (isLatin(password) !== true) return errorText.latinNot;
-
   if (isPassword(password)! == true) return errorText.passwordValidate;
 
   return true;
