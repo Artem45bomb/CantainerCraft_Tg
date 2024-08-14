@@ -2,8 +2,16 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import { cookies } from "next/headers";
 import axios from "axios";
+import { notFound } from "next/navigation";
 
 export async function middleware(request: NextRequest) {
+  if (request.url.endsWith("/panel/admin")) {
+    //logic
+    if (true) return;
+
+    return new NextResponse("Page not Found", { status: 404 });
+  }
+
   if (!request.url.endsWith)
     return NextResponse.redirect(new URL("/app", request.url));
   const accessToken = cookies().get("accessToken");
@@ -20,5 +28,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/app/:path*", "/"],
+  matcher: ["/app/:path*", "/", "/panel/admin"],
 };
