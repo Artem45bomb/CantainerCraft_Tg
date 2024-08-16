@@ -8,7 +8,7 @@ interface IButtonAuth {
 export const ButtonAuth: FC<IButtonAuth> = ({ children, onClick }) => {
   return (
     <button
-      className="w-full h-full relative flex justify-center py-4 bg-crystal border border-msu-green rounded-lg"
+      className="w-full h-full relative flex justify-center py-4 bg-212A4A rounded-lg"
       onClick={onClick}
     >
       {children}

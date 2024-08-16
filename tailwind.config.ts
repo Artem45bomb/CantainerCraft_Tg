@@ -21,9 +21,12 @@ const config: Config = {
         "4.5": "1.125rem",
         "1/4": "25%",
       },
-
+      margin: {
+        "27": "6.9rem",
+      },
       fontSize: {
         "sm-9": "9px",
+        "xl-4": "34px",
       },
       translate: {
         "x--1/2": "translate(-50%, -50%)",
@@ -58,6 +61,13 @@ const config: Config = {
         "#9FDAD6": "#9FDAD6",
         "2F4F4D": "#2F4F4D",
         "1B5155": "#1B5155",
+        "1E2E66": "#1E2E66",
+        DDE4FF: "#DDE4FF",
+        "606060": "#606060",
+        DDE5FF: "#DDE5FF",
+        "2F50C3": "#2F50C3",
+        "0A216F": "#0A216F",
+        "212A4A": "#212A4A",
       },
       width: {
         "1/4-vw": "25vw",
@@ -66,6 +76,7 @@ const config: Config = {
         "104": "26.06rem",
         "90": "23rem",
         "86": "20rem",
+        "23": "5.45rem",
       },
       maxWidth: {
         "2/3": "66%",
