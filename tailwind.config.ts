@@ -28,6 +28,9 @@ const config: Config = {
         "sm-9": "9px",
         "xl-4": "34px",
       },
+      font: {
+        SegoeUIVariable: "Segoe UI Variable",
+      },
       translate: {
         "x--1/2": "translate(-50%, -50%)",
       },
@@ -77,6 +80,7 @@ const config: Config = {
         "90": "23rem",
         "86": "20rem",
         "23": "5.45rem",
+        "650px": "650px",
       },
       maxWidth: {
         "2/3": "66%",
@@ -84,6 +88,7 @@ const config: Config = {
       height: {
         "21": "5.19rem",
         "13": "3.25rem",
+        "711px": "711px",
       },
       maxHeight: {
         "full-vh": "100vh",

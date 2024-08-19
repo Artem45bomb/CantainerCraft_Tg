@@ -101,110 +101,110 @@ export default function Registration() {
   };
 
   return (
-    <div className="w-full h-full">
-      <main className="flex items-center justify-center w-full h-auto py-12 bg-FFFFFF">
-        <form
-          onSubmit={submitForm}
-          className="max-w-6xl  px-20 py-8 m-auto bg-FFFFFF border-2 border-1E2E66 rounded-2xl"
-        >
-          <LogoIcon className="ml-28" />
-          <div className="mb-4 text-center">
-            <p className="pb-1 text-3xl text-2F50C3 font-bold">Welcome</p>
-            <p>
-              Do you already have an account? <span>Login</span>
-            </p>
+    <main className="flex items-center justify-center w-full h-auto my-12 bg-FFFFFF">
+      <form
+        onSubmit={submitForm}
+        className="max-w-6xl w-650px h-711px px-20 py-8 bg-FFFFFF border-2 border-1E2E66 rounded-2xl"
+      >
+        <div className="pb-6 flex justify-center items-center">
+          <LogoIcon />
+        </div>
+        <div className="mb-4 text-center">
+          <p className="pb-1 text-3xl text-2F50C3">Welcome</p>
+          <p>
+            Do you already have an account? <span>Login</span>
+          </p>
+        </div>
+        <div className="flex flex-col w-full gap-5">
+          <div className="flex items-center w-full relative gap-2 p-2 bg-DDE4FF border border-0A216F rounded-lg">
+            <div>
+              <NameIcon />
+            </div>
+            <input
+              value={username && username}
+              name="name"
+              onChange={setInputName}
+              placeholder="Name"
+              type="text"
+              className="w-full rounded-lg bg-none"
+            />
           </div>
-          <div className="flex flex-col w-full gap-5">
-            <div className="flex items-center w-full relative gap-2 p-2 bg-DDE4FF border border-0A216F rounded-lg">
-              <div>
-                <NameIcon />
-              </div>
-              <input
-                value={username && username}
-                name="name"
-                onChange={setInputName}
-                placeholder="Name"
-                type="text"
-                className="w-full rounded-lg bg-none"
-              />
+          <div className="flex items-center w-full relative gap-2 p-2 bg-DDE4FF border border-0A216F rounded-lg">
+            <div>
+              <EmailIcon />
             </div>
-            <div className="flex items-center w-full relative gap-2 p-2 bg-DDE4FF border border-0A216F rounded-lg">
-              <div>
-                <EmailIcon />
-              </div>
-              <input
-                className="w-full"
-                onChange={setInputEmail}
-                value={email && email}
-                name="email"
-                placeholder="Email"
-                type="text"
-              />
-            </div>
-            <div className="w-full">
-              <div className="flex items-center w-full  relative gap-2 p-2 bg-DDE4FF border border-0A216F rounded-lg">
-                <div>
-                  <PasswordIcon />
-                </div>
-                <input
-                  value={password}
-                  onChange={setInputPassword}
-                  className="w-full"
-                  name="password"
-                  placeholder="Create a password"
-                  type={!isShow ? "password" : "text"}
-                />
-
-                <div
-                  onClick={() => setShow((prev) => !prev)}
-                  className="relative w-6 h-5"
-                >
-                  {isShow ? (
-                    <Image fill src="/assets/icon/Eye.svg" alt="" />
-                  ) : (
-                    <Image fill src="/assets/icon/Eye-closed.svg" alt="" />
-                  )}
-                </div>
-              </div>
-              <p className="text-0A216F h-4 text-xs">
-                the password must be at least 8 characters long
-              </p>
-              <div className="text-red-700">{error && error}</div>
-            </div>
-            <div className="flex items-center w-full gap-2 p-2 bg-DDE4FF border border-0A216F rounded-lg">
+            <input
+              className="w-full"
+              onChange={setInputEmail}
+              value={email && email}
+              name="email"
+              placeholder="Email"
+              type="text"
+            />
+          </div>
+          <div className="w-full">
+            <div className="flex items-center w-full  relative gap-2 p-2 bg-DDE4FF border border-0A216F rounded-lg">
               <div>
                 <PasswordIcon />
               </div>
               <input
+                value={password}
+                onChange={setInputPassword}
                 className="w-full"
-                name="passwordCopy"
-                onChange={input}
-                placeholder="Repeat your password"
+                name="password"
+                placeholder="Create a password"
                 type={!isShow ? "password" : "text"}
               />
+
+              <div
+                onClick={() => setShow((prev) => !prev)}
+                className="relative w-6 h-5"
+              >
+                {isShow ? (
+                  <Image fill src="/assets/icon/Eye.svg" alt="" />
+                ) : (
+                  <Image fill src="/assets/icon/Eye-closed.svg" alt="" />
+                )}
+              </div>
             </div>
-            <button
-              disabled={pending}
-              type="submit"
-              className="w-full py-3 text-center text-0A216F bg-7289D9 rounded-lg"
-            >
-              Sign Up
-            </button>
-            <div className="flex items-center">
-              <hr className="w-full bg-0A216F" style={{ height: 2 }} />
-              <span className="mx-2 ">OR</span>
-              <hr className="w-full bg-0A216F" style={{ height: 2 }} />
-            </div>
-            <div className="w-full">
-              <ButtonAuth onClick={() => signIn("google")}>
-                <div className="my-1">
-                  <GoogleIcon />
-                </div>
-              </ButtonAuth>
-            </div>
+            <p className="text-0A216F h-4 text-xs font-SegoeUIVariable">
+              The password must be at least 8 characters long
+            </p>
+            <div className="text-red-700">{error && error}</div>
           </div>
-        </form>
-      </main>
-    </div>
+          <div className="flex items-center w-full gap-2 p-2 bg-DDE4FF border border-0A216F rounded-lg">
+            <div>
+              <PasswordIcon />
+            </div>
+            <input
+              className="w-full"
+              name="passwordCopy"
+              onChange={input}
+              placeholder="Repeat your password"
+              type={!isShow ? "password" : "text"}
+            />
+          </div>
+          <button
+            disabled={pending}
+            type="submit"
+            className="w-full py-3 text-center text-0A216F bg-7289D9 rounded-lg"
+          >
+            Sign Up
+          </button>
+          <div className="flex items-center">
+            <hr className="w-full bg-0A216F" style={{ height: 2 }} />
+            <span className="mx-2 text-lg text-0A216F font-semibold">OR</span>
+            <hr className="w-full bg-0A216F" style={{ height: 2 }} />
+          </div>
+          <div className="w-full">
+            <ButtonAuth onClick={() => signIn("google")}>
+              <div className="my-1">
+                <GoogleIcon />
+              </div>
+            </ButtonAuth>
+          </div>
+        </div>
+      </form>
+    </main>
   );
 }
