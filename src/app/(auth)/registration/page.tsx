@@ -101,7 +101,10 @@ export default function Registration() {
   };
 
   return (
-    <main className="flex items-center justify-center w-full h-auto my-12 bg-FFFFFF">
+    <main
+      className="flex items-center justify-center w-full h-full bg-FFFFFF"
+      style={{ flex: 1 }}
+    >
       <form
         onSubmit={submitForm}
         className="max-w-6xl w-650px h-711px px-20 py-8 bg-FFFFFF border-2 border-1E2E66 rounded-2xl"
