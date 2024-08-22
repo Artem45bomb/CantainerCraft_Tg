@@ -19,11 +19,13 @@ export default function RootLayout({
     <>
       <Provider>
         <html lang="en">
-          <Header />
-          <body className={inter.className + " flex flex-col"}>
-            <div className="grow">{children}</div>
+          <body className={inter.className}>
+            <div className="w-full h-full flex flex-col">
+              <Header />
+              <div className="grow">{children}</div>
+              <Footer />
+            </div>
           </body>
-          <Footer />
         </html>
       </Provider>
     </>
