@@ -29,11 +29,3 @@ export default function TestPage() {
     }
   };
 
-  return (
-    <div className="w-full h-full bg-black">
-      <button className="text-white" onClick={submit}>
-        Submit
-      </button>
-    </div>
-  );
-}

@@ -5,6 +5,7 @@ import PasswordIcon from "@assets/Password-icon.svg";
 import EmailIcon from "@assets/Email-icon.svg";
 import GoogleIcon from "@assets/icon/Google-icon.svg";
 import { ButtonAuth } from "@/shared/ButtonsAuth/ButtonAuth";
+import LogoIcon from "@assets/icon/Logo-icon.svg";
 import { signIn, useSession } from "next-auth/react";
 import {
   checkExistUser,
@@ -93,19 +94,25 @@ export default function Registration() {
   };
 
   return (
-    <main className="flex items-center justify-center w-full h-full bg-msu-green">
+    <main
+      className="flex items-center justify-center w-full h-full bg-FFFFFF"
+      style={{ flex: 1 }}
+    >
       <form
         onSubmit={submitForm}
-        className="max-w-2xl px-20 py-8 m-auto bg-police-blue rounded-2xl"
+        className="max-w-6xl w-650px h-711px px-20 py-8 bg-FFFFFF border-2 border-1E2E66 rounded-2xl"
       >
+        <div className="pb-6 flex justify-center items-center">
+          <LogoIcon />
+        </div>
         <div className="mb-4 text-center">
-          <p className="pb-1 text-3xl font-bold">Welcome</p>
+          <p className="pb-1 text-3xl text-2F50C3">Welcome</p>
           <p>
             Do you already have an account? <span>Login</span>
           </p>
         </div>
         <div className="flex flex-col w-full gap-5">
-          <div className="flex items-center w-full relative gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
+          <div className="flex items-center w-full relative gap-2 p-2 bg-DDE4FF border border-0A216F rounded-lg">
             <div>
               <NameIcon />
             </div>
@@ -118,7 +125,7 @@ export default function Registration() {
               className="w-full rounded-lg bg-none"
             />
           </div>
-          <div className="flex items-center w-full relative gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
+          <div className="flex items-center w-full relative gap-2 p-2 bg-DDE4FF border border-0A216F rounded-lg">
             <div>
               <EmailIcon />
             </div>
@@ -132,7 +139,7 @@ export default function Registration() {
             />
           </div>
           <div className="w-full">
-            <div className="flex items-center w-full  relative gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
+            <div className="flex items-center w-full  relative gap-2 p-2 bg-DDE4FF border border-0A216F rounded-lg">
               <div>
                 <PasswordIcon />
               </div>
@@ -141,9 +148,10 @@ export default function Registration() {
                 onChange={setInputPassword}
                 className="w-full"
                 name="password"
-                placeholder="Password"
+                placeholder="Create a password"
                 type={!isShow ? "password" : "text"}
               />
+
               <div
                 onClick={() => setShow((prev) => !prev)}
                 className="relative w-6 h-5"
@@ -155,9 +163,12 @@ export default function Registration() {
                 )}
               </div>
             </div>
-            <div className="text-red-700 h-4">{error && error}</div>
+            <p className="text-0A216F h-4 text-xs font-SegoeUIVariable">
+              The password must be at least 8 characters long
+            </p>
+            <div className="text-red-700">{error && error}</div>
           </div>
-          <div className="flex items-center w-full gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
+          <div className="flex items-center w-full gap-2 p-2 bg-DDE4FF border border-0A216F rounded-lg">
             <div>
               <PasswordIcon />
             </div>
@@ -169,20 +180,17 @@ export default function Registration() {
               type={!isShow ? "password" : "text"}
             />
           </div>
-          <div className="w-full mb-6">
-            <ComplixityPassword password={password} />
-          </div>
           <button
             disabled={pending}
             type="submit"
-            className="w-full py-3 text-center bg-crystal rounded-lg"
+            className="w-full py-3 text-center text-0A216F bg-7289D9 rounded-lg"
           >
             Sign Up
           </button>
           <div className="flex items-center">
-            <hr className="w-full bg-white" style={{ height: 1 }} />
-            <span className="mx-2 ">OR</span>
-            <hr className="w-full bg-white" style={{ height: 1 }} />
+            <hr className="w-full bg-0A216F" style={{ height: 2 }} />
+            <span className="mx-2 text-lg text-0A216F font-semibold">OR</span>
+            <hr className="w-full bg-0A216F" style={{ height: 2 }} />
           </div>
           <div className="w-full">
             <ButtonAuth onClick={() => signIn("google")}>
