@@ -62,28 +62,21 @@ export default function Registration() {
     const email = (formData.get("email") as string).trim();
     const password = (formData.get("password") as string).trim();
 
-    // let resultCheck: string | boolean;
+    let resultCheck: string | boolean;
 
-    // resultCheck = checkName(username);
+    resultCheck = checkEmail(email);
 
-    // if (resultCheck !== true && typeof resultCheck === "string") {
-    //   setError(resultCheck);
-    //   return;
-    // }
+    if (resultCheck !== true && typeof resultCheck === "string") {
+      setError(resultCheck);
+      return;
+    }
 
-    // resultCheck = checkEmail(email);
+    resultCheck = checkPassword(password);
 
-    // if (resultCheck !== true && typeof resultCheck === "string") {
-    //   setError(resultCheck);
-    //   return;
-    // }
-
-    // resultCheck = checkPassword(password);
-
-    // if (resultCheck !== true && typeof resultCheck === "string") {
-    //   setError(resultCheck);
-    //   return;
-    // }
+    if (resultCheck !== true && typeof resultCheck === "string") {
+      setError(resultCheck);
+      return;
+    }
 
     const response = await registration({ email, username, password });
 

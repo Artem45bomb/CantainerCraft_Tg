@@ -1,15 +1,31 @@
 "use client";
-
-import { Chat } from "@/widgets/Chat";
-import SettingsPanel from "@/widgets/SettingsPanel";
-import ContextMenu from "@/widgets/ContextMenu";
+import { StatusError } from "@/features/api/exception/StatusError";
+import { fetchWrapper } from "@/features/api/service";
+import { error } from "console";
+import { getCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
+import { FormEvent } from "react";
 
 export default function TestPage() {
-  //const [active, setActive] = useState<boolean>(false);
+  const router = useRouter();
 
-  return (
-    <div className="w-full h-full bg-black">
-      <ContextMenu chatId={"1"} />
-    </div>
-  );
-}
+  const submit = async () => {
+    console.log("click");
+
+    try {
+      const res = await fetchWrapper(
+        "http://localhost:8081/micro-users/api/user/all",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json;charset=utf-8",
+          },
+        },
+      );
+      console.log(res);
+    } catch (error) {
+      if (error instanceof Error && error.message === "403")
+        router.push("/login");
+    }
+  };
+

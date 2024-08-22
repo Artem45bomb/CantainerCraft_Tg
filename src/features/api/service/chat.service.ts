@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Chat, SecuredChat } from "@/entities";
+import { Chat } from "@/entities";
 
 export const getChats = async (userId: number) => {
   const { data } = await axios.get<Chat[]>(
@@ -7,17 +7,4 @@ export const getChats = async (userId: number) => {
   );
 
   return data;
-};
-
-export const getSecuredChats = async (userId: number) => {
-  const { data } = await axios.get<SecuredChat[]>(
-    "https://6538cc17a543859d1bb1ef16.mockapi.io/api/posts/users" + userId,
-  );
-  const securedChats = new Set<string>();
-
-  data.forEach((e) => {
-    securedChats.add(e.chatId);
-  });
-
-  return securedChats;
 };

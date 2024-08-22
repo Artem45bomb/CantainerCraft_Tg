@@ -1,9 +1,9 @@
 "use client";
-import EmailIcon from "@assets/Email-icon.svg";
+import NameIcon from "@assets/Nick-icon.svg";
 import PasswordIcon from "@assets/Password-icon.svg";
 import GoogleIcon from "@assets/icon/Google-icon.svg";
 import { ButtonAuth } from "@/shared/ButtonsAuth/ButtonAuth";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import { useState, FormEvent, useEffect } from "react";
 import { useFormStatus } from "react-dom";
@@ -12,8 +12,7 @@ import { checkEmail, checkPassword } from "@/features/api/util";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { userStore } from "@/features/store/user";
-import axios, { AxiosError } from "axios";
-import { setCookie } from "cookies-next";
+import { updateTokens } from "@/features/api/service";
 
 export default function Login() {
   const [isShow, setShow] = useState<boolean>(false);
@@ -28,21 +27,14 @@ export default function Login() {
     const username = (formData.get("username") as string).trim();
     const password = (formData.get("password") as string).trim();
 
-    // let resultCheck: string | boolean;
+    let resultCheck: string | boolean;
 
-    // resultCheck = checkEmail(email);
+    resultCheck = checkPassword(password);
 
-    // if (resultCheck !== true && typeof resultCheck === "string") {
-    //   setError(resultCheck);
-    //   return;
-    // }
-
-    // resultCheck = checkPassword(password);
-
-    // if (resultCheck !== true && typeof resultCheck === "string") {
-    //   setError(resultCheck);
-    //   return;
-    // }
+    if (resultCheck !== true && typeof resultCheck === "string") {
+      setError(resultCheck);
+      return;
+    }
 
     const response = await login({ username, password });
 
@@ -50,12 +42,13 @@ export default function Login() {
       setError(response.message);
       return;
     }
-    console.log("response", response);
+
     initTokens({
       accessToken: response.accessToken!,
       refreshToken: response.token!,
     });
-    setCookie("accessToken", response.accessToken);
+
+    updateTokens(response.accessToken!, response.token!);
     router.push("/app");
   };
 
@@ -77,7 +70,7 @@ export default function Login() {
           </div>
           <div className="flex items-center w-full gap-2 p-2  bg-msu-green border border-desaturated-cyan rounded-lg">
             <div>
-              <EmailIcon />
+              <NameIcon />
             </div>
             <input
               className="w-full"
