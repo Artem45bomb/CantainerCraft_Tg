@@ -34,22 +34,22 @@ export default function Registration() {
   const router = useRouter();
   const { pending } = useFormStatus();
 
-  useEffect(() => {
-    const check = async () => {
-      await checkExistUser(username)
-        .then(() => {
-          router.push("/");
-        })
-        .catch(() => {
-          setUsername(data?.user?.name || "");
-          setEmail(data?.user?.email || "");
-          setPassword("");
-        });
-    };
-    if (status === "authenticated") {
-      check();
-    }
-  }, [status]);
+  // useEffect(() => {
+  //   const check = async () => {
+  //     await checkExistUser(username)
+  //       .then(() => {
+  //         router.push("/");
+  //       })
+  //       .catch(() => {
+  //         setUsername(data?.user?.name || "");
+  //         setEmail(data?.user?.email || "");
+  //         setPassword("");
+  //       });
+  //   };
+  //   if (status === "authenticated") {
+  //     check();
+  //   }
+  // }, [status]);
 
   const input = () => {
     if (Boolean(error) === true) setError("");
@@ -64,19 +64,19 @@ export default function Registration() {
 
     let resultCheck: string | boolean;
 
-    resultCheck = checkEmail(email);
+    // resultCheck = checkEmail(email);
 
-    if (resultCheck !== true && typeof resultCheck === "string") {
-      setError(resultCheck);
-      return;
-    }
+    // if (resultCheck !== true && typeof resultCheck === "string") {
+    //   setError(resultCheck);
+    //   return;
+    // }
 
-    resultCheck = checkPassword(password);
+    // resultCheck = checkPassword(password);
 
-    if (resultCheck !== true && typeof resultCheck === "string") {
-      setError(resultCheck);
-      return;
-    }
+    // if (resultCheck !== true && typeof resultCheck === "string") {
+    //   setError(resultCheck);
+    //   return;
+    // }
 
     const response = await registration({ email, username, password });
 

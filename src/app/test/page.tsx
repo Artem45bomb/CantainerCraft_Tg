@@ -7,8 +7,6 @@ import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
 
 export default function TestPage() {
-  const router = useRouter();
-
   const submit = async () => {
     console.log("click");
 
@@ -23,9 +21,15 @@ export default function TestPage() {
         },
       );
       console.log(res);
-    } catch (error) {
-      if (error instanceof Error && error.message === "403")
-        router.push("/login");
+    } catch (e) {
+      const error: any = e as any;
+      console.log("status", error.status, "error:", error);
     }
   };
 
+  return (
+    <div>
+      <button onClick={submit}>sub</button>
+    </div>
+  );
+}
