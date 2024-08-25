@@ -30,7 +30,7 @@ export const accessTokenUpdate = (refrechToken?: string) =>
     }
   });
 
-function fetchNewAccessToken(refreshToken: string) {
+async function fetchNewAccessToken(refreshToken: string) {
   return fetch(process.env.URL_TOKEN_UPDATE || "", {
     method: "POST",
     headers: {
@@ -43,15 +43,15 @@ function fetchNewAccessToken(refreshToken: string) {
   });
 }
 
-type AnswerWrapper = {
+export type FetchAnswer<T = any> = {
   status: number;
-  body: any;
+  body: T;
 };
 
 export const fetchWrapper = (
   url: string,
   init: RequestInit,
-): Promise<AnswerWrapper> =>
+): Promise<FetchAnswer> =>
   new Promise(async (resolve, reject) => {
     let accessToken = cookies().get("accessToken")?.value || "";
     const refreshToken = cookies().get("refreshToken")?.value || "";

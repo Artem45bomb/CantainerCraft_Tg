@@ -1,6 +1,8 @@
 "use client";
+import { User } from "@/entities";
 import { StatusError } from "@/features/api/exception/StatusError";
 import { fetchWrapper } from "@/features/api/service";
+import { isStatusType } from "@/features/api/service/checkType";
 import { error } from "console";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
@@ -20,7 +22,10 @@ export default function TestPage() {
           },
         },
       );
-      console.log(res);
+
+      if (isStatusType<User[]>(200, res)) {
+        console.log("users:", res.body);
+      }
     } catch (e) {
       const error: any = e as any;
       console.log("status", error.status, "error:", error);
