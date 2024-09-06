@@ -99,8 +99,8 @@ export default function Registration() {
       style={{ flex: 1 }}
     >
       <form
-        onSubmit={submitForm}
-        className="max-w-6xl w-650px h-711px px-20 py-8 bg-FFFFFF border-2 border-1E2E66 rounded-2xl"
+        onSubmit={submitForm} // 7.68 3.84
+        className="max-w-6xl tablet:h-88.5% w-650px px-20 py-[2.4%] bg-FFFFFF border-2 border-1E2E66 rounded-2xl"
       >
         <div className="pb-6 flex justify-center items-center">
           <LogoIcon />

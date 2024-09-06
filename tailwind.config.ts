@@ -9,12 +9,18 @@ const config: Config = {
     "./src/widgets/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      tablet: "768px",
+      laptop: "1024px",
+      desktop: "1440px",
+    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+
       padding: {
         "0.5": "0.125rem",
         "2.5": "0.625rem",
@@ -81,6 +87,7 @@ const config: Config = {
         "86": "20rem",
         "23": "5.45rem",
         "650px": "650px",
+        "600px": "600px",
       },
       maxWidth: {
         "2/3": "66%",
