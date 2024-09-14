@@ -13,6 +13,7 @@ const config: Config = {
       tablet: "768px",
       laptop: "1024px",
       desktop: "1440px",
+      fourK: "2560px",
     },
     extend: {
       backgroundImage: {
@@ -20,7 +21,6 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-
       padding: {
         "0.5": "0.125rem",
         "2.5": "0.625rem",
@@ -103,6 +103,10 @@ const config: Config = {
       borderColor: {
         "white-transparent": "#ffffff15",
         "desaturated-cyan": "#61979a",
+      },
+      borderWidth: {
+        "3px": "3px",
+        "2px": "2px",
       },
       borderRadius: {
         "1.5xl": "0.88rem",
