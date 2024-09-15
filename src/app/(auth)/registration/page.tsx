@@ -102,7 +102,7 @@ export default function Registration() {
         onSubmit={submitForm}
         className="max-w-6xl w-650px px-20 py-[2.4%] bg-FFFFFF border-2 border-1E2E66 rounded-2xl
         tablet:max-h-[76%] tablet:py-[2%]
-        laptop:max-h-[80%] laptop:py-[1.4%]
+        laptop:max-h-[80%] laptop:py-[1.4%] laptop:px-[3%]
         4k:max-h-[80%] 4k:py-[2%] 4k:px-[4%] 4k:w-[50%] 4k:border-3px"
       >
         <div className="tablet:pb-1 laptop:pb-[4%] flex justify-center items-center">
@@ -119,7 +119,8 @@ export default function Registration() {
             Welcome
           </p>
           <p className="4k:text-3xl">
-            Do you already have an account? <span>Login</span>
+            Do you already have an account?{" "}
+            <span className="text-sky-600">Login</span>
           </p>
         </div>
         <div className="flex flex-col w-full gap-5 fourK:gap-7">
