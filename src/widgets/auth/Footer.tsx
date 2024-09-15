@@ -9,14 +9,12 @@ export default function Footer() {
           height={"100"}
           src="assets/icon/Logo-icon.svg"
           alt="Logo"
-          className=" tablet:w-auto tablet:max-ml-27 tablet:min-h-12 tablet:h-[91.74%] tablet:overflow-visible tablet:mr-[3%] tablet:ml-[14.3229%] tablet:max-h-28 fourK:max-h-40"
+          className=" tablet:w-auto tablet:max-ml-27 tablet:min-h-12 tablet:h-[91.74%] tablet:overflow-visible tablet:mr-[3%] tablet:ml-[14.3229%] tablet:max-h-28 4k:max-h-40"
         />
-        <span className="text-xl-4 pt-4 fourK:text-7xl text-1E2E66">
-          LinkNet
-        </span>
+        <span className="text-xl-4 pt-4 4k:text-7xl text-1E2E66">LinkNet</span>
       </div>
       <div className="w-1/2 flex justify-end items-center tablet:pr-[7.8%]">
-        <span className="pr-32 tablet:pr-[5%] tablet:text-lg desktop:text-xl fourK:text-4xl">
+        <span className="pr-32 tablet:pr-[5%] tablet:text-lg desktop:text-xl 4k:text-4xl">
           Contact/ Bug report
         </span>
       </div>
