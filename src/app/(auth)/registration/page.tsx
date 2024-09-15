@@ -1,11 +1,6 @@
 "use client";
 import { FormEvent, useState, useEffect } from "react";
-import NameIcon from "@assets/Nick-icon.svg";
-import PasswordIcon from "@assets/Password-icon.svg";
-import EmailIcon from "@assets/Email-icon.svg";
-import GoogleIcon from "@assets/icon/Google-icon.svg";
 import { ButtonAuth } from "@/shared/ButtonsAuth/ButtonAuth";
-import LogoIcon from "@assets/icon/Logo-icon.svg";
 import { signIn, useSession } from "next-auth/react";
 import {
   checkExistUser,
