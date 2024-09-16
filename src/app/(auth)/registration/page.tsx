@@ -95,8 +95,8 @@ export default function Registration() {
     >
       <form
         onSubmit={submitForm}
-        className="max-w-6xl w-650px px-20 py-[2.4%] bg-FFFFFF border-2 border-1E2E66 rounded-2xl
-        tablet:max-h-[76%] tablet:py-[2%]
+        className="max-w-6xl w-600px px-16 py-[2.4%] bg-FFFFFF border-2 border-1E2E66 rounded-2xl
+        tablet:max-h-[76%] tablet:py-[2%] tablet:max-w-[60%]
         laptop:max-h-[80%] laptop:py-[1.4%] laptop:px-[3%]
         4k:max-h-[80%] 4k:py-[2%] 4k:px-[4%] 4k:w-[50%] 4k:border-3px"
       >
@@ -106,7 +106,7 @@ export default function Registration() {
             height={"100"}
             src="assets/icon/Logo-icon.svg"
             alt="Logo"
-            className=" tablet:w-[14%] tablet:min-h-12 laptop:w-[16%] laptop:min-h-20 4k:w-[16%]"
+            className=" tablet:w-[18%] tablet:min-h-12 laptop:w-[16%] laptop:min-h-20 4k:w-[16%]"
           />
         </div>
         <div className="tablet:mb-1 laptop:mb-[2%] mb-4 text-center">
