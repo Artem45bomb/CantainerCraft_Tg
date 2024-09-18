@@ -96,9 +96,9 @@ export default function Registration() {
       <form
         onSubmit={submitForm}
         className="max-w-6xl w-600px px-16 py-[2.4%] bg-FFFFFF border-2 border-1E2E66 rounded-2xl
-        tablet:max-h-[76%] tablet:py-[2%] tablet:max-w-[60%]
+        tablet:max-h-[76%] tablet:py-[2%] tablet:max-w-[60%] tablet:min-h-[620px]
         laptop:max-h-[80%] laptop:py-[1.4%] laptop:px-[3%]
-        4k:max-h-[80%] 4k:py-[2%] 4k:px-[4%] 4k:w-[50%] 4k:border-3px"
+        4k:max-h-[80%] 4k:py-[2%] 4k:px-[4%] 4k:w-[40%] 4k:border-3px"
       >
         <div className="tablet:pb-1 laptop:pb-[4%] flex justify-center items-center">
           <Image
@@ -106,7 +106,7 @@ export default function Registration() {
             height={"100"}
             src="assets/icon/Logo-icon.svg"
             alt="Logo"
-            className=" tablet:w-[18%] tablet:min-h-12 laptop:w-[16%] laptop:min-h-20 4k:w-[16%]"
+            className=" tablet:w-[24%] tablet:min-h-12 laptop:w-[16%] laptop:min-h-20 4k:w-[16%]"
           />
         </div>
         <div className="tablet:mb-1 laptop:mb-[2%] mb-4 text-center">
@@ -115,10 +115,10 @@ export default function Registration() {
           </p>
           <p className="4k:text-3xl">
             Do you already have an account?{" "}
-            <span className="text-sky-600">Login</span>
+            <span className="text-#2F50C3">Login</span>
           </p>
         </div>
-        <div className="flex flex-col w-full gap-5 fourK:gap-7">
+        <div className="flex flex-col w-full gap-5 4K:gap-7">
           <div className="flex items-center w-full relative gap-2 p-2 4k:p-6 bg-DDE4FF border border-0A216F 4k:rounded-2xl 4k:border-2px rounded-lg">
             <div>
               <Image
