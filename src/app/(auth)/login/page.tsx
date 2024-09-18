@@ -53,39 +53,65 @@ export default function Login() {
   };
 
   return (
-    <main className=" flex items-center justify-center w-full h-full bg-msu-green">
+    <main className=" flex items-center justify-center w-full h-full bg-FFFFFF">
       <form
         onSubmit={submitForm}
-        className="max-w-2xl px-20 py-8 m-auto bg-police-blue rounded-2xl"
+        className="w-600px px-16 py-[2.4%] bg-FFFFFF border-2 border-1E2E66 rounded-2xl
+        tablet:max-h-[60%] tablet:py-[2%] tablet:max-w-[53%] tablet:min-h-[500px]
+        laptop:max-h-[80%] laptop:py-[1.4%] laptop:w-[40%] laptop:px-[3%] laptop:max-w-[43%]
+        desktop:max-w-[32%]
+        4k:max-h-[80%] 4k:py-[2%] 4k:max-w-[30%] 4k:px-[4%] 4k:w-[40%] 4k:border-3px 4k:min-w-32"
       >
-        <div className="flex flex-col gap-5">
-          <div className="mb-10 text-center">
-            <p className="pb-1 text-3xl font-bold">Welcome back</p>
-            <p>
+        <div className="tablet:pb-1 laptop:pb-[4%] flex justify-center items-center">
+          <Image
+            width={"100"}
+            height={"100"}
+            src="assets/icon/Logo-icon.svg"
+            alt="Logo"
+            className=" tablet:w-[23%] tablet:min-h-12 laptop:w-[19%] laptop:min-h-20 4k:w-[17%] 4k:min-w-36"
+          />
+        </div>
+        <div className="flex flex-col gap-5 tablet:gap-3">
+          <div className="mb-[7%] text-center">
+            <p className="pb-[1%] tablet:text-2xl text-3xl 4k:text-6xl font-bold">
+              Welcome back
+            </p>
+            <p className="4k:text-3xl tablet:text-sm">
               Don’t have an account yet?{" "}
-              <Link href={"/registration"} className="text-crystal">
+              <Link href={"/registration"} className="text-sky-600">
                 Sign up
               </Link>
             </p>
           </div>
-          <div className="flex items-center w-full gap-2 p-2  bg-msu-green border border-desaturated-cyan rounded-lg">
+          <div className="flex items-center w-full relative gap-2 p-2 4k:p-6 4k:rounded-2xl 4k:border-2px bg-DDE4FF border border-0A216F rounded-lg">
             <div>
-              <NameIcon />
+              <Image
+                width={"100"}
+                height={"100"}
+                src="assets/Nick-icon.svg"
+                alt="Logo"
+                className=" tablet:w-4 tablet:overflow-visible tablet:mr-2 4k:mr-6 4k:w-12"
+              />
             </div>
             <input
-              className="w-full"
+              className="w-full 4k:text-3xl"
               name="username"
               placeholder="username"
               type="text"
             />
           </div>
           <div className="w-full">
-            <div className="flex items-center w-full gap-2 p-2 bg-msu-green border border-desaturated-cyan rounded-lg">
-              <div>
-                <PasswordIcon />
-              </div>
+            <div className="flex items-center w-full relative gap-2 p-2 4k:p-6 4k:rounded-2xl 4k:border-2px bg-DDE4FF border border-0A216F rounded-lg">
+              <Image
+                width={"100"}
+                height={"100"}
+                src="assets/Password-icon.svg"
+                alt="Logo"
+                className=" tablet:w-4 tablet:overflow-visible tablet:mr-2 4k:mr-6 4k:w-12"
+              />
+
               <input
-                className="w-full text-c88"
+                className="w-full text-c88 4k:text-3xl"
                 name="password"
                 placeholder="Password"
                 type={!isShow ? "password" : "text"}
@@ -106,14 +132,16 @@ export default function Login() {
           <button
             disabled={pending}
             type="submit"
-            className="w-full py-3 text-center bg-crystal rounded-lg"
+            className="w-full tablet:py-2 py-3 4k:py-8 4k:text-4xl text-center text-0A216F bg-7289D9 rounded-lg"
           >
             Sign In
           </button>
           <div className="flex items-center">
-            <hr className="w-full bg-white" style={{ height: 1 }} />
-            <span className="mx-2 ">OR</span>
-            <hr className="w-full bg-white" style={{ height: 1 }} />
+            <hr className="w-full bg-0A216F" style={{ height: 2 }} />
+            <span className="mx-2 text-lg 4k:text-4xl text-0A216F font-semibold">
+              OR
+            </span>
+            <hr className="w-full bg-0A216F" style={{ height: 2 }} />
           </div>
           <div className="flex gap-5 justify-between">
             <div className="w-full">
@@ -122,8 +150,14 @@ export default function Login() {
                   signIn("google");
                 }}
               >
-                <div className="my-1">
-                  <GoogleIcon />
+                <div>
+                  <Image
+                    width={"100"}
+                    height={"100"}
+                    src="assets/icon/Google-icon.svg"
+                    alt="GoogleIcon"
+                    className=" tablet:w-6 4k:w-14"
+                  />
                 </div>
               </ButtonAuth>
             </div>

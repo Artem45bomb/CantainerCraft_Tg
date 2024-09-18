@@ -9,6 +9,12 @@ const config: Config = {
     "./src/widgets/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      tablet: "768px",
+      laptop: "1024px",
+      desktop: "1440px",
+      "4k": "2560px",
+    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -81,6 +87,7 @@ const config: Config = {
         "86": "20rem",
         "23": "5.45rem",
         "650px": "650px",
+        "600px": "600px",
       },
       maxWidth: {
         "2/3": "66%",
@@ -96,6 +103,10 @@ const config: Config = {
       borderColor: {
         "white-transparent": "#ffffff15",
         "desaturated-cyan": "#61979a",
+      },
+      borderWidth: {
+        "3px": "3px",
+        "2px": "2px",
       },
       borderRadius: {
         "1.5xl": "0.88rem",
