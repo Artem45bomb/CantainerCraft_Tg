@@ -76,7 +76,7 @@ export default function Login() {
             <p className="pb-[1%] tablet:text-2xl text-3xl 4k:text-6xl font-bold">
               Welcome back
             </p>
-            <p className="4k:text-4xl tablet:text-sm">
+            <p className="4k:text-3xl tablet:text-sm">
               Don’t have an account yet?{" "}
               <Link href={"/registration"} className="text-sky-600">
                 Sign up
@@ -156,7 +156,7 @@ export default function Login() {
                     height={"100"}
                     src="assets/icon/Google-icon.svg"
                     alt="GoogleIcon"
-                    className=" tablet:w-6 4k:w-12"
+                    className=" tablet:w-6 4k:w-14"
                   />
                 </div>
               </ButtonAuth>
